@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marche! | Electric Gourmet</title>
+  <meta name="description" content="Catálogo digital Marche! con precios públicos y mayoristas, carrito y pedido por WhatsApp.">
+  <meta name="theme-color" content="#0F172A">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marche! | Electric Gourmet">
+  <meta property="og:description" content="Catálogo digital con precios públicos y mayoristas, carrito dinámico y pedidos por WhatsApp.">
+  <meta property="og:image" content="assets/og-marche.svg">
+  <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Marche! | Electric Gourmet">
+  <meta name="twitter:description" content="Catálogo digital con precios públicos y mayoristas, carrito dinámico y pedidos por WhatsApp.">
+  <meta name="twitter:image" content="assets/og-marche.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: "#0F172A",
+            electric: "#2F6BFF",
+            neon: "#FF7A00",
+            cyanGlow: "#38BDF8"
+          },
+          fontFamily: {
+            display: ["Sora", "sans-serif"],
+            body: ["Manrope", "sans-serif"]
+          },
+          boxShadow: {
+            electric: "0 0 0 1px rgba(56, 189, 248, 0.24), 0 14px 40px rgba(47, 107, 255, 0.22)",
+            neon: "0 20px 50px rgba(255, 122, 0, 0.22)"
+          },
+          backgroundImage: {
+            grid: "radial-gradient(circle at center, rgba(148, 163, 184, 0.12) 1px, transparent 1px)"
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47, 107, 255, 0.22), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 122, 0, 0.16), transparent 24%),
+        linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.55));
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .glow-line {
+      background: linear-gradient(90deg, rgba(47, 107, 255, 0), rgba(47, 107, 255, 0.95), rgba(255, 122, 0, 0.9), rgba(255, 122, 0, 0));
+    }
+
+    .catalog-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .catalog-scroll::-webkit-scrollbar-thumb {
+      background: rgba(71, 85, 105, 0.8);
+      border-radius: 999px;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(10px);
+      opacity: 0.9;
+      animation: floatOrb 12s ease-in-out infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pulse-ring {
+      animation: pulseRing 2.4s ease-out infinite;
+    }
+
+    .stagger-1 {
+      transition-delay: 0.08s;
+    }
+
+    .stagger-2 {
+      transition-delay: 0.16s;
+    }
+
+    .stagger-3 {
+      transition-delay: 0.24s;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-14px) scale(1.05);
+      }
+    }
+
+    @keyframes pulseRing {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 18px rgba(255, 122, 0, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-orb,
+      .pulse-ring {
+        animation: none;
+      }
+
+      .reveal,
+      .reveal-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-100">
+  <div class="fixed inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-20"></div>
+  <div class="fixed inset-x-0 top-0 h-72 -z-10 blur-3xl" aria-hidden="true">
+    <div class="mx-auto h-full w-11/12 rounded-full bg-[radial-gradient(circle,_rgba(47,107,255,0.25)_0%,_rgba(255,122,0,0.12)_45%,_transparent_75%)]"></div>
+  </div>
+  <div class="hero-orb left-[8%] top-28 -z-10 h-28 w-28 bg-electric/30" aria-hidden="true"></div>
+  <div class="hero-orb right-[10%] top-40 -z-10 h-20 w-20 bg-neon/30" aria-hidden="true" style="animation-delay: -3s;"></div>
+
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 sm:gap-4">
+          <img src="assets/logo-marche.svg" alt="Logo Marche!" class="h-12 w-auto sm:h-14">
+          <div>
+            <p class="font-display text-xs uppercase tracking-[0.35em] text-cyanGlow">Electric Gourmet</p>
+            <h1 class="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Marche<span class="text-neon">!</span></h1>
+          </div>
+        </div>
+        <a href="#carrito" class="glass hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-200 shadow-electric sm:flex">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
+          Pedido en curso
+        </a>
+      </div>
+
+      <div class="glass rounded-3xl p-4 shadow-electric">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex flex-col gap-2">
+            <p class="text-sm font-semibold text-slate-300">Precios actualizados a <span id="fecha-actualizacion" class="text-neon"></span></p>
+            <p class="max-w-2xl text-sm text-slate-400">Catálogo digital de pizzas, empanadas, pastas, tartas y salsas con buscador instantáneo, cambio de tarifa y pedido por WhatsApp.</p>
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-200 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Instagram</a>
+              <a id="whatsapp-direct-link" href="#carrito" class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-200 transition hover:border-green-400/40 hover:bg-green-500/10 hover:text-green-300">WhatsApp directo</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 self-start rounded-full border border-white/10 bg-slate-900/80 p-2 sm:self-auto">
+            <span id="label-publico" class="rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white">Público</span>
+            <button id="view-toggle" type="button" aria-label="Cambiar entre catálogo público y mayorista" aria-pressed="false" class="relative h-8 w-16 rounded-full border border-white/10 bg-slate-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-electric focus:ring-offset-2 focus:ring-offset-slate-950">
+              <span class="absolute inset-y-1 left-1 w-6 rounded-full bg-white shadow-lg transition-transform duration-300" id="toggle-dot"></span>
+            </button>
+            <span id="label-mayorista" class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400">Mayorista</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <section class="reveal relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/55 px-5 py-6 shadow-electric sm:px-7 lg:px-8 lg:py-8">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,122,0,0.14),_transparent_30%),radial-gradient(circle_at_left,_rgba(47,107,255,0.16),_transparent_35%)]"></div>
+      <div class="relative grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_24rem] lg:items-center">
+        <div>
+          <div class="mb-4 inline-flex items-center gap-3 rounded-full border border-neon/20 bg-neon/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.35em] text-neon">
+            <span class="h-2.5 w-2.5 rounded-full bg-neon pulse-ring"></span>
+            Catálogo activo febrero 2026
+          </div>
+          <div class="mb-5 flex items-center gap-3">
+            <div class="rounded-3xl border border-white/10 bg-slate-950/75 p-3 shadow-electric">
+              <img src="assets/logo-marche.svg" alt="Isologo Marche!" class="h-12 w-auto sm:h-14">
+            </div>
+            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-slate-400">Identidad gastronómica digital para venta directa.</p>
+          </div>
+          <h2 class="max-w-3xl font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Marche! convierte tu menú en una vitrina digital rápida, intensa y lista para vender.</h2>
+          <p class="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">Mostrá dos listas de precios con un solo interruptor, encontrá productos al instante y cerrá pedidos por WhatsApp sin pasos extra.</p>
+
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a href="#catalogo" class="inline-flex items-center justify-center rounded-2xl bg-electric px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:bg-cyanGlow hover:text-slate-950">Ver catálogo</a>
+            <a href="#carrito" class="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Ir al pedido</a>
+          </div>
+
+          <div class="mt-7 grid gap-3 sm:grid-cols-3">
+            <div class="reveal stagger-1 rounded-3xl border border-white/10 bg-slate-950/70 p-4">
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Rubros</p>
+              <p id="hero-categories-count" class="mt-2 text-3xl font-extrabold text-white">0</p>
+            </div>
+            <div class="reveal stagger-2 rounded-3xl border border-white/10 bg-slate-950/70 p-4">
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Productos</p>
+              <p id="hero-products-count" class="mt-2 text-3xl font-extrabold text-white">0</p>
+            </div>
+            <div class="reveal stagger-3 rounded-3xl border border-white/10 bg-slate-950/70 p-4">
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Lista activa</p>
+              <p id="hero-mode-label" class="mt-2 text-3xl font-extrabold text-neon">Público</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal rounded-[1.75rem] border border-white/10 bg-slate-950/80 p-5 shadow-neon">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-cyanGlow">Señales de venta</p>
+              <h3 class="mt-2 text-2xl font-bold text-white">Portada comercial</h3>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-electric/30 to-neon/30 px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-white">SPA</div>
+          </div>
+
+          <div class="mt-5 rounded-3xl border border-white/10 bg-white/5 p-4">
+            <img src="assets/logo-marche.svg" alt="Marca Marche!" class="h-12 w-auto">
+            <p class="mt-3 text-sm leading-6 text-slate-300">Una marca visual con tono gastronómico, brillo eléctrico y foco directo en pedido rápido.</p>
+          </div>
+
+          <div class="mt-6 space-y-3">
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-4">
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Experiencia</p>
+              <p class="mt-2 text-lg font-bold text-white">Búsqueda instantánea + tabs por rubro + cambio de tarifa en vivo.</p>
+            </div>
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-4">
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Conversión</p>
+              <p class="mt-2 text-lg font-bold text-white">El carrito resume todo y dispara el pedido directo a WhatsApp.</p>
+            </div>
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-4">
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Publicación</p>
+              <p class="mt-2 text-lg font-bold text-white">Compatible con GitHub Pages, sin build ni dependencias de runtime.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo" class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <div class="glass overflow-hidden rounded-[2rem] shadow-electric">
+        <div class="border-b border-white/10 px-5 py-5 sm:px-6">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p class="font-display text-xs uppercase tracking-[0.4em] text-electric">Menú digital</p>
+              <h2 class="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">Pedidos rápidos, precios claros y dos catálogos en una sola vista.</h2>
+            </div>
+            <div class="min-w-full lg:min-w-[20rem]">
+              <label for="search-input" class="mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Buscar producto</label>
+              <input id="search-input" type="search" placeholder="Ej. Muzza, Canelones, Fileto" class="w-full rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-base text-white outline-none placeholder:text-slate-500 focus:border-electric focus:ring-2 focus:ring-electric/30">
+            </div>
+          </div>
+        </div>
+
+        <div class="px-5 pt-5 sm:px-6">
+          <div class="catalog-scroll flex gap-3 overflow-x-auto pb-4" id="tabs-container"></div>
+          <div class="mb-5 h-px w-full glow-line"></div>
+          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3" id="catalog-container"></div>
+          <div id="empty-state" class="hidden rounded-3xl border border-dashed border-white/10 bg-slate-950/60 px-6 py-14 text-center text-slate-400">
+            No encontramos productos para esa búsqueda o categoría.
+          </div>
+        </div>
+      </div>
+
+      <aside id="carrito" class="glass rounded-[2rem] p-5 shadow-neon sm:p-6 lg:sticky lg:top-32 lg:h-fit">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Carrito</p>
+            <h3 class="mt-2 text-2xl font-bold text-white">Tu pedido Marche!</h3>
+          </div>
+          <button id="clear-cart" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-400 transition hover:border-neon hover:text-neon">Vaciar</button>
+        </div>
+
+        <div class="mt-6 rounded-3xl border border-white/10 bg-slate-950/70 p-4">
+          <div class="flex items-center justify-between text-sm text-slate-400">
+            <span>Tarifa activa</span>
+            <span id="pricing-mode-badge" class="rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric">Público</span>
+          </div>
+          <p class="mt-3 text-sm text-slate-400">El carrito mantiene precios consistentes con la vista activa. Si cambias a Mayorista, el pedido se reinicia para evitar mezclar listas.</p>
+        </div>
+
+        <div id="cart-items" class="mt-6 flex max-h-[22rem] flex-col gap-3 overflow-y-auto pr-1"></div>
+
+        <div id="cart-empty" class="mt-6 rounded-3xl border border-dashed border-white/10 px-5 py-8 text-center text-sm text-slate-500">
+          Agrega productos para preparar el pedido.
+        </div>
+
+        <div class="mt-6 rounded-3xl bg-slate-950/80 p-4">
+          <div class="flex items-center justify-between text-sm text-slate-400">
+            <span>Total</span>
+            <span id="cart-count-summary">0 items</span>
+          </div>
+          <p id="cart-total" class="mt-3 text-3xl font-extrabold text-white">$0</p>
+          <button id="whatsapp-button" type="button" class="mt-4 w-full rounded-2xl bg-green-500 px-4 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40" disabled>
+            Enviar pedido por WhatsApp
+          </button>
+          <p class="mt-3 text-xs text-slate-500">WhatsApp configurado con el número comercial y acceso a Instagram activo desde la cabecera.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script>
+    const state = {
+      modo: "publico",
+      categoriaActiva: "todos",
+      busqueda: "",
+      carrito: []
+    };
+
+    const categoryAliases = {
+      pizzas: ["pizzas"],
+      empanadas: ["empanadas", "canastitas"],
+      pastas: ["pastas"],
+      tartas: ["tartas"],
+      salsas: ["salsas"]
+    };
+
+    const container = document.getElementById("catalog-container");
+    const tabsContainer = document.getElementById("tabs-container");
+    const searchInput = document.getElementById("search-input");
+    const emptyState = document.getElementById("empty-state");
+    const toggleBtn = document.getElementById("view-toggle");
+    const toggleDot = document.getElementById("toggle-dot");
+    const labelPublico = document.getElementById("label-publico");
+    const labelMayorista = document.getElementById("label-mayorista");
+    const pricingModeBadge = document.getElementById("pricing-mode-badge");
+    const cartItems = document.getElementById("cart-items");
+    const cartEmpty = document.getElementById("cart-empty");
+    const cartTotal = document.getElementById("cart-total");
+    const cartCountSummary = document.getElementById("cart-count-summary");
+    const headerCartCount = document.getElementById("header-cart-count");
+    const whatsappButton = document.getElementById("whatsapp-button");
+    const clearCartButton = document.getElementById("clear-cart");
+    const instagramLink = document.getElementById("instagram-link");
+    const whatsappDirectLink = document.getElementById("whatsapp-direct-link");
+    const heroCategoriesCount = document.getElementById("hero-categories-count");
+    const heroProductsCount = document.getElementById("hero-products-count");
+    const heroModeLabel = document.getElementById("hero-mode-label");
+
+    document.getElementById("fecha-actualizacion").textContent = catalogoMarche.fechaActualizacion;
+    instagramLink.href = catalogoMarche.instagram;
+    whatsappDirectLink.href = `https://wa.me/${catalogoMarche.whatsapp}`;
+    whatsappDirectLink.target = "_blank";
+    whatsappDirectLink.rel = "noopener noreferrer";
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("es-AR").format(value);
+    }
+
+    function getVisibleCategories() {
+      return [
+        { id: "todos", label: "Todo el menú", description: "Catálogo completo" },
+        { id: "pizzas", label: "Pizzas", description: "Clásicas y especiales" },
+        { id: "empanadas", label: "Empanadas", description: "Empanadas y canastitas" },
+        { id: "pastas", label: "Pastas", description: "Viandas y rellenas" },
+        { id: "tartas", label: "Tartas", description: "Grandes y listas" },
+        { id: "salsas", label: "Salsas", description: "Complementos" }
+      ];
+    }
+
+    function categoryMatches(categorySlug) {
+      if (state.categoriaActiva === "todos") {
+        return true;
+      }
+
+      return categoryAliases[state.categoriaActiva]?.includes(categorySlug) || false;
+    }
+
+    function getFilteredItems() {
+      const term = state.busqueda.trim().toLowerCase();
+
+      return catalogoMarche.categorias.flatMap((categoria) => {
+        if (!categoryMatches(categoria.slug)) {
+          return [];
+        }
+
+        return categoria.items
+          .filter((item) => {
+            if (!term) {
+              return true;
+            }
+
+            const normalizedCategory = categoria.nombre.toLowerCase();
+            return item.nombre.toLowerCase().includes(term) || normalizedCategory.includes(term);
+          })
+          .map((item) => ({
+            ...item,
+            categoria: categoria.nombre,
+            categoriaSlug: categoria.slug,
+            precio: item[state.modo]
+          }));
+      });
+    }
+
+    function renderTabs() {
+      tabsContainer.innerHTML = getVisibleCategories()
+        .map((tab) => {
+          const active = tab.id === state.categoriaActiva;
+          return `
+            <button
+              type="button"
+              data-tab="${tab.id}"
+              class="group min-w-max rounded-2xl border px-4 py-3 text-left transition ${active ? "border-electric bg-electric/15 text-white shadow-electric" : "border-white/10 bg-slate-950/60 text-slate-300 hover:border-cyanGlow/40 hover:text-white"}"
+            >
+              <span class="block text-sm font-bold uppercase tracking-[0.18em]">${tab.label}</span>
+              <span class="mt-1 block text-xs ${active ? "text-cyanGlow" : "text-slate-500 group-hover:text-slate-400"}">${tab.description}</span>
+            </button>
+          `;
+        })
+        .join("");
+    }
+
+    function renderProducts() {
+      const items = getFilteredItems();
+
+      emptyState.classList.toggle("hidden", items.length > 0);
+      container.classList.toggle("hidden", items.length === 0);
+
+      container.innerHTML = items
+        .map((item) => `
+          <article class="glass reveal group flex h-full flex-col rounded-[1.75rem] p-5 shadow-electric transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/40 hover:shadow-neon">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-cyanGlow">${item.categoria}</p>
+                <h3 class="mt-2 text-2xl font-bold text-white">${item.nombre}</h3>
+              </div>
+              <span class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-neon">${state.modo === "publico" ? "Público" : "Mayorista"}</span>
+            </div>
+
+            <div class="mt-8 flex items-end justify-between gap-3">
+              <div>
+                <p class="text-xs uppercase tracking-[0.3em] text-slate-500">Precio final</p>
+                <p class="mt-2 text-4xl font-extrabold text-white">$${formatCurrency(item.precio)}</p>
+              </div>
+              <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-electric/40 to-neon/40"></div>
+            </div>
+
+            <button
+              type="button"
+              class="add-to-cart mt-8 w-full rounded-2xl bg-electric px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-white transition hover:bg-cyanGlow hover:text-slate-950"
+              data-name="${item.nombre}"
+              data-category="${item.categoria}"
+              data-price="${item.precio}"
+            >
+              Agregar al pedido
+            </button>
+          </article>
+        `)
+        .join("");
+
+      activateRevealAnimations();
+    }
+
+    function summarizeCart() {
+      const map = new Map();
+
+      state.carrito.forEach((item) => {
+        const key = `${item.nombre}-${item.precio}`;
+        if (!map.has(key)) {
+          map.set(key, { ...item, cantidad: 0 });
+        }
+        map.get(key).cantidad += 1;
+      });
+
+      return Array.from(map.values());
+    }
+
+    function updateCart() {
+      const summary = summarizeCart();
+      const totalItems = state.carrito.length;
+      const total = state.carrito.reduce((acc, item) => acc + item.precio, 0);
+
+      cartEmpty.classList.toggle("hidden", totalItems > 0);
+      whatsappButton.disabled = totalItems === 0;
+      headerCartCount.textContent = String(totalItems);
+      cartCountSummary.textContent = `${totalItems} ${totalItems === 1 ? "item" : "items"}`;
+      cartTotal.textContent = `$${formatCurrency(total)}`;
+
+      cartItems.innerHTML = summary
+        .map((item) => `
+          <div class="rounded-3xl border border-white/10 bg-slate-950/70 p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <p class="text-sm font-bold text-white">${item.nombre}</p>
+                <p class="mt-1 text-xs uppercase tracking-[0.28em] text-slate-500">${item.categoria}</p>
+              </div>
+              <button type="button" class="remove-item rounded-full border border-white/10 px-2 py-1 text-xs font-bold text-slate-400 hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-price="${item.precio}">Quitar</button>
+            </div>
+            <div class="mt-4 flex items-end justify-between gap-4">
+              <span class="inline-flex rounded-full bg-white/5 px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-cyanGlow">${item.cantidad} x</span>
+              <p class="text-lg font-extrabold text-white">$${formatCurrency(item.precio * item.cantidad)}</p>
+            </div>
+          </div>
+        `)
+        .join("");
+    }
+
+    function syncModeUI() {
+      const isMayorista = state.modo === "mayorista";
+      toggleBtn.setAttribute("aria-pressed", String(isMayorista));
+      toggleBtn.classList.toggle("bg-slate-800", !isMayorista);
+      toggleBtn.classList.toggle("bg-neon", isMayorista);
+      toggleDot.style.transform = isMayorista ? "translateX(2rem)" : "translateX(0)";
+
+      labelPublico.className = isMayorista
+        ? "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400"
+        : "rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white";
+
+      labelMayorista.className = isMayorista
+        ? "rounded-full bg-neon px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-950"
+        : "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400";
+
+      pricingModeBadge.textContent = isMayorista ? "Mayorista" : "Público";
+      pricingModeBadge.className = isMayorista
+        ? "rounded-full bg-neon/20 px-3 py-1 font-semibold text-neon"
+        : "rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric";
+
+      heroModeLabel.textContent = isMayorista ? "Mayorista" : "Público";
+      heroModeLabel.className = isMayorista
+        ? "mt-2 text-3xl font-extrabold text-neon"
+        : "mt-2 text-3xl font-extrabold text-electric";
+    }
+
+    function updateHeroStats() {
+      const productCount = catalogoMarche.categorias.reduce((total, categoria) => total + categoria.items.length, 0);
+      const categoryCount = getVisibleCategories().filter((categoria) => categoria.id !== "todos").length;
+
+      heroProductsCount.textContent = String(productCount);
+      heroCategoriesCount.textContent = String(categoryCount);
+    }
+
+    function activateRevealAnimations() {
+      const revealElements = document.querySelectorAll(".reveal");
+
+      if (!("IntersectionObserver" in window)) {
+        revealElements.forEach((element) => element.classList.add("reveal-visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      revealElements.forEach((element) => {
+        if (!element.classList.contains("reveal-visible")) {
+          observer.observe(element);
+        }
+      });
+    }
+
+    function addToCart(nombre, categoria, precio) {
+      state.carrito.push({ nombre, categoria, precio });
+      updateCart();
+    }
+
+    function removeFromCart(nombre, precio) {
+      const index = state.carrito.findIndex((item) => item.nombre === nombre && item.precio === precio);
+      if (index >= 0) {
+        state.carrito.splice(index, 1);
+        updateCart();
+      }
+    }
+
+    function resetCart() {
+      state.carrito = [];
+      updateCart();
+    }
+
+    function buildWhatsAppMessage() {
+      const summary = summarizeCart();
+      const total = state.carrito.reduce((acc, item) => acc + item.precio, 0);
+      const lines = summary.map((item) => `• ${item.cantidad}x ${item.nombre} - $${formatCurrency(item.precio * item.cantidad)}`);
+
+      return [
+        "Hola Marche!",
+        "",
+        `Quiero hacer un pedido ${state.modo === "publico" ? "Público" : "Mayorista"}:`,
+        ...lines,
+        "",
+        `Total: $${formatCurrency(total)}`,
+        `Lista vigente: ${catalogoMarche.fechaActualizacion}`
+      ].join("\n");
+    }
+
+    function sendToWhatsApp() {
+      if (!state.carrito.length) {
+        return;
+      }
+
+      const number = catalogoMarche.whatsapp;
+      const message = encodeURIComponent(buildWhatsAppMessage());
+      window.open(`https://wa.me/${number}?text=${message}`, "_blank", "noopener");
+    }
+
+    tabsContainer.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-tab]");
+      if (!button) {
+        return;
+      }
+
+      state.categoriaActiva = button.dataset.tab;
+      renderTabs();
+      renderProducts();
+    });
+
+    searchInput.addEventListener("input", (event) => {
+      state.busqueda = event.target.value;
+      renderProducts();
+    });
+
+    toggleBtn.addEventListener("click", () => {
+      state.modo = state.modo === "publico" ? "mayorista" : "publico";
+      resetCart();
+      syncModeUI();
+      renderProducts();
+    });
+
+    container.addEventListener("click", (event) => {
+      const button = event.target.closest(".add-to-cart");
+      if (!button) {
+        return;
+      }
+
+      const { name, category, price } = button.dataset;
+      addToCart(name, category, Number(price));
+
+      const originalText = button.textContent;
+      button.textContent = "Agregado";
+      button.classList.remove("bg-electric");
+      button.classList.add("bg-neon", "text-slate-950");
+
+      window.setTimeout(() => {
+        button.textContent = originalText;
+        button.classList.add("bg-electric");
+        button.classList.remove("bg-neon", "text-slate-950");
+      }, 700);
+    });
+
+    cartItems.addEventListener("click", (event) => {
+      const button = event.target.closest(".remove-item");
+      if (!button) {
+        return;
+      }
+
+      removeFromCart(button.dataset.name, Number(button.dataset.price));
+    });
+
+    clearCartButton.addEventListener("click", resetCart);
+    whatsappButton.addEventListener("click", sendToWhatsApp);
+
+    updateHeroStats();
+    renderTabs();
+    syncModeUI();
+    renderProducts();
+    updateCart();
+    activateRevealAnimations();
+  </script>
+</body>
+</html>
