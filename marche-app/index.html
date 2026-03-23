@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marche! | Carta Italiana</title>
-  <meta name="description" content="Catálogo digital Marche! con precios públicos y mayoristas, carrito y pedido por WhatsApp.">
+  <meta name="description" content="Pizzas, empanadas, pastas, tartas y salsas Marche! para hogar, negocios, empresas y eventos. Sumá al carrito y hacé tu pedido por WhatsApp.">
   <meta name="theme-color" content="#0D1014">
   <link rel="canonical" href="https://braianruaimi.github.io/Marche-/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Marche! | Carta Italiana">
-  <meta property="og:description" content="Catálogo digital con precios públicos y mayoristas, carrito dinámico y pedidos por WhatsApp.">
+  <meta property="og:description" content="Elegí productos Marche!, sumalos al carrito y enviá tu pedido por WhatsApp con tus datos para coordinar entrega o abastecimiento.">
   <meta property="og:url" content="https://braianruaimi.github.io/Marche-/">
   <meta property="og:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <meta property="og:locale" content="es_AR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Marche! | Carta Italiana">
-  <meta name="twitter:description" content="Catálogo digital con precios públicos y mayoristas, carrito dinámico y pedidos por WhatsApp.">
+  <meta name="twitter:description" content="Elegí productos Marche!, sumalos al carrito y enviá tu pedido por WhatsApp con tus datos para coordinar entrega o abastecimiento.">
   <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/favicon.svg">
@@ -100,6 +100,15 @@
     .paper-chip {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .catalog-photo {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .photo-wash {
+      background: linear-gradient(180deg, rgba(13, 16, 20, 0.05), rgba(13, 16, 20, 0.58));
     }
 
     .hero-orb {
@@ -204,7 +213,7 @@
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div class="flex flex-col gap-2">
             <p class="text-sm font-semibold text-slate-200">Precios actualizados a <span id="fecha-actualizacion" class="text-neon"></span></p>
-            <p class="max-w-2xl text-sm ink-body">Una carta digital cálida y clara para pizzas, empanadas, pastas, tartas y salsas con pedido directo por WhatsApp.</p>
+            <p class="max-w-2xl text-sm ink-body">Productos listos para resolver comidas, abastecer negocios y organizar eventos con una compra simple, clara y directa.</p>
             <div class="flex flex-wrap items-center gap-3 pt-1">
               <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Instagram</a>
               <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">WhatsApp directo</a>
@@ -236,14 +245,14 @@
             <div class="paper-chip rounded-3xl p-3 shadow-electric">
               <img src="assets/logo-marche.svg" alt="Isologo Marche!" class="h-12 w-auto sm:h-14">
             </div>
-            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">Una carta digital con alma de trattoria y venta directa.</p>
+            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">Mismo material visual del catálogo real, adaptado para vender mejor online.</p>
           </div>
-          <h2 class="max-w-3xl font-display text-5xl font-bold tracking-tight ink-title sm:text-6xl lg:text-7xl">Una carta italiana, cálida y apetecible para vender mejor cada producto.</h2>
-          <p class="mt-5 max-w-2xl text-base leading-7 ink-body sm:text-lg">Mostrá dos listas de precios con un solo interruptor, encontrá productos al instante y convertí cada visita en un pedido simple y directo.</p>
+          <h2 class="max-w-3xl font-display text-5xl font-bold tracking-tight ink-title sm:text-6xl lg:text-7xl">Todo lo rico de Marche! en un pedido rapido para tu casa, tu negocio o tu evento.</h2>
+          <p class="mt-5 max-w-2xl text-base leading-7 ink-body sm:text-lg">Elegí pizzas, empanadas, pastas, tartas y salsas, sumá lo que necesitás y pedilo en minutos con tus datos para coordinar entrega.</p>
 
           <div class="mt-7 flex flex-col gap-3 sm:flex-row">
             <a href="#catalogo" class="inline-flex items-center justify-center rounded-2xl bg-electric px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:bg-neon hover:text-[#11151b]">Ver catálogo</a>
-            <a href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-2xl px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Ir al pedido</a>
+            <a href="#pedido-form" class="paper-chip inline-flex items-center justify-center rounded-2xl px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Hacer pedido</a>
           </div>
 
           <div class="mt-7 grid gap-3 sm:grid-cols-3">
@@ -252,7 +261,7 @@
               <p id="hero-categories-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
             </div>
             <div class="paper-chip reveal stagger-2 rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Productos</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Opciones</p>
               <p id="hero-products-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
             </div>
             <div class="paper-chip reveal stagger-3 rounded-3xl p-4">
@@ -263,31 +272,36 @@
         </div>
 
         <div class="menu-surface reveal rounded-[1.75rem] p-5 shadow-neon">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-xs uppercase tracking-[0.3em] text-neon">Estilo de carta</p>
-              <h3 class="mt-2 text-2xl font-bold ink-title">Portada de trattoria</h3>
+          <div class="relative overflow-hidden rounded-[1.5rem] catalog-photo">
+            <img src="assets/pdf/page-1.png" alt="Imagen del catalogo digital Marche!" class="h-[24rem] w-full object-cover sm:h-[28rem]">
+            <div class="photo-wash absolute inset-0"></div>
+            <div class="absolute inset-x-0 bottom-0 p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-neon">Catalogo Marche!</p>
+              <h3 class="mt-2 font-display text-3xl font-bold text-white">Misma imagen del material comercial, ahora lista para vender online.</h3>
             </div>
-            <div class="paper-chip rounded-2xl px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-slate-100">Carta web</div>
           </div>
 
-          <div class="paper-chip mt-5 rounded-3xl p-4">
-            <img src="assets/logo-marche.svg" alt="Marca Marche!" class="h-12 w-auto">
-            <p class="mt-3 text-sm leading-6 ink-body">Una marca visual más cálida, cercana y pensada para comida casera con identidad italiana.</p>
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <div class="paper-chip overflow-hidden rounded-3xl">
+              <img src="assets/pdf/page-2.png" alt="Pagina del catalogo con pizzas y empanadas" class="h-44 w-full object-cover object-top">
+            </div>
+            <div class="paper-chip overflow-hidden rounded-3xl">
+              <img src="assets/pdf/page-3.png" alt="Pagina del catalogo con productos Marche!" class="h-44 w-full object-cover object-top">
+            </div>
           </div>
 
           <div class="mt-6 space-y-3">
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Experiencia</p>
-              <p class="mt-2 text-lg font-bold ink-title">Búsqueda instantánea, rubros claros y cambio de tarifa sin fricción.</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Venta directa</p>
+              <p class="mt-2 text-lg font-bold ink-title">Sumás productos, completás tus datos y el pedido sale armado por WhatsApp.</p>
             </div>
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Conversión</p>
-              <p class="mt-2 text-lg font-bold ink-title">El carrito resume todo y dispara el pedido directo a WhatsApp.</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Para cada necesidad</p>
+              <p class="mt-2 text-lg font-bold ink-title">Ideal para compras del hogar, abastecimiento de negocios, empresas y eventos.</p>
             </div>
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Publicación</p>
-              <p class="mt-2 text-lg font-bold ink-title">Compatible con GitHub Pages, sin build ni dependencias de runtime.</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Decision rapida</p>
+              <p class="mt-2 text-lg font-bold ink-title">Precios claros, categorias simples y una ruta directa al cierre de compra.</p>
             </div>
           </div>
         </div>
@@ -300,7 +314,7 @@
           <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p class="font-display text-xs uppercase tracking-[0.4em] text-electric">La carta</p>
-              <h2 class="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">Sabores listos para elegir, con precios claros y ritmo de servicio.</h2>
+              <h2 class="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">Elegí lo que necesitás hoy y armá tu pedido en minutos.</h2>
             </div>
             <div class="min-w-full lg:min-w-[20rem]">
               <label for="search-input" class="mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">Buscar producto</label>
@@ -333,7 +347,7 @@
             <span>Tarifa activa</span>
             <span id="pricing-mode-badge" class="rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric">Público</span>
           </div>
-          <p class="mt-3 text-sm text-slate-300">El carrito mantiene precios consistentes con la vista activa. Si cambias a Mayorista, el pedido se reinicia para evitar mezclar listas.</p>
+          <p class="mt-3 text-sm text-slate-300">Sumá productos y completá tus datos para enviar un pedido listo por WhatsApp. Si cambiás a Mayorista, el carrito se reinicia para evitar mezclar listas.</p>
         </div>
 
         <div id="cart-items" class="mt-6 flex max-h-[22rem] flex-col gap-3 overflow-y-auto pr-1"></div>
@@ -348,10 +362,25 @@
             <span id="cart-count-summary">0 items</span>
           </div>
           <p id="cart-total" class="mt-3 text-3xl font-extrabold text-white">$0</p>
-          <button id="whatsapp-button" type="button" class="mt-4 w-full rounded-2xl bg-green-500 px-4 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40" disabled>
-            Enviar pedido por WhatsApp
-          </button>
-          <p class="mt-3 text-xs text-slate-400">WhatsApp configurado con el número comercial y acceso a Instagram activo desde la cabecera.</p>
+          <form id="pedido-form" class="mt-4 space-y-3">
+            <div class="grid gap-3 sm:grid-cols-2">
+              <input id="customer-name" type="text" placeholder="Nombre" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+              <input id="customer-lastname" type="text" placeholder="Apellido" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+            </div>
+            <input id="customer-email" type="email" placeholder="Email" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+            <select id="customer-segment" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-neon focus:ring-2 focus:ring-neon/30">
+              <option value="" class="bg-slate-900 text-white">Seleccioná destino del pedido</option>
+              <option value="Negocios" class="bg-slate-900 text-white">Negocios</option>
+              <option value="Empresas" class="bg-slate-900 text-white">Empresas</option>
+              <option value="Eventos" class="bg-slate-900 text-white">Eventos</option>
+            </select>
+            <input id="customer-address" type="text" placeholder="Direccion" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+            <p id="pedido-error" class="hidden text-sm font-medium text-amber-300"></p>
+            <button id="whatsapp-button" type="submit" class="w-full rounded-2xl bg-green-500 px-4 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40" disabled>
+              Hacer pedido
+            </button>
+          </form>
+          <p class="mt-3 text-xs text-slate-400">Completá tus datos para enviar el pedido armado con productos, total y datos de contacto al WhatsApp de Marche!.</p>
         </div>
       </aside>
     </section>
@@ -390,6 +419,13 @@
     const headerCartCount = document.getElementById("header-cart-count");
     const whatsappButton = document.getElementById("whatsapp-button");
     const clearCartButton = document.getElementById("clear-cart");
+    const pedidoForm = document.getElementById("pedido-form");
+    const pedidoError = document.getElementById("pedido-error");
+    const customerName = document.getElementById("customer-name");
+    const customerLastName = document.getElementById("customer-lastname");
+    const customerEmail = document.getElementById("customer-email");
+    const customerSegment = document.getElementById("customer-segment");
+    const customerAddress = document.getElementById("customer-address");
     const instagramLink = document.getElementById("instagram-link");
     const whatsappDirectLink = document.getElementById("whatsapp-direct-link");
     const heroCategoriesCount = document.getElementById("hero-categories-count");
@@ -531,6 +567,7 @@
 
       cartEmpty.classList.toggle("hidden", totalItems > 0);
       whatsappButton.disabled = totalItems === 0;
+      pedidoError.classList.add("hidden");
       headerCartCount.textContent = String(totalItems);
       cartCountSummary.textContent = `${totalItems} ${totalItems === 1 ? "item" : "items"}`;
       cartTotal.textContent = `$${formatCurrency(total)}`;
@@ -632,15 +669,46 @@
       updateCart();
     }
 
+    function getCustomerData() {
+      return {
+        nombre: customerName.value.trim(),
+        apellido: customerLastName.value.trim(),
+        email: customerEmail.value.trim(),
+        segmento: customerSegment.value.trim(),
+        direccion: customerAddress.value.trim()
+      };
+    }
+
+    function validateOrderForm() {
+      const customer = getCustomerData();
+
+      if (!customer.nombre || !customer.apellido || !customer.email || !customer.segmento || !customer.direccion) {
+        return "Completá nombre, apellido, email, tipo de pedido y direccion para continuar.";
+      }
+
+      if (!customer.email.includes("@")) {
+        return "Ingresá un email valido para que Marche! pueda contactarte.";
+      }
+
+      return "";
+    }
+
     function buildWhatsAppMessage() {
       const summary = summarizeCart();
       const total = state.carrito.reduce((acc, item) => acc + item.precio, 0);
       const lines = summary.map((item) => `• ${item.cantidad}x ${item.nombre} - $${formatCurrency(item.precio * item.cantidad)}`);
+      const customer = getCustomerData();
 
       return [
         "Hola Marche!",
         "",
         `Quiero hacer un pedido ${state.modo === "publico" ? "Público" : "Mayorista"}:`,
+        `Nombre: ${customer.nombre} ${customer.apellido}`,
+        `Email: ${customer.email}`,
+        `Destino: ${customer.segmento}`,
+        `Direccion: ${customer.direccion}`,
+        "",
+        "Detalle del pedido:",
         ...lines,
         "",
         `Total: $${formatCurrency(total)}`,
@@ -652,6 +720,15 @@
       if (!state.carrito.length) {
         return;
       }
+
+      const error = validateOrderForm();
+      if (error) {
+        pedidoError.textContent = error;
+        pedidoError.classList.remove("hidden");
+        return;
+      }
+
+      pedidoError.classList.add("hidden");
 
       const number = catalogoMarche.whatsapp;
       const message = encodeURIComponent(buildWhatsAppMessage());
@@ -712,7 +789,10 @@
     });
 
     clearCartButton.addEventListener("click", resetCart);
-    whatsappButton.addEventListener("click", sendToWhatsApp);
+    pedidoForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      sendToWhatsApp();
+    });
 
     updateHeroStats();
     renderTabs();

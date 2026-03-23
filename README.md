@@ -4,7 +4,7 @@ https://braianruaimi.github.io/Marche-/marche-app/
 
 Sitio publicado: https://braianruaimi.github.io/Marche-/
 
-SPA estática para el negocio Marche!, pensada como carta digital y catálogo de productos con precios Público y Mayorista, carrito y envío de pedido por WhatsApp.
+SPA estática para el negocio Marche!, pensada para vender productos congelados con catálogo Público y Mayorista, carrito, formulario de cliente e integración de pedido por WhatsApp.
 
 La aplicación publicada se sirve desde la carpeta [marche-app](marche-app) y se despliega automáticamente con GitHub Pages mediante GitHub Actions.
 
@@ -16,14 +16,16 @@ La aplicación publicada se sirve desde la carpeta [marche-app](marche-app) y se
 - Buscador en tiempo real
 - Tabs por categoría
 - Carrito con total acumulado
-- Enlace directo para enviar pedido por WhatsApp
+- Formulario de pedido con nombre, apellido, email, destino y dirección
+- Enlace directo para enviar pedido por WhatsApp con carrito y datos del cliente
 - Branding visual con logo, favicon e imagen Open Graph
+- Imágenes reales del catálogo PDF integradas en la portada
 
 ## Estructura principal
 
 - [marche-app](marche-app): aplicación web publicada
 - [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml): workflow de despliegue automático a GitHub Pages
-- [marche-app/assets](marche-app/assets): logo, favicon e imagen social
+- [marche-app/assets](marche-app/assets): logo, favicon, imagen social e imágenes del catálogo PDF
 - [marche-app/data.js](marche-app/data.js): catálogo, teléfono y redes
 - [marche-app/index.html](marche-app/index.html): estructura, estilos y lógica vanilla
 
@@ -57,6 +59,7 @@ Ahí están:
 - layout general
 - estilos visuales
 - hero
+- formulario de pedido
 - tabs y cards
 - lógica del carrito
 
