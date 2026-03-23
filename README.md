@@ -1,12 +1,10 @@
 # Marche!
 
+Sitio publicado: https://braianruaimi.github.io/Marche-/
+
 SPA estática para el negocio Marche!, pensada como carta digital y catálogo de productos con precios Público y Mayorista, carrito y envío de pedido por WhatsApp.
 
 La aplicación publicada se sirve desde la carpeta [marche-app](marche-app) y se despliega automáticamente con GitHub Pages mediante GitHub Actions.
-
-## Demo
-
-- URL esperada de publicación: https://braianruaimi.github.io/Marche-/
 
 ## Qué incluye
 

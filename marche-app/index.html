@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marche! | Sapori Italiani</title>
+  <title>Marche! | Carta Italiana</title>
   <meta name="description" content="Catálogo digital Marche! con precios públicos y mayoristas, carrito y pedido por WhatsApp.">
-  <meta name="theme-color" content="#F3E7D3">
+  <meta name="theme-color" content="#0D1014">
   <link rel="canonical" href="https://braianruaimi.github.io/Marche-/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Marche! | Sapori Italiani">
+  <meta property="og:title" content="Marche! | Carta Italiana">
   <meta property="og:description" content="Catálogo digital con precios públicos y mayoristas, carrito dinámico y pedidos por WhatsApp.">
   <meta property="og:url" content="https://braianruaimi.github.io/Marche-/">
   <meta property="og:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <meta property="og:locale" content="es_AR">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Marche! | Sapori Italiani">
+  <meta name="twitter:title" content="Marche! | Carta Italiana">
   <meta name="twitter:description" content="Catálogo digital con precios públicos y mayoristas, carrito dinámico y pedidos por WhatsApp.">
   <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -25,18 +25,18 @@
       theme: {
         extend: {
           colors: {
-            midnight: "#F3E7D3",
-            electric: "#8E2F2F",
-            neon: "#6E7F3F",
-            cyanGlow: "#FFF8EE"
+            midnight: "#0D1014",
+            electric: "#C6973A",
+            neon: "#E6C56F",
+            cyanGlow: "#F5F1E8"
           },
           fontFamily: {
             display: ["Cormorant Garamond", "serif"],
             body: ["Manrope", "sans-serif"]
           },
           boxShadow: {
-            electric: "0 0 0 1px rgba(142, 47, 47, 0.12), 0 14px 34px rgba(111, 78, 55, 0.16)",
-            neon: "0 18px 36px rgba(110, 127, 63, 0.12)"
+            electric: "0 0 0 1px rgba(230, 197, 111, 0.12), 0 18px 44px rgba(0, 0, 0, 0.34)",
+            neon: "0 0 30px rgba(230, 197, 111, 0.16)"
           },
           backgroundImage: {
             grid: "radial-gradient(circle at center, rgba(148, 163, 184, 0.12) 1px, transparent 1px)"
@@ -56,20 +56,21 @@
     body {
       font-family: "Manrope", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(142, 47, 47, 0.08), transparent 28%),
-        radial-gradient(circle at top right, rgba(110, 127, 63, 0.08), transparent 24%),
-        linear-gradient(180deg, #f7efe1 0%, #efe1cc 100%);
-      color: #3d2c21;
+        radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.1), transparent 18%),
+        radial-gradient(circle at 86% 14%, rgba(255, 255, 255, 0.08), transparent 16%),
+        radial-gradient(circle at 55% 0%, rgba(230, 197, 111, 0.08), transparent 18%),
+        linear-gradient(180deg, #0d1014 0%, #131820 100%);
+      color: #f5f1e8;
     }
 
     .glass {
-      background: linear-gradient(180deg, rgba(255, 249, 240, 0.78), rgba(244, 231, 210, 0.92));
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(108, 79, 55, 0.12);
+      background: linear-gradient(180deg, rgba(20, 25, 32, 0.86), rgba(16, 20, 26, 0.92));
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .glow-line {
-      background: linear-gradient(90deg, rgba(142, 47, 47, 0), rgba(142, 47, 47, 0.7), rgba(110, 127, 63, 0.7), rgba(110, 127, 63, 0));
+      background: linear-gradient(90deg, rgba(230, 197, 111, 0), rgba(230, 197, 111, 0.88), rgba(255, 255, 255, 0.5), rgba(230, 197, 111, 0));
     }
 
     .catalog-scroll::-webkit-scrollbar {
@@ -77,28 +78,28 @@
     }
 
     .catalog-scroll::-webkit-scrollbar-thumb {
-      background: rgba(141, 110, 79, 0.7);
+      background: rgba(214, 195, 153, 0.35);
       border-radius: 999px;
     }
 
     .menu-surface {
       background:
-        linear-gradient(180deg, rgba(255, 252, 246, 0.88), rgba(245, 235, 218, 0.96)),
-        repeating-linear-gradient(180deg, rgba(109, 79, 56, 0.03), rgba(109, 79, 56, 0.03) 1px, transparent 1px, transparent 28px);
-      border: 1px solid rgba(109, 79, 56, 0.12);
+        linear-gradient(180deg, rgba(19, 24, 31, 0.92), rgba(14, 18, 24, 0.96)),
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 55%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .ink-title {
-      color: #402d21;
+      color: #f8f5ef;
     }
 
     .ink-body {
-      color: #6a5140;
+      color: #c9c3b7;
     }
 
     .paper-chip {
-      background: rgba(255, 248, 238, 0.92);
-      border: 1px solid rgba(109, 79, 56, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .hero-orb {
@@ -148,15 +149,15 @@
 
     @keyframes pulseRing {
       0% {
-        box-shadow: 0 0 0 0 rgba(142, 47, 47, 0.24);
+        box-shadow: 0 0 0 0 rgba(230, 197, 111, 0.22);
       }
 
       70% {
-        box-shadow: 0 0 0 18px rgba(142, 47, 47, 0);
+        box-shadow: 0 0 0 18px rgba(230, 197, 111, 0);
       }
 
       100% {
-        box-shadow: 0 0 0 0 rgba(142, 47, 47, 0);
+        box-shadow: 0 0 0 0 rgba(230, 197, 111, 0);
       }
     }
 
@@ -175,25 +176,25 @@
     }
   </style>
 </head>
-<body class="min-h-screen text-stone-900">
-  <div class="fixed inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-[0.04]"></div>
+<body class="min-h-screen text-slate-50">
+  <div class="fixed inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-[0.03]"></div>
   <div class="fixed inset-x-0 top-0 h-72 -z-10 blur-3xl" aria-hidden="true">
-    <div class="mx-auto h-full w-11/12 rounded-full bg-[radial-gradient(circle,_rgba(142,47,47,0.12)_0%,_rgba(110,127,63,0.10)_45%,_transparent_75%)]"></div>
+    <div class="mx-auto h-full w-11/12 rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.12)_0%,_rgba(230,197,111,0.10)_45%,_transparent_75%)]"></div>
   </div>
-  <div class="hero-orb left-[8%] top-28 -z-10 h-28 w-28 bg-electric/30" aria-hidden="true"></div>
-  <div class="hero-orb right-[10%] top-40 -z-10 h-20 w-20 bg-neon/30" aria-hidden="true" style="animation-delay: -3s;"></div>
+  <div class="hero-orb left-[8%] top-28 -z-10 h-28 w-28 bg-white/10" aria-hidden="true"></div>
+  <div class="hero-orb right-[10%] top-40 -z-10 h-20 w-20 bg-neon/20" aria-hidden="true" style="animation-delay: -3s;"></div>
 
-  <header class="sticky top-0 z-40 border-b border-stone-700/10 bg-[#f8efe2]/85 backdrop-blur-xl">
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0f1319]/80 backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between gap-4">
         <div class="flex items-center gap-3 sm:gap-4">
           <img src="assets/logo-marche.svg" alt="Logo Marche!" class="h-12 w-auto sm:h-14">
           <div>
-            <p class="font-display text-xs uppercase tracking-[0.35em] text-electric">Sapori Italiani</p>
+            <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Sapori Italiani</p>
             <h1 class="font-display text-4xl font-bold tracking-tight ink-title sm:text-5xl">Marche<span class="text-electric">!</span></h1>
           </div>
         </div>
-        <a href="#carrito" class="glass hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-stone-700 shadow-electric sm:flex">
+        <a href="#carrito" class="glass hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-100 shadow-electric sm:flex">
           <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
           Pedido en curso
         </a>
@@ -202,20 +203,20 @@
       <div class="glass rounded-3xl p-4 shadow-electric">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div class="flex flex-col gap-2">
-            <p class="text-sm font-semibold text-stone-700">Precios actualizados a <span id="fecha-actualizacion" class="text-electric"></span></p>
+            <p class="text-sm font-semibold text-slate-200">Precios actualizados a <span id="fecha-actualizacion" class="text-neon"></span></p>
             <p class="max-w-2xl text-sm ink-body">Una carta digital cálida y clara para pizzas, empanadas, pastas, tartas y salsas con pedido directo por WhatsApp.</p>
             <div class="flex flex-wrap items-center gap-3 pt-1">
-              <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-stone-700 transition hover:border-electric/40 hover:bg-electric/10 hover:text-electric">Instagram</a>
-              <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-stone-700 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">WhatsApp directo</a>
+              <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Instagram</a>
+              <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">WhatsApp directo</a>
             </div>
           </div>
 
-          <div class="flex items-center gap-3 self-start rounded-full border border-stone-700/10 bg-[#efe1cc] p-2 sm:self-auto">
+          <div class="flex items-center gap-3 self-start rounded-full border border-white/10 bg-white/5 p-2 sm:self-auto">
             <span id="label-publico" class="rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white">Público</span>
-            <button id="view-toggle" type="button" aria-label="Cambiar entre catálogo público y mayorista" aria-pressed="false" class="relative h-8 w-16 rounded-full border border-stone-700/10 bg-[#c4b39f] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-electric focus:ring-offset-2 focus:ring-offset-[#f7efe1]">
+            <button id="view-toggle" type="button" aria-label="Cambiar entre catálogo público y mayorista" aria-pressed="false" class="relative h-8 w-16 rounded-full border border-white/10 bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-[#0d1014]">
               <span class="absolute inset-y-1 left-1 w-6 rounded-full bg-white shadow-lg transition-transform duration-300" id="toggle-dot"></span>
             </button>
-            <span id="label-mayorista" class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-stone-500">Mayorista</span>
+            <span id="label-mayorista" class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400">Mayorista</span>
           </div>
         </div>
       </div>
@@ -227,35 +228,35 @@
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(142,47,47,0.08),_transparent_30%),radial-gradient(circle_at_left,_rgba(110,127,63,0.08),_transparent_35%)]"></div>
       <div class="relative grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_24rem] lg:items-center">
         <div>
-          <div class="paper-chip mb-4 inline-flex items-center gap-3 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.35em] text-electric">
-            <span class="h-2.5 w-2.5 rounded-full bg-electric pulse-ring"></span>
+          <div class="paper-chip mb-4 inline-flex items-center gap-3 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.35em] text-neon">
+            <span class="h-2.5 w-2.5 rounded-full bg-neon pulse-ring"></span>
             Catálogo activo febrero 2026
           </div>
           <div class="mb-5 flex items-center gap-3">
             <div class="paper-chip rounded-3xl p-3 shadow-electric">
               <img src="assets/logo-marche.svg" alt="Isologo Marche!" class="h-12 w-auto sm:h-14">
             </div>
-            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-stone-600">Una carta digital con alma de trattoria y venta directa.</p>
+            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">Una carta digital con alma de trattoria y venta directa.</p>
           </div>
           <h2 class="max-w-3xl font-display text-5xl font-bold tracking-tight ink-title sm:text-6xl lg:text-7xl">Una carta italiana, cálida y apetecible para vender mejor cada producto.</h2>
           <p class="mt-5 max-w-2xl text-base leading-7 ink-body sm:text-lg">Mostrá dos listas de precios con un solo interruptor, encontrá productos al instante y convertí cada visita en un pedido simple y directo.</p>
 
           <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a href="#catalogo" class="inline-flex items-center justify-center rounded-2xl bg-electric px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:bg-[#c76a4b]">Ver catálogo</a>
-            <a href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-2xl px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-stone-700 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Ir al pedido</a>
+            <a href="#catalogo" class="inline-flex items-center justify-center rounded-2xl bg-electric px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:bg-neon hover:text-[#11151b]">Ver catálogo</a>
+            <a href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-2xl px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Ir al pedido</a>
           </div>
 
           <div class="mt-7 grid gap-3 sm:grid-cols-3">
             <div class="paper-chip reveal stagger-1 rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.3em] text-stone-500">Rubros</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Rubros</p>
               <p id="hero-categories-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
             </div>
             <div class="paper-chip reveal stagger-2 rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.3em] text-stone-500">Productos</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Productos</p>
               <p id="hero-products-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
             </div>
             <div class="paper-chip reveal stagger-3 rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.3em] text-stone-500">Lista activa</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Lista activa</p>
               <p id="hero-mode-label" class="mt-2 text-3xl font-extrabold text-electric">Público</p>
             </div>
           </div>
@@ -264,10 +265,10 @@
         <div class="menu-surface reveal rounded-[1.75rem] p-5 shadow-neon">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-xs uppercase tracking-[0.3em] text-electric">Estilo de carta</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-neon">Estilo de carta</p>
               <h3 class="mt-2 text-2xl font-bold ink-title">Portada de trattoria</h3>
             </div>
-            <div class="paper-chip rounded-2xl px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-stone-700">Carta web</div>
+            <div class="paper-chip rounded-2xl px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] text-slate-100">Carta web</div>
           </div>
 
           <div class="paper-chip mt-5 rounded-3xl p-4">
@@ -277,15 +278,15 @@
 
           <div class="mt-6 space-y-3">
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-stone-500">Experiencia</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Experiencia</p>
               <p class="mt-2 text-lg font-bold ink-title">Búsqueda instantánea, rubros claros y cambio de tarifa sin fricción.</p>
             </div>
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-stone-500">Conversión</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Conversión</p>
               <p class="mt-2 text-lg font-bold ink-title">El carrito resume todo y dispara el pedido directo a WhatsApp.</p>
             </div>
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-stone-500">Publicación</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Publicación</p>
               <p class="mt-2 text-lg font-bold ink-title">Compatible con GitHub Pages, sin build ni dependencias de runtime.</p>
             </div>
           </div>
@@ -302,8 +303,8 @@
               <h2 class="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">Sabores listos para elegir, con precios claros y ritmo de servicio.</h2>
             </div>
             <div class="min-w-full lg:min-w-[20rem]">
-              <label for="search-input" class="mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-stone-300">Buscar producto</label>
-              <input id="search-input" type="search" placeholder="Ej. Muzza, Canelones, Fileto" class="w-full rounded-2xl border border-white/10 bg-stone-950/40 px-4 py-3 text-base text-white outline-none placeholder:text-stone-500 focus:border-electric focus:ring-2 focus:ring-electric/30">
+              <label for="search-input" class="mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">Buscar producto</label>
+              <input id="search-input" type="search" placeholder="Ej. Muzza, Canelones, Fileto" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
             </div>
           </div>
         </div>
@@ -312,7 +313,7 @@
           <div class="catalog-scroll flex gap-3 overflow-x-auto pb-4" id="tabs-container"></div>
           <div class="mb-5 h-px w-full glow-line"></div>
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3" id="catalog-container"></div>
-          <div id="empty-state" class="hidden rounded-3xl border border-dashed border-white/10 bg-stone-950/40 px-6 py-14 text-center text-stone-300">
+          <div id="empty-state" class="hidden rounded-3xl border border-dashed border-white/10 bg-white/5 px-6 py-14 text-center text-slate-300">
             No encontramos productos para esa búsqueda o categoría.
           </div>
         </div>
@@ -321,28 +322,28 @@
       <aside id="carrito" class="glass rounded-[2rem] p-5 shadow-neon sm:p-6 lg:sticky lg:top-32 lg:h-fit">
         <div class="flex items-start justify-between gap-4">
           <div>
-            <p class="font-display text-xs uppercase tracking-[0.35em] text-cyanGlow">Carrito</p>
+            <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Carrito</p>
             <h3 class="mt-2 text-2xl font-bold text-white">Tu pedido Marche!</h3>
           </div>
-          <button id="clear-cart" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-stone-300 transition hover:border-electric hover:text-cyanGlow">Vaciar</button>
+          <button id="clear-cart" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Vaciar</button>
         </div>
 
-        <div class="mt-6 rounded-3xl border border-white/10 bg-stone-950/35 p-4">
-          <div class="flex items-center justify-between text-sm text-stone-300">
+        <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 p-4">
+          <div class="flex items-center justify-between text-sm text-slate-300">
             <span>Tarifa activa</span>
             <span id="pricing-mode-badge" class="rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric">Público</span>
           </div>
-          <p class="mt-3 text-sm text-stone-300">El carrito mantiene precios consistentes con la vista activa. Si cambias a Mayorista, el pedido se reinicia para evitar mezclar listas.</p>
+          <p class="mt-3 text-sm text-slate-300">El carrito mantiene precios consistentes con la vista activa. Si cambias a Mayorista, el pedido se reinicia para evitar mezclar listas.</p>
         </div>
 
         <div id="cart-items" class="mt-6 flex max-h-[22rem] flex-col gap-3 overflow-y-auto pr-1"></div>
 
-        <div id="cart-empty" class="mt-6 rounded-3xl border border-dashed border-white/10 px-5 py-8 text-center text-sm text-stone-400">
+        <div id="cart-empty" class="mt-6 rounded-3xl border border-dashed border-white/10 px-5 py-8 text-center text-sm text-slate-400">
           Agrega productos para preparar el pedido.
         </div>
 
-        <div class="mt-6 rounded-3xl bg-stone-950/45 p-4">
-          <div class="flex items-center justify-between text-sm text-stone-300">
+        <div class="mt-6 rounded-3xl bg-white/5 p-4">
+          <div class="flex items-center justify-between text-sm text-slate-300">
             <span>Total</span>
             <span id="cart-count-summary">0 items</span>
           </div>
@@ -350,7 +351,7 @@
           <button id="whatsapp-button" type="button" class="mt-4 w-full rounded-2xl bg-green-500 px-4 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40" disabled>
             Enviar pedido por WhatsApp
           </button>
-          <p class="mt-3 text-xs text-stone-400">WhatsApp configurado con el número comercial y acceso a Instagram activo desde la cabecera.</p>
+          <p class="mt-3 text-xs text-slate-400">WhatsApp configurado con el número comercial y acceso a Instagram activo desde la cabecera.</p>
         </div>
       </aside>
     </section>
@@ -458,10 +459,10 @@
             <button
               type="button"
               data-tab="${tab.id}"
-              class="group min-w-max rounded-2xl border px-4 py-3 text-left transition ${active ? "border-electric bg-electric/10 text-stone-900 shadow-electric" : "border-stone-700/10 bg-[#fff8ee] text-stone-700 hover:border-neon/50 hover:text-electric"}"
+              class="group min-w-max rounded-2xl border px-4 py-3 text-left transition ${active ? "border-neon bg-neon/12 text-white shadow-electric" : "border-white/10 bg-white/5 text-slate-200 hover:border-neon/50 hover:text-neon"}"
             >
               <span class="block text-sm font-bold uppercase tracking-[0.18em]">${tab.label}</span>
-              <span class="mt-1 block text-xs ${active ? "text-electric" : "text-stone-500 group-hover:text-stone-700"}">${tab.description}</span>
+              <span class="mt-1 block text-xs ${active ? "text-neon" : "text-slate-400 group-hover:text-slate-200"}">${tab.description}</span>
             </button>
           `;
         })
@@ -476,10 +477,10 @@
 
       container.innerHTML = items
         .map((item) => `
-          <article class="menu-surface reveal group flex h-full flex-col rounded-[1.75rem] p-5 shadow-electric transition duration-300 hover:-translate-y-1 hover:border-electric/30 hover:shadow-neon">
+          <article class="menu-surface reveal group flex h-full flex-col rounded-[1.75rem] p-5 shadow-electric transition duration-300 hover:-translate-y-1 hover:border-neon/30 hover:shadow-neon">
             <div class="flex items-start justify-between gap-4">
               <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-electric">${item.categoria}</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-neon">${item.categoria}</p>
                 <h3 class="mt-2 text-2xl font-bold ink-title">${item.nombre}</h3>
               </div>
               <span class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-neon">${state.modo === "publico" ? "Público" : "Mayorista"}</span>
@@ -487,15 +488,15 @@
 
             <div class="mt-8 flex items-end justify-between gap-3">
               <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-stone-400">Precio final</p>
+                <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Precio final</p>
                 <p class="mt-2 text-4xl font-extrabold ink-title">$${formatCurrency(item.precio)}</p>
               </div>
-              <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-electric/30 to-neon/30"></div>
+              <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-white/10 to-neon/25"></div>
             </div>
 
             <button
               type="button"
-              class="add-to-cart mt-8 w-full rounded-2xl bg-electric px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-white transition hover:bg-[#c76a4b]"
+              class="add-to-cart mt-8 w-full rounded-2xl bg-electric px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-white transition hover:bg-neon hover:text-[#11151b]"
               data-name="${item.nombre}"
               data-category="${item.categoria}"
               data-price="${item.precio}"
@@ -536,16 +537,16 @@
 
       cartItems.innerHTML = summary
         .map((item) => `
-          <div class="rounded-3xl border border-stone-700/10 bg-[#fff8ee] p-4">
+          <div class="rounded-3xl border border-white/10 bg-white/5 p-4">
             <div class="flex items-start justify-between gap-3">
               <div>
                 <p class="text-sm font-bold ink-title">${item.nombre}</p>
-                <p class="mt-1 text-xs uppercase tracking-[0.28em] text-stone-400">${item.categoria}</p>
+                <p class="mt-1 text-xs uppercase tracking-[0.28em] text-slate-400">${item.categoria}</p>
               </div>
-              <button type="button" class="remove-item rounded-full border border-white/10 px-2 py-1 text-xs font-bold text-stone-300 hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-price="${item.precio}">Quitar</button>
+              <button type="button" class="remove-item rounded-full border border-white/10 px-2 py-1 text-xs font-bold text-slate-300 hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-price="${item.precio}">Quitar</button>
             </div>
             <div class="mt-4 flex items-end justify-between gap-4">
-              <span class="inline-flex rounded-full bg-electric/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-electric">${item.cantidad} x</span>
+              <span class="inline-flex rounded-full bg-neon/12 px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-neon">${item.cantidad} x</span>
               <p class="text-lg font-extrabold ink-title">$${formatCurrency(item.precio * item.cantidad)}</p>
             </div>
           </div>
@@ -556,21 +557,21 @@
     function syncModeUI() {
       const isMayorista = state.modo === "mayorista";
       toggleBtn.setAttribute("aria-pressed", String(isMayorista));
-      toggleBtn.classList.toggle("bg-[#c4b39f]", !isMayorista);
+      toggleBtn.classList.toggle("bg-white/10", !isMayorista);
       toggleBtn.classList.toggle("bg-neon", isMayorista);
       toggleDot.style.transform = isMayorista ? "translateX(2rem)" : "translateX(0)";
 
       labelPublico.className = isMayorista
-        ? "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-stone-500"
+        ? "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400"
         : "rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white";
 
       labelMayorista.className = isMayorista
-        ? "rounded-full bg-neon px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-stone-950"
-        : "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-stone-500";
+        ? "rounded-full bg-neon px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#11151b]"
+        : "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400";
 
       pricingModeBadge.textContent = isMayorista ? "Mayorista" : "Público";
       pricingModeBadge.className = isMayorista
-        ? "rounded-full bg-neon/20 px-3 py-1 font-semibold text-cyanGlow"
+        ? "rounded-full bg-neon/20 px-3 py-1 font-semibold text-neon"
         : "rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric";
 
       heroModeLabel.textContent = isMayorista ? "Mayorista" : "Público";
@@ -692,12 +693,12 @@
       const originalText = button.textContent;
       button.textContent = "Agregado";
       button.classList.remove("bg-electric");
-      button.classList.add("bg-neon", "text-stone-950");
+      button.classList.add("bg-neon", "text-[#11151b]");
 
       window.setTimeout(() => {
         button.textContent = originalText;
         button.classList.add("bg-electric");
-        button.classList.remove("bg-neon", "text-stone-950");
+        button.classList.remove("bg-neon", "text-[#11151b]");
       }, 700);
     });
 

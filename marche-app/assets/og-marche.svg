@@ -1,31 +1,31 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#19120E"/>
-  <rect x="30" y="30" width="1140" height="570" rx="36" fill="#2F241C" stroke="rgba(255,255,255,0.12)"/>
-  <circle cx="196" cy="132" r="170" fill="#B55233" fill-opacity="0.14"/>
-  <circle cx="1048" cy="510" r="180" fill="#7C8B4A" fill-opacity="0.12"/>
-  <rect x="92" y="115" width="176" height="176" rx="44" fill="#241A13" stroke="url(#stroke)" stroke-width="6"/>
-  <circle cx="180" cy="203" r="56" fill="#2F241C" stroke="#B55233" stroke-opacity="0.45" stroke-width="3"/>
+  <rect width="1200" height="630" fill="#0D1014"/>
+  <rect x="30" y="30" width="1140" height="570" rx="36" fill="#131820" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="196" cy="132" r="170" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="1048" cy="510" r="180" fill="#E6C56F" fill-opacity="0.12"/>
+  <rect x="92" y="115" width="176" height="176" rx="44" fill="#11151B" stroke="url(#stroke)" stroke-width="6"/>
+  <circle cx="180" cy="203" r="56" fill="#131820" stroke="#E6C56F" stroke-opacity="0.45" stroke-width="3"/>
   <path d="M180 151L227 229L180 219L133 229L180 151Z" fill="url(#slice)" stroke="#FFE2B8" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M131 229C140 240 154 247 180 250C206 247 220 240 229 229" stroke="#8D5E34" stroke-width="6" stroke-linecap="round"/>
+  <path d="M131 229C140 240 154 247 180 250C206 247 220 240 229 229" stroke="#C6973A" stroke-width="6" stroke-linecap="round"/>
   <circle cx="166" cy="187" r="6" fill="#EF4444"/>
   <circle cx="192" cy="197" r="6" fill="#EF4444"/>
-  <circle cx="179" cy="209" r="6" fill="#7C8B4A"/>
-  <text x="312" y="185" fill="#E8D7B8" font-family="Cormorant Garamond, Georgia, serif" font-size="28" font-weight="700" letter-spacing="7">SAPORI ITALIANI</text>
+  <circle cx="179" cy="209" r="6" fill="#E6C56F"/>
+  <text x="312" y="185" fill="#F5F1E8" font-family="Cormorant Garamond, Georgia, serif" font-size="28" font-weight="700" letter-spacing="7">CARTA ITALIANA</text>
   <text x="312" y="284" fill="white" font-family="Cormorant Garamond, Georgia, serif" font-size="92" font-weight="700">Marche!</text>
-  <text x="312" y="352" fill="#CBD5E1" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="600">Catálogo digital con doble lista de precios,</text>
-  <text x="312" y="398" fill="#CBD5E1" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="600">carrito en vivo y cierre directo por WhatsApp.</text>
-  <rect x="312" y="454" width="235" height="62" rx="22" fill="#B55233"/>
+  <text x="312" y="352" fill="#D6D3CC" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="600">Catálogo digital con doble lista de precios,</text>
+  <text x="312" y="398" fill="#D6D3CC" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="600">carrito en vivo y cierre directo por WhatsApp.</text>
+  <rect x="312" y="454" width="235" height="62" rx="22" fill="#C6973A"/>
   <text x="359" y="495" fill="white" font-family="Sora, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="3">PÚBLICO / MAYORISTA</text>
-  <rect x="568" y="454" width="164" height="62" rx="22" fill="#7C8B4A"/>
-  <text x="619" y="495" fill="#19120E" font-family="Sora, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="3">WHATSAPP</text>
+  <rect x="568" y="454" width="164" height="62" rx="22" fill="#F5F1E8"/>
+  <text x="619" y="495" fill="#11151B" font-family="Sora, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="3">WHATSAPP</text>
   <defs>
     <linearGradient id="stroke" x1="102" y1="125" x2="258" y2="281" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#B55233"/>
-      <stop offset="1" stop-color="#7C8B4A"/>
+      <stop stop-color="#FFF8EE"/>
+      <stop offset="1" stop-color="#E6C56F"/>
     </linearGradient>
     <linearGradient id="slice" x1="133" y1="151" x2="227" y2="229" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E8D7B8"/>
-      <stop offset="1" stop-color="#B55233"/>
+      <stop stop-color="#FFF8EE"/>
+      <stop offset="1" stop-color="#C6973A"/>
     </linearGradient>
   </defs>
 </svg>
