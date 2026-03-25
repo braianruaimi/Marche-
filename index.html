@@ -3,13 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marche! | Redireccionando</title>
-  <meta http-equiv="refresh" content="0; url=./marche-app/">
-  <script>
-    window.location.replace("./marche-app/");
-  </script>
+  <title>Marche! | Sabores congelados</title>
+  <meta name="description" content="Pizzas, empanadas, pastas, tartas y salsas Marche! con pedido directo por WhatsApp.">
+  <meta name="theme-color" content="#0D1014">
+  <link rel="canonical" href="https://braianruaimi.github.io/Marche-/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marche! | Sabores congelados">
+  <meta property="og:description" content="Elegí productos Marche!, sumalos al carrito y enviá tu pedido por WhatsApp.">
+  <meta property="og:url" content="https://braianruaimi.github.io/Marche-/">
+  <meta property="og:image" content="https://braianruaimi.github.io/Marche-/marche-app/assets/og-marche.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Marche! | Sabores congelados">
+  <meta name="twitter:description" content="Elegí productos Marche!, sumalos al carrito y enviá tu pedido por WhatsApp.">
+  <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/marche-app/assets/og-marche.svg">
+  <link rel="icon" type="image/svg+xml" href="marche-app/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="marche-app/assets/favicon.svg">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #0d1014;
+    }
+
+    body {
+      overflow: hidden;
+      font-family: Manrope, Arial, sans-serif;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #0d1014;
+    }
+
+    .fallback {
+      position: fixed;
+      inset: auto 1rem 1rem 1rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.76);
+      border: 1px solid rgba(230, 197, 111, 0.35);
+      color: #f7f2e8;
+      padding: 0.85rem 1rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <p>Redireccionando al catalogo de Marche!...</p>
+  <iframe src="./marche-app/index.html" title="Catalogo Marche!"></iframe>
+  <a class="fallback" href="./marche-app/index.html">Abrir catalogo directamente</a>
 </body>
 </html>
