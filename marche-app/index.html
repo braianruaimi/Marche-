@@ -111,6 +111,28 @@
       background: linear-gradient(180deg, rgba(13, 16, 20, 0.05), rgba(13, 16, 20, 0.58));
     }
 
+    .update-banner-content {
+      overflow: hidden;
+      max-height: 18rem;
+      opacity: 1;
+      transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.25s ease;
+    }
+
+    .update-banner-content.is-collapsed {
+      pointer-events: none;
+      margin-top: 0;
+      max-height: 0;
+      opacity: 0;
+    }
+
+    .banner-toggle-icon {
+      transition: transform 0.25s ease;
+    }
+
+    .banner-toggle-icon.is-collapsed {
+      transform: rotate(-90deg);
+    }
+
     .hero-orb {
       position: absolute;
       border-radius: 999px;
@@ -195,37 +217,45 @@
 
   <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0f1319]/80 backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3 sm:gap-4">
-          <img src="assets/logo-marche.svg" alt="Logo Marche!" class="h-12 w-auto sm:h-14">
-          <div>
-            <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Sapori Italiani</p>
-            <h1 class="font-display text-4xl font-bold tracking-tight ink-title sm:text-5xl">Marche<span class="text-electric">!</span></h1>
-          </div>
+      <div class="relative flex min-h-[5.5rem] items-center justify-center">
+        <div class="flex flex-col items-center text-center">
+          <img src="assets/logo-marche.svg" alt="Logo Marche!" class="h-14 w-14 rounded-[1.4rem] shadow-electric sm:h-16 sm:w-16">
+          <h1 class="mt-3 font-display text-4xl font-bold tracking-tight ink-title sm:text-5xl">Marche<span class="text-electric">!</span></h1>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-[0.32em] text-slate-300 sm:text-sm">Sabores congelados para cada ocasion</p>
         </div>
-        <a href="#carrito" class="glass hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-100 shadow-electric sm:flex">
+        <a href="#carrito" class="glass absolute right-0 top-1/2 hidden -translate-y-1/2 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-100 shadow-electric sm:flex">
           <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
           Pedido en curso
         </a>
       </div>
 
-      <div class="glass rounded-3xl p-4 shadow-electric">
-        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div class="flex flex-col gap-2">
-            <p class="text-sm font-semibold text-slate-200">Precios actualizados a <span id="fecha-actualizacion" class="text-neon"></span></p>
-            <p class="max-w-2xl text-sm ink-body">Productos listos para resolver comidas, abastecer negocios y organizar eventos con una compra simple, clara y directa.</p>
-            <div class="flex flex-wrap items-center gap-3 pt-1">
-              <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Instagram</a>
-              <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">WhatsApp directo</a>
-            </div>
-          </div>
+      <div id="update-banner" class="glass rounded-3xl p-4 shadow-electric">
+        <div class="flex items-center justify-between gap-3">
+          <p class="text-sm font-semibold text-slate-200">Precios actualizados a <span id="fecha-actualizacion" class="text-neon"></span></p>
+          <button id="banner-toggle" type="button" aria-expanded="true" aria-controls="update-banner-content" class="paper-chip inline-flex items-center justify-center rounded-full px-3 py-2 text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
+            <svg id="banner-toggle-icon" class="banner-toggle-icon h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
 
-          <div class="flex items-center gap-3 self-start rounded-full border border-white/10 bg-white/5 p-2 sm:self-auto">
-            <span id="label-publico" class="rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white">Público</span>
-            <button id="view-toggle" type="button" aria-label="Cambiar entre catálogo público y mayorista" aria-pressed="false" class="relative h-8 w-16 rounded-full border border-white/10 bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-[#0d1014]">
-              <span class="absolute inset-y-1 left-1 w-6 rounded-full bg-white shadow-lg transition-transform duration-300" id="toggle-dot"></span>
-            </button>
-            <span id="label-mayorista" class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400">Mayorista</span>
+        <div id="update-banner-content" class="update-banner-content mt-4">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div class="flex flex-col gap-2">
+              <p class="max-w-2xl text-sm ink-body">Productos listos para resolver comidas, abastecer negocios y organizar eventos con una compra simple, clara y directa.</p>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Instagram</a>
+                <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">WhatsApp directo</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 self-start rounded-full border border-white/10 bg-white/5 p-2 sm:self-auto">
+              <span id="label-publico" class="rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white">Público</span>
+              <button id="view-toggle" type="button" aria-label="Cambiar entre catálogo público y mayorista" aria-pressed="false" class="relative h-8 w-16 rounded-full border border-white/10 bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-[#0d1014]">
+                <span class="absolute inset-y-1 left-1 w-6 rounded-full bg-white shadow-lg transition-transform duration-300" id="toggle-dot"></span>
+              </button>
+              <span id="label-mayorista" class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400">Mayorista</span>
+            </div>
           </div>
         </div>
       </div>
@@ -239,7 +269,7 @@
         <div>
           <div class="paper-chip mb-4 inline-flex items-center gap-3 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.35em] text-neon">
             <span class="h-2.5 w-2.5 rounded-full bg-neon pulse-ring"></span>
-            Catálogo activo febrero 2026
+            Catálogo activo 2026
           </div>
           <div class="mb-5 flex items-center gap-3">
             <div class="paper-chip rounded-3xl p-3 shadow-electric">
@@ -419,6 +449,9 @@
     const headerCartCount = document.getElementById("header-cart-count");
     const whatsappButton = document.getElementById("whatsapp-button");
     const clearCartButton = document.getElementById("clear-cart");
+    const updateBannerContent = document.getElementById("update-banner-content");
+    const bannerToggle = document.getElementById("banner-toggle");
+    const bannerToggleIcon = document.getElementById("banner-toggle-icon");
     const pedidoForm = document.getElementById("pedido-form");
     const pedidoError = document.getElementById("pedido-error");
     const customerName = document.getElementById("customer-name");
@@ -431,6 +464,8 @@
     const heroCategoriesCount = document.getElementById("hero-categories-count");
     const heroProductsCount = document.getElementById("hero-products-count");
     const heroModeLabel = document.getElementById("hero-mode-label");
+    let bannerPinnedOpen = false;
+    let lastScrollY = window.scrollY;
 
     document.getElementById("fecha-actualizacion").textContent = catalogoMarche.fechaActualizacion;
     instagramLink.href = catalogoMarche.instagram;
@@ -651,6 +686,25 @@
       });
     }
 
+    function setBannerCollapsed(collapsed) {
+      updateBannerContent.classList.toggle("is-collapsed", collapsed);
+      bannerToggle.setAttribute("aria-expanded", String(!collapsed));
+      bannerToggleIcon.classList.toggle("is-collapsed", collapsed);
+    }
+
+    function handleBannerScroll() {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 32) {
+        bannerPinnedOpen = false;
+        setBannerCollapsed(false);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 120 && !bannerPinnedOpen) {
+        setBannerCollapsed(true);
+      }
+
+      lastScrollY = currentScrollY;
+    }
+
     function addToCart(nombre, categoria, precio) {
       state.carrito.push({ nombre, categoria, precio });
       updateCart();
@@ -789,16 +843,29 @@
     });
 
     clearCartButton.addEventListener("click", resetCart);
+    bannerToggle.addEventListener("click", () => {
+      const isCollapsed = updateBannerContent.classList.contains("is-collapsed");
+      if (isCollapsed) {
+        bannerPinnedOpen = true;
+        setBannerCollapsed(false);
+        return;
+      }
+
+      bannerPinnedOpen = false;
+      setBannerCollapsed(true);
+    });
     pedidoForm.addEventListener("submit", (event) => {
       event.preventDefault();
       sendToWhatsApp();
     });
+    window.addEventListener("scroll", handleBannerScroll, { passive: true });
 
     updateHeroStats();
     renderTabs();
     syncModeUI();
     renderProducts();
     updateCart();
+    setBannerCollapsed(false);
     activateRevealAnimations();
   </script>
 </body>

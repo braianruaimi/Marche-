@@ -1,25 +1,4 @@
-<svg width="420" height="140" viewBox="0 0 420 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="marcheGlow" x1="14" y1="12" x2="126" y2="126" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF8EE"/>
-      <stop offset="1" stop-color="#E6C56F"/>
-    </linearGradient>
-    <linearGradient id="sliceFill" x1="36" y1="32" x2="104" y2="96" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF8EE"/>
-      <stop offset="1" stop-color="#C6973A"/>
-    </linearGradient>
-  </defs>
-  <rect x="8" y="10" width="124" height="124" rx="34" fill="#241A13" stroke="url(#marcheGlow)" stroke-width="4"/>
-  <circle cx="70" cy="72" r="37" fill="#11151B" stroke="#E6C56F" stroke-opacity="0.45" stroke-width="2.5"/>
-  <path d="M70 38L101 90.5L70 84.5L39 90.5L70 38Z" fill="url(#sliceFill)" stroke="#FFE2B8" stroke-width="2" stroke-linejoin="round"/>
-  <circle cx="61.5" cy="62.5" r="4" fill="#EF4444"/>
-  <circle cx="78.5" cy="68.5" r="4" fill="#EF4444"/>
-  <circle cx="69.5" cy="76.5" r="4" fill="#E6C56F"/>
-  <path d="M38 91C44 98 53 103 70 105C87 103 96 98 102 91" stroke="#C6973A" stroke-width="4" stroke-linecap="round"/>
-  <path d="M157 55.4H168.2L186.55 88.55L204.9 55.4H216.1V108H205.6V75.58L190.16 103.3H182.83L167.39 75.58V108H157V55.4Z" fill="white"/>
-  <path d="M225.243 108V68.64H235.304V74.93C237.459 70.268 241.822 67.515 248.411 67.515C255.524 67.515 259.812 70.791 261.368 76.632C263.599 71.015 268.636 67.515 275.973 67.515C286.034 67.515 291.651 73.505 291.651 84.389V108H281.59V86.634C281.59 80.344 278.985 76.931 273.817 76.931C267.901 76.931 264.102 81.22 264.102 88.482V108H254.041V86.634C254.041 80.344 251.511 76.931 246.193 76.931C240.277 76.931 236.553 81.22 236.553 88.482V108H225.243Z" fill="white"/>
-  <path d="M313.11 109.125C302.451 109.125 295.039 101.862 295.039 88.332C295.039 75.252 302.525 67.515 312.662 67.515C322.797 67.515 329.761 74.703 329.761 86.41V89.611H305.099C305.923 96.648 309.947 100.674 316.76 100.674C321.571 100.674 325.146 98.369 326.779 94.419L329.462 95.242C326.854 104.031 321.011 109.125 313.11 109.125ZM305.249 82.724H319.851C319.177 76.408 316.047 73.206 312.287 73.206C308.037 73.206 305.623 76.482 305.249 82.724Z" fill="white"/>
-  <path d="M346.198 109.125C334.49 109.125 326.829 101.188 326.829 88.332C326.829 75.401 334.49 67.515 346.198 67.515C355.96 67.515 363.073 72.981 365.005 82.05L355.37 83.998C354.323 79.038 350.97 76.333 346.198 76.333C340.057 76.333 336.89 81.144 336.89 88.332C336.89 95.52 340.057 100.307 346.198 100.307C351.042 100.307 354.543 97.529 355.37 92.719L365.005 94.591C363.073 103.51 355.96 109.125 346.198 109.125Z" fill="white"/>
-  <path d="M370.524 108V53H380.585V75.153C383.042 70.716 387.704 67.515 394.293 67.515C403.905 67.515 409.748 73.58 409.748 84.24V108H399.687V86.26C399.687 79.821 396.635 76.707 391.018 76.707C384.578 76.707 380.585 81.22 380.585 88.482V108H370.524Z" fill="white"/>
-  <circle cx="404" cy="43" r="8" fill="#E6C56F"/>
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="132" height="132" rx="34" fill="#000000" stroke="#E6C56F" stroke-width="3"/>
+  <text x="70" y="88" text-anchor="middle" fill="#E6C56F" font-family="Cormorant Garamond, Georgia, serif" font-size="62" font-weight="700" letter-spacing="1.5">M!</text>
 </svg>
