@@ -162,6 +162,57 @@
       font-size: 0.92rem;
     }
 
+    .floating-category-shortcut {
+      position: fixed;
+      left: 0.8rem;
+      bottom: 5.35rem;
+      z-index: 59;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    .floating-category-toggle {
+      display: inline-flex;
+      height: 3rem;
+      width: 3rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(230, 197, 111, 0.42);
+      background: linear-gradient(180deg, rgba(20, 25, 32, 0.98), rgba(13, 16, 20, 0.98));
+      color: #e6c56f;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(230, 197, 111, 0.08) inset;
+    }
+
+    .floating-category-panel {
+      width: min(15rem, calc(100vw - 1.6rem));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(180deg, rgba(20, 25, 32, 0.98), rgba(13, 16, 20, 0.98));
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.34);
+      animation: fadeLiftIn 0.18s ease;
+    }
+
+    .floating-category-panel[hidden] {
+      display: none;
+    }
+
+    .floating-category-option {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: #f1eee6;
+      transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .floating-category-option:hover,
+    .floating-category-option[aria-pressed="true"] {
+      border-color: rgba(230, 197, 111, 0.42);
+      background: rgba(230, 197, 111, 0.1);
+      color: #fffaf0;
+    }
+
     .assistant-fab {
       position: fixed;
       right: 0.8rem;
@@ -226,6 +277,10 @@
     @media (max-width: 640px) {
       .assistant-panel {
         bottom: 5.3rem;
+      }
+
+      .floating-category-shortcut {
+        bottom: 4.95rem;
       }
 
       .assistant-fab,
@@ -627,6 +682,22 @@
     </span>
   </button>
 
+  <div class="floating-category-shortcut">
+    <section id="floating-category-menu" class="floating-category-panel rounded-[1.5rem] p-4" hidden aria-label="Categorías rápidas">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-neon">Menú rápido</p>
+          <p class="mt-2 text-sm font-semibold text-white">Saltá entre categorías sin subir.</p>
+        </div>
+      </div>
+      <div id="floating-category-options" class="mt-4 grid gap-2"></div>
+    </section>
+
+    <button id="floating-category-toggle" type="button" class="floating-category-toggle transition hover:-translate-y-1 hover:shadow-neon" aria-expanded="false" aria-controls="floating-category-menu" aria-label="Abrir menú rápido de categorías">
+      <span class="text-base font-extrabold uppercase tracking-[0.24em]">M</span>
+    </button>
+  </div>
+
   <button id="assistant-toggle" type="button" class="assistant-fab transition hover:-translate-y-1 hover:shadow-neon" aria-expanded="false" aria-controls="assistant-panel">
     <span class="assistant-fab-mark">AM</span>
     <span class="text-left">
@@ -829,6 +900,9 @@
     const clearCartButton = document.getElementById("clear-cart");
     const closeCartButton = document.getElementById("close-cart");
     const floatingCartButton = document.getElementById("floating-cart-button");
+    const floatingCategoryToggle = document.getElementById("floating-category-toggle");
+    const floatingCategoryMenu = document.getElementById("floating-category-menu");
+    const floatingCategoryOptions = document.getElementById("floating-category-options");
     const cartOverlay = document.getElementById("cart-overlay");
     const cartDrawer = document.getElementById("carrito");
     const updateBannerContent = document.getElementById("update-banner-content");
@@ -887,6 +961,7 @@
     let revealObserver = null;
     let searchDebounceId = null;
     let activeAssistantQuestion = "";
+    let floatingCategoryMenuOpen = false;
 
     const metricsState = loadMetricsState();
 
@@ -1427,6 +1502,39 @@
       });
     }
 
+    function setFloatingCategoryMenuOpen(isOpen) {
+      floatingCategoryMenuOpen = isOpen;
+      floatingCategoryMenu.hidden = !isOpen;
+      floatingCategoryToggle.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    function renderFloatingCategoryMenu() {
+      floatingCategoryOptions.innerHTML = getVisibleCategories()
+        .map((tab) => {
+          const active = tab.id === state.categoriaActiva;
+          return `
+            <button
+              type="button"
+              class="floating-category-option rounded-2xl px-3 py-3 text-left"
+              data-quick-tab="${tab.id}"
+              aria-pressed="${active ? "true" : "false"}"
+            >
+              <span class="block text-xs font-bold uppercase tracking-[0.16em] sm:text-sm">${tab.label}</span>
+              <span class="mt-1 block text-xs ${active ? "text-neon" : "text-slate-400"}">${tab.description}</span>
+            </button>
+          `;
+        })
+        .join("");
+    }
+
+    function selectCategory(categoryId) {
+      state.categoriaActiva = categoryId;
+      persistState();
+      renderTabs();
+      renderProducts();
+      renderFloatingCategoryMenu();
+    }
+
     function renderTabs() {
       tabsContainer.innerHTML = getVisibleCategories()
         .map((tab) => {
@@ -1842,11 +1950,23 @@
       }
 
       trackMetric("clicks");
+      selectCategory(button.dataset.tab);
+    });
 
-      state.categoriaActiva = button.dataset.tab;
-      persistState();
-      renderTabs();
-      renderProducts();
+    floatingCategoryToggle.addEventListener("click", () => {
+      trackMetric("clicks");
+      setFloatingCategoryMenuOpen(!floatingCategoryMenuOpen);
+    });
+
+    floatingCategoryOptions.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-quick-tab]");
+      if (!button) {
+        return;
+      }
+
+      trackMetric("clicks");
+      selectCategory(button.dataset.quickTab);
+      setFloatingCategoryMenuOpen(false);
     });
 
     searchInput.addEventListener("input", (event) => {
@@ -2036,6 +2156,17 @@
         openCartDrawer();
       });
     });
+    document.addEventListener("click", (event) => {
+      if (!floatingCategoryMenuOpen) {
+        return;
+      }
+
+      if (event.target.closest("#floating-category-menu") || event.target.closest("#floating-category-toggle")) {
+        return;
+      }
+
+      setFloatingCategoryMenuOpen(false);
+    });
     bannerToggle.addEventListener("click", () => {
       const isCollapsed = updateBannerContent.classList.contains("is-collapsed");
       if (isCollapsed) {
@@ -2073,6 +2204,11 @@
         return;
       }
 
+      if (floatingCategoryMenuOpen && event.key === "Escape") {
+        setFloatingCategoryMenuOpen(false);
+        return;
+      }
+
       if (event.key === "Escape") {
         closeCartDrawer();
       }
@@ -2083,6 +2219,7 @@
     trackMetric("views");
     updateHeroStats();
     renderTabs();
+    renderFloatingCategoryMenu();
     syncModeUI();
     renderAssistantFaqs();
     renderProducts();
