@@ -125,9 +125,62 @@ const detalleProductos = {
   }
 };
 
+const empanadasCardBackgrounds = [
+  "../images/empanadas.webp",
+  "../images/empa.webp"
+];
+
+const featuredCardBackgrounds = {
+  Pizzas: {
+    "Muzza": "../images/muzza.webp",
+    "Napolitana": "../images/pizza.webp",
+    "Especial": "../images/pizza napo.webp",
+    "Doble Muzza": "../images/muzza doble.webp",
+    "4 Quesos": "../images/4 quesos.webp",
+    "Fugazzeta": "../images/fuga.webp",
+    "Provolone": "../images/provolone.webp",
+    "Marche": "../images/mar.webp"
+  },
+  Pastas: {
+    "Sorrentinos 4 Quesos": "../images/sorren.webp",
+    "Sorrentinos JyQ": "../images/sorren-j.webp",
+    "Canelones JyQ": "../images/cane j.webp",
+    "Canelones Pollo y Verdura": "../images/cane verdu.webp",
+    "Canelones Verdura y Ricota": "../images/cane rico.webp",
+    "Lasagna 1 porción": "../images/lasagna.webp",
+    "Lasagna 2 porciones": "../images/lasag.jfif",
+    "Pastel de Papas Chico": "../images/pastel-c.webp",
+    "Pastel de Papas Grande": "../images/pastel-g.webp"
+  },
+  Tartas: {
+    "Brócoli Grande": "../images/bro.webp",
+    "Humita Grande": "../images/humi.jfif",
+    "JyQ Grande": "../images/j-y-q.webp",
+    "Pollo Grande": "../images/pollo.webp",
+    "Verdura Grande": "../images/verdu.webp",
+    "Zapallito Grande": "../images/zapalli.webp",
+    "Zapallo Grande": "../images/zapaa.webp"
+  },
+  Salsas: {
+    "Fileto 190g": "../images/file.jfif",
+    "Fileto 350g": "../images/file.jfif",
+    "Bolognesa 190g": "../images/bolo.jfif",
+    "Bolognesa 350g": "../images/bolo.jfif"
+  }
+};
+
 catalogoMarche.categorias.forEach((categoria) => {
   categoria.items.forEach((item) => {
     item.detalle = detalleProductos[categoria.nombre]?.[item.nombre] || "Producto congelado listo para conservar, regenerar y servir según necesidad.";
+
+    if (categoria.slug === "empanadas" || categoria.slug === "canastitas") {
+      item.cardBackground = empanadasCardBackgrounds[categoria.items.indexOf(item) % empanadasCardBackgrounds.length];
+    }
+
+    const featuredBackground = featuredCardBackgrounds[categoria.nombre]?.[item.nombre];
+    if (featuredBackground) {
+      item.cardBackground = featuredBackground;
+    }
 
     if (!Number.isFinite(item.granel)) {
       item.granel = Math.round((item.publico + item.mayorista) / 2);

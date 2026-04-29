@@ -8,13 +8,13 @@
   <meta name="theme-color" content="#0D1014">
   <link rel="canonical" href="https://braianruaimi.github.io/Marche-/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Marche! | Carta Italiana">
+  <meta property="og:title" content="Marche! | Carta">
   <meta property="og:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total actualizado y entrega coordinada.">
   <meta property="og:url" content="https://braianruaimi.github.io/Marche-/">
   <meta property="og:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <meta property="og:locale" content="es_AR">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Marche! | Carta Italiana">
+  <meta name="twitter:title" content="Marche! | Carta">
   <meta name="twitter:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total actualizado y entrega coordinada.">
   <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -91,6 +91,53 @@
         linear-gradient(180deg, rgba(19, 24, 31, 0.92), rgba(14, 18, 24, 0.96)),
         radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 55%);
       border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-photo-backdrop {
+      position: absolute;
+      inset: 1px;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .card-photo-backdrop::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 38%);
+      opacity: 0.45;
+    }
+
+    .card-photo-backdrop::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(11, 14, 19, 0.52) 0%, rgba(11, 14, 19, 0.74) 36%, rgba(11, 14, 19, 0.92) 100%),
+        linear-gradient(0deg, rgba(11, 14, 19, 0.9) 0%, rgba(11, 14, 19, 0) 38%),
+        radial-gradient(circle at top right, rgba(230, 197, 111, 0.14), transparent 42%);
+    }
+
+    .card-photo-backdrop img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0.27;
+      transform: scale(1.06);
+      filter: saturate(0.92) contrast(0.96) blur(0.9px);
+    }
+
+    .menu-card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-card-action {
+      position: relative;
+      z-index: 2;
     }
 
     .ink-title {
@@ -591,8 +638,8 @@
             <img src="assets/pdf/page-1.png" alt="Imagen del catálogo digital de Marche!" class="h-[24rem] w-full object-cover sm:h-[28rem]">
             <div class="photo-wash absolute inset-0"></div>
             <div class="absolute inset-x-0 bottom-0 p-5">
-              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-neon">Catálogo Marche!</p>
-              <h3 class="mt-2 font-display text-3xl font-bold text-white">Tu material comercial, convertido en una experiencia simple para vender online.</h3>
+              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-neon">Lista de ventas</p>
+              <h3 class="mt-2 font-display text-3xl font-bold text-white">De nuestros productos congelados. Adherite al sistema y obtenes los descuentos en tu pedido.</h3>
             </div>
           </div>
 
@@ -1686,7 +1733,12 @@
 
           return `
           <article class="menu-surface reveal group relative flex h-full flex-col rounded-[1.5rem] p-4 shadow-electric transition duration-300 hover:-translate-y-1 hover:border-neon/30 hover:shadow-neon">
-            <div class="flex items-start justify-between gap-4">
+            ${item.cardBackground ? `
+              <div class="card-photo-backdrop" aria-hidden="true">
+                <img src="${item.cardBackground}" alt="">
+              </div>
+            ` : ""}
+            <div class="menu-card-content flex items-start justify-between gap-4">
               <div>
                 <p class="text-xs font-semibold uppercase tracking-[0.28em] text-neon">${item.categoria}</p>
                 <h3 class="mt-2 text-xl font-bold ink-title">${item.nombre}</h3>
@@ -1694,7 +1746,7 @@
               <span class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-neon">${getModeLabel(state.modo)}</span>
             </div>
 
-            <div class="mt-6 flex items-end justify-between gap-3">
+            <div class="menu-card-content mt-6 flex items-end justify-between gap-3">
               <div>
                 <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Precio por unidad</p>
                 <p class="mt-2 text-3xl font-extrabold ink-title">$${formatCurrency(item.precio)}</p>
@@ -1722,7 +1774,7 @@
 
             <button
               type="button"
-              class="add-to-cart mt-6 w-full rounded-2xl bg-electric px-4 py-3 text-xs font-bold uppercase tracking-[0.24em] text-white transition hover:bg-neon hover:text-[#11151b] sm:text-sm"
+              class="menu-card-action add-to-cart mt-6 w-full rounded-2xl bg-electric px-4 py-3 text-xs font-bold uppercase tracking-[0.24em] text-white transition hover:bg-neon hover:text-[#11151b] sm:text-sm"
               data-name="${item.nombre}"
               data-category="${item.categoria}"
               data-price="${item.precio}"
