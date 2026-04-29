@@ -1,0 +1,25 @@
+{
+  "name": "Marche! | Carta Italiana",
+  "short_name": "Marche!",
+  "description": "Catalogo Marche! para armar pedidos y enviarlos por WhatsApp.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1014",
+  "theme_color": "#0D1014",
+  "lang": "es-AR",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo-marche.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
