@@ -1,6 +1,6 @@
 const catalogoMarche = {
   fechaActualizacion: "Febrero 2026",
-  whatsapp: "5492215047962",
+  whatsapp: "5492615908933",
   instagram: "https://www.instagram.com/marche.congelados/?hl=es",
   categorias: [
     {
@@ -75,3 +75,62 @@ const catalogoMarche = {
     }
   ]
 };
+
+const detalleProductos = {
+  Pizzas: {
+    "Muzza": "Pizza de mozzarella con salsa de tomate. Clásica, rendidora y fácil de combinar con cualquier pedido.",
+    "4 Quesos": "Pizza con mezcla de cuatro quesos fundentes. Cremosa, intensa y pensada para quienes buscan más sabor.",
+    "Especial": "Pizza con mozzarella, jamón y morrones. Una opción completa y rendidora para compartir o revender.",
+    "Fugazzeta": "Pizza de cebolla con queso, de sabor suave y bien equilibrado. Ideal para sumar variedad al pedido.",
+    "Napolitana": "Pizza con mozzarella, tomate fresco y ajo. Una clásica con perfil más marcado y muy buena salida.",
+    "Doble Muzza": "Versión con extra mozzarella para una experiencia más cargada y con mejor rendimiento por unidad.",
+    "Provolone": "Pizza con provolone fundido y sabor intenso. Ideal para una carta con opciones más gourmet.",
+    "Marche": "Especialidad de la casa. Una variedad distintiva para ofrecer algo propio dentro del catálogo Marche!."
+  },
+  Empanadas: {
+    "Carne x6": "Caja de 6 empanadas de carne condimentada. Prácticas para stock, venta rápida o una comida resuelta.",
+    "JyQ x6": "Caja de 6 empanadas de jamón y queso, con relleno cremoso y muy buena salida en todo tipo de pedido.",
+    "Pollo x6": "Caja de 6 empanadas de pollo sazonado. Una opción versátil para hogar, oficina o eventos."
+  },
+  Canastitas: {
+    "Caprese x6": "Caja de 6 canastitas caprese con tomate, queso y albahaca. Una opción fresca y diferente para sumar variedad.",
+    "Humita x6": "Caja de 6 canastitas de humita, cremosas y suaves. Muy buenas para picadas, eventos o freezer.",
+    "Verdura x6": "Caja de 6 canastitas de verdura, listas para horno. Prácticas y rendidoras para tener siempre a mano."
+  },
+  Pastas: {
+    "Sorrentinos 4 Quesos": "Sorrentinos rellenos de cuatro quesos. Una pasta sabrosa y rendidora para vender como plato principal.",
+    "Sorrentinos JyQ": "Sorrentinos de jamón y queso, fáciles de regenerar y con excelente rendimiento por porción.",
+    "Canelones JyQ": "Canelones de jamón y queso, listos para sumar salsa, gratinar y servir sin complicaciones.",
+    "Canelones Pollo y Verdura": "Canelones de pollo y verdura, prácticos para porciones completas y con muy buena rotación.",
+    "Canelones Verdura y Ricota": "Canelones de verdura y ricota, de perfil suave y casero. Una alternativa clásica y confiable.",
+    "Lasagna 1 porción": "Lasaña individual lista para horno. Ideal para viandas, menú ejecutivo o consumo personal.",
+    "Lasagna 2 porciones": "Lasaña para dos porciones. Práctica para compartir o vender como comida completa.",
+    "Pastel de Papas Chico": "Pastel de papas en formato individual. Resuelve almuerzos rápidos y viandas con buen margen.",
+    "Pastel de Papas Grande": "Pastel de papas grande, ideal para compartir o para propuestas gastronómicas de mayor volumen."
+  },
+  Tartas: {
+    "Brócoli Grande": "Tarta grande de brócoli, rendidora y fácil de porcionar. Ideal para freezer, viandas o mostrador.",
+    "Humita Grande": "Tarta grande de humita, cremosa y suave. Muy buena para sumar opciones vegetarianas con salida constante.",
+    "JyQ Grande": "Tarta grande de jamón y queso, un clásico de alta rotación para hogar, oficina o eventos.",
+    "Pollo Grande": "Tarta grande de pollo, lista para regenerar y servir en varias porciones con buen rendimiento.",
+    "Verdura Grande": "Tarta grande de verdura, versátil y práctica para quienes buscan una opción clásica y rendidora.",
+    "Zapallito Grande": "Tarta grande de zapallito, de sabor suave y muy útil para completar una oferta variada.",
+    "Zapallo Grande": "Tarta grande de zapallo, equilibrada y rendidora. Una opción distinta para sumar al surtido."
+  },
+  Salsas: {
+    "Fileto 190g": "Salsa fileto en pote de 190g. Ideal para porción individual, combos o venta complementaria.",
+    "Fileto 350g": "Salsa fileto en presentación de 350g, pensada para varias porciones y armado de pedidos más completos.",
+    "Bolognesa 190g": "Salsa bolognesa de 190g, práctica para una comida rápida y perfecta para sumar ticket promedio.",
+    "Bolognesa 350g": "Salsa bolognesa de 350g, rendidora y conveniente para compartir o para producción gastronómica."
+  }
+};
+
+catalogoMarche.categorias.forEach((categoria) => {
+  categoria.items.forEach((item) => {
+    item.detalle = detalleProductos[categoria.nombre]?.[item.nombre] || "Producto congelado listo para conservar, regenerar y servir según necesidad.";
+
+    if (!Number.isFinite(item.granel)) {
+      item.granel = Math.round((item.publico + item.mayorista) / 2);
+    }
+  });
+});

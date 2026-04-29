@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marche! | Carta Italiana</title>
-  <meta name="description" content="Pizzas, empanadas, pastas, tartas y salsas Marche! para hogar, negocios, empresas y eventos. Sumá al carrito y hacé tu pedido por WhatsApp.">
+  <meta name="description" content="Pizzas, empanadas, pastas, tartas y salsas congeladas Marche! para hogar, negocios y eventos. Armá tu pedido y envialo por WhatsApp con total actualizado.">
   <meta name="theme-color" content="#0D1014">
   <link rel="canonical" href="https://braianruaimi.github.io/Marche-/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Marche! | Carta Italiana">
-  <meta property="og:description" content="Elegí productos Marche!, sumalos al carrito y enviá tu pedido por WhatsApp con tus datos para coordinar entrega o abastecimiento.">
+  <meta property="og:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total actualizado y entrega coordinada.">
   <meta property="og:url" content="https://braianruaimi.github.io/Marche-/">
   <meta property="og:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <meta property="og:locale" content="es_AR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Marche! | Carta Italiana">
-  <meta name="twitter:description" content="Elegí productos Marche!, sumalos al carrito y enviá tu pedido por WhatsApp con tus datos para coordinar entrega o abastecimiento.">
+  <meta name="twitter:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total actualizado y entrega coordinada.">
   <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/favicon.svg">
@@ -133,6 +133,184 @@
       transform: rotate(-90deg);
     }
 
+    .cart-fab {
+      position: fixed;
+      left: 0.8rem;
+      bottom: 0.9rem;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.72rem 0.82rem;
+      border-radius: 999px;
+      border: 1px solid rgba(230, 197, 111, 0.45);
+      background: linear-gradient(135deg, rgba(198, 151, 58, 0.98), rgba(230, 197, 111, 0.98));
+      color: #17120a;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    }
+
+    .cart-fab-count {
+      display: inline-flex;
+      height: 2.1rem;
+      min-width: 2.1rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(17, 21, 27, 0.18);
+      color: #11151b;
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .assistant-fab {
+      position: fixed;
+      right: 0.8rem;
+      bottom: 0.9rem;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.72rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(20, 25, 32, 0.98), rgba(16, 20, 26, 0.98));
+      color: #f5f1e8;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(230, 197, 111, 0.08) inset;
+    }
+
+    .assistant-fab-mark {
+      display: inline-flex;
+      height: 2.2rem;
+      width: 2.2rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(198, 151, 58, 0.96), rgba(230, 197, 111, 0.96));
+      color: #17120a;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .assistant-panel {
+      position: fixed;
+      right: 0.8rem;
+      bottom: 4.9rem;
+      z-index: 58;
+      width: min(24rem, calc(100vw - 1.6rem));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(180deg, rgba(20, 25, 32, 0.98), rgba(13, 16, 20, 0.98));
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.34);
+      animation: fadeLiftIn 0.18s ease;
+    }
+
+    .assistant-panel[hidden] {
+      display: none;
+    }
+
+    .assistant-question {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: #f1eee6;
+      transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .assistant-question:hover,
+    .assistant-question[aria-pressed="true"] {
+      border-color: rgba(230, 197, 111, 0.42);
+      background: rgba(230, 197, 111, 0.1);
+      color: #fffaf0;
+    }
+
+    @media (max-width: 640px) {
+      .assistant-panel {
+        bottom: 5.3rem;
+      }
+
+      .assistant-fab,
+      .cart-fab {
+        bottom: 0.7rem;
+      }
+    }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(7, 10, 14, 0.62);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .cart-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 55;
+      display: flex;
+      width: min(30rem, calc(100vw - 1.5rem));
+      transform: translateX(calc(-100% - 1rem));
+      transition: transform 0.3s ease;
+    }
+
+    .cart-drawer.is-open {
+      transform: translateX(0);
+    }
+
+    .cart-drawer-panel {
+      margin: 0.75rem;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    .body-cart-open {
+      overflow: hidden;
+    }
+
+    .password-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(7, 10, 14, 0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .password-modal[hidden] {
+      display: none;
+    }
+
+    .product-detail-popover {
+      position: absolute;
+      bottom: calc(100% + 0.6rem);
+      right: 0;
+      z-index: 5;
+      width: min(18rem, calc(100vw - 4rem));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(19, 24, 31, 0.96), rgba(14, 18, 24, 0.98));
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
+      animation: fadeLiftIn 0.18s ease;
+    }
+
+    .product-detail-toggle {
+      box-shadow: 0 0 0 1px rgba(230, 197, 111, 0.08), 0 0 18px rgba(230, 197, 111, 0.16);
+    }
+
+    .product-detail-toggle:hover,
+    .product-detail-toggle[aria-expanded="true"] {
+      box-shadow: 0 0 0 1px rgba(230, 197, 111, 0.14), 0 0 24px rgba(230, 197, 111, 0.24);
+    }
+
     .hero-orb {
       position: absolute;
       border-radius: 999px;
@@ -192,6 +370,18 @@
       }
     }
 
+    @keyframes fadeLiftIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero-orb,
       .pulse-ring {
@@ -216,23 +406,23 @@
   <div class="hero-orb right-[10%] top-40 -z-10 h-20 w-20 bg-neon/20" aria-hidden="true" style="animation-delay: -3s;"></div>
 
   <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0f1319]/80 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <div class="relative flex min-h-[5.5rem] items-center justify-center">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <div class="relative flex min-h-[4.5rem] items-center justify-center">
         <div class="flex flex-col items-center text-center">
-          <img src="assets/logo-marche.svg" alt="Logo Marche!" class="h-14 w-14 rounded-[1.4rem] shadow-electric sm:h-16 sm:w-16">
-          <h1 class="mt-3 font-display text-4xl font-bold tracking-tight ink-title sm:text-5xl">Marche<span class="text-electric">!</span></h1>
-          <p class="mt-1 text-xs font-semibold uppercase tracking-[0.32em] text-slate-300 sm:text-sm">Sabores congelados para cada ocasion</p>
+          <img src="assets/logo-marche.svg" alt="Logo Marche!" class="h-11 w-11 rounded-[1.1rem] shadow-electric sm:h-12 sm:w-12">
+          <h1 class="mt-2 font-display text-3xl font-bold tracking-tight ink-title sm:text-4xl">Marche<span class="text-electric">!</span></h1>
+          <p class="mt-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-300 sm:text-xs">Congelados listos para vender y disfrutar</p>
         </div>
-        <a href="#carrito" class="glass absolute right-0 top-1/2 hidden -translate-y-1/2 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-100 shadow-electric sm:flex">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
+        <a href="#carrito" class="glass absolute right-0 top-1/2 hidden -translate-y-1/2 items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-100 shadow-electric sm:flex">
+          <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
           Pedido en curso
         </a>
       </div>
 
-      <div id="update-banner" class="glass rounded-3xl p-4 shadow-electric">
+      <div id="update-banner" class="glass rounded-3xl p-3 shadow-electric">
         <div class="flex items-center justify-between gap-3">
-          <p class="text-sm font-semibold text-slate-200">Precios actualizados a <span id="fecha-actualizacion" class="text-neon"></span></p>
-          <button id="banner-toggle" type="button" aria-expanded="true" aria-controls="update-banner-content" class="paper-chip inline-flex items-center justify-center rounded-full px-3 py-2 text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
+          <p class="text-xs font-semibold text-slate-200 sm:text-sm">Lista vigente a <span id="fecha-actualizacion" class="text-neon"></span></p>
+          <button id="banner-toggle" type="button" aria-expanded="true" aria-controls="update-banner-content" class="paper-chip inline-flex items-center justify-center rounded-full px-2.5 py-1.5 text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
             <svg id="banner-toggle-icon" class="banner-toggle-icon h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -242,19 +432,17 @@
         <div id="update-banner-content" class="update-banner-content mt-4">
           <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div class="flex flex-col gap-2">
-              <p class="max-w-2xl text-sm ink-body">Productos listos para resolver comidas, abastecer negocios y organizar eventos con una compra simple, clara y directa.</p>
+              <p class="max-w-2xl text-xs ink-body sm:text-sm">Congelados listos para hogar, reventa y eventos. Elegís la lista, armás el pedido y lo enviás en un solo paso.</p>
               <div class="flex flex-wrap items-center gap-3 pt-1">
-                <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Instagram</a>
-                <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">WhatsApp directo</a>
+                <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" class="paper-chip inline-flex items-center justify-center rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon sm:text-xs">Instagram</a>
+                <a id="whatsapp-direct-link" href="#carrito" class="paper-chip inline-flex items-center justify-center rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon sm:text-xs">Pedir por WhatsApp</a>
               </div>
             </div>
 
-            <div class="flex items-center gap-3 self-start rounded-full border border-white/10 bg-white/5 p-2 sm:self-auto">
-              <span id="label-publico" class="rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white">Público</span>
-              <button id="view-toggle" type="button" aria-label="Cambiar entre catálogo público y mayorista" aria-pressed="false" class="relative h-8 w-16 rounded-full border border-white/10 bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-[#0d1014]">
-                <span class="absolute inset-y-1 left-1 w-6 rounded-full bg-white shadow-lg transition-transform duration-300" id="toggle-dot"></span>
-              </button>
-              <span id="label-mayorista" class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400">Mayorista</span>
+            <div id="pricing-mode-selector" class="flex flex-wrap items-center gap-2 self-start rounded-[1.25rem] border border-white/10 bg-white/5 p-1.5 sm:self-auto">
+              <button type="button" data-mode-button="publico" class="pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-xs">Público</button>
+              <button type="button" data-mode-button="mayorista" class="pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-xs">Mayorista</button>
+              <button type="button" data-mode-button="granel" class="pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-xs">Granel</button>
             </div>
           </div>
         </div>
@@ -269,29 +457,29 @@
         <div>
           <div class="paper-chip mb-4 inline-flex items-center gap-3 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.35em] text-neon">
             <span class="h-2.5 w-2.5 rounded-full bg-neon pulse-ring"></span>
-            Catálogo activo 2026
+            Catálogo vigente 2026
           </div>
           <div class="mb-5 flex items-center gap-3">
             <div class="paper-chip rounded-3xl p-3 shadow-electric">
               <img src="assets/logo-marche.svg" alt="Isologo Marche!" class="h-12 w-auto sm:h-14">
             </div>
-            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">Mismo material visual del catálogo real, adaptado para vender mejor online.</p>
+            <p class="max-w-xs text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">Nuestro Catálogo</p>
           </div>
-          <h2 class="max-w-3xl font-display text-5xl font-bold tracking-tight ink-title sm:text-6xl lg:text-7xl">Todo lo rico de Marche! en un pedido rapido para tu casa, tu negocio o tu evento.</h2>
-          <p class="mt-5 max-w-2xl text-base leading-7 ink-body sm:text-lg">Elegí pizzas, empanadas, pastas, tartas y salsas, sumá lo que necesitás y pedilo en minutos con tus datos para coordinar entrega.</p>
+          <h2 class="max-w-3xl font-display text-5xl font-bold tracking-tight ink-title sm:text-6xl lg:text-7xl">Congelados Marche! para resolver comidas, stock y eventos sin perder tiempo.</h2>
+          <p class="mt-5 max-w-2xl text-base leading-7 ink-body sm:text-lg">Elegí productos, compará listas de precios y armá tu pedido en minutos con total claro y entrega coordinada.</p>
 
           <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a href="#catalogo" class="inline-flex items-center justify-center rounded-2xl bg-electric px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:bg-neon hover:text-[#11151b]">Ver catálogo</a>
-            <a href="#pedido-form" class="paper-chip inline-flex items-center justify-center rounded-2xl px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Hacer pedido</a>
+            <a href="#catalogo" class="inline-flex items-center justify-center rounded-2xl bg-electric px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white transition hover:bg-neon hover:text-[#11151b]">Ver productos</a>
+            <a href="#pedido-form" class="paper-chip inline-flex items-center justify-center rounded-2xl px-6 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">Armar pedido</a>
           </div>
 
           <div class="mt-7 grid gap-3 sm:grid-cols-3">
             <div class="paper-chip reveal stagger-1 rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Rubros</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Categorías</p>
               <p id="hero-categories-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
             </div>
             <div class="paper-chip reveal stagger-2 rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Opciones</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Productos</p>
               <p id="hero-products-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
             </div>
             <div class="paper-chip reveal stagger-3 rounded-3xl p-4">
@@ -303,87 +491,93 @@
 
         <div class="menu-surface reveal rounded-[1.75rem] p-5 shadow-neon">
           <div class="relative overflow-hidden rounded-[1.5rem] catalog-photo">
-            <img src="assets/pdf/page-1.png" alt="Imagen del catalogo digital Marche!" class="h-[24rem] w-full object-cover sm:h-[28rem]">
+            <img src="assets/pdf/page-1.png" alt="Imagen del catálogo digital de Marche!" class="h-[24rem] w-full object-cover sm:h-[28rem]">
             <div class="photo-wash absolute inset-0"></div>
             <div class="absolute inset-x-0 bottom-0 p-5">
-              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-neon">Catalogo Marche!</p>
-              <h3 class="mt-2 font-display text-3xl font-bold text-white">Misma imagen del material comercial, ahora lista para vender online.</h3>
+              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-neon">Catálogo Marche!</p>
+              <h3 class="mt-2 font-display text-3xl font-bold text-white">Tu material comercial, convertido en una experiencia simple para vender online.</h3>
             </div>
           </div>
 
           <div class="mt-5 grid gap-3 sm:grid-cols-2">
             <div class="paper-chip overflow-hidden rounded-3xl">
-              <img src="assets/pdf/page-2.png" alt="Pagina del catalogo con pizzas y empanadas" class="h-44 w-full object-cover object-top">
+              <img src="assets/pdf/page-2.png" alt="Página del catálogo con pizzas y empanadas" class="h-44 w-full object-cover object-top">
             </div>
             <div class="paper-chip overflow-hidden rounded-3xl">
-              <img src="assets/pdf/page-3.png" alt="Pagina del catalogo con productos Marche!" class="h-44 w-full object-cover object-top">
+              <img src="assets/pdf/page-3.png" alt="Página del catálogo con productos Marche!" class="h-44 w-full object-cover object-top">
             </div>
           </div>
 
           <div class="mt-6 space-y-3">
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Venta directa</p>
-              <p class="mt-2 text-lg font-bold ink-title">Sumás productos, completás tus datos y el pedido sale armado por WhatsApp.</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Pedido directo</p>
+              <p class="mt-2 text-lg font-bold ink-title">Armás el pedido, completás tus datos y lo enviás listo por WhatsApp.</p>
             </div>
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Para cada necesidad</p>
-              <p class="mt-2 text-lg font-bold ink-title">Ideal para compras del hogar, abastecimiento de negocios, empresas y eventos.</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Para hogar o negocio</p>
+              <p class="mt-2 text-lg font-bold ink-title">Pensado para compras del hogar, reventa, oficinas, eventos y abastecimiento.</p>
             </div>
             <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Decision rapida</p>
-              <p class="mt-2 text-lg font-bold ink-title">Precios claros, categorias simples y una ruta directa al cierre de compra.</p>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Cierre rápido</p>
+              <p class="mt-2 text-lg font-bold ink-title">Precios claros, listas ordenadas y una ruta simple hasta el pedido.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="catalogo" class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <section id="catalogo">
       <div class="glass overflow-hidden rounded-[2rem] shadow-electric">
-        <div class="border-b border-white/10 px-5 py-5 sm:px-6">
+        <div class="border-b border-white/10 px-5 py-4 sm:px-6">
           <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p class="font-display text-xs uppercase tracking-[0.4em] text-electric">La carta</p>
-              <h2 class="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">Elegí lo que necesitás hoy y armá tu pedido en minutos.</h2>
+              <h2 class="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">Elegí productos, compará precios y armá tu pedido.</h2>
             </div>
-            <div class="min-w-full lg:min-w-[20rem]">
-              <label for="search-input" class="mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">Buscar producto</label>
-              <input id="search-input" type="search" placeholder="Ej. Muzza, Canelones, Fileto" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+            <div class="min-w-full lg:min-w-[18rem]">
+              <label for="search-input" class="mb-2 block text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">Buscar por nombre</label>
+              <input id="search-input" type="search" placeholder="Ej. Muzza, Canelones o Fileto" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
             </div>
           </div>
         </div>
 
-        <div class="px-5 pt-5 sm:px-6">
+        <div class="px-5 pt-4 sm:px-6">
           <div class="catalog-scroll flex gap-3 overflow-x-auto pb-4" id="tabs-container"></div>
           <div class="mb-5 h-px w-full glow-line"></div>
-          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3" id="catalog-container"></div>
+          <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3" id="catalog-container"></div>
           <div id="empty-state" class="hidden rounded-3xl border border-dashed border-white/10 bg-white/5 px-6 py-14 text-center text-slate-300">
-            No encontramos productos para esa búsqueda o categoría.
+            No encontramos resultados para esa búsqueda o categoría.
           </div>
         </div>
       </div>
 
-      <aside id="carrito" class="glass rounded-[2rem] p-5 shadow-neon sm:p-6 lg:sticky lg:top-32 lg:h-fit">
+      <div id="cart-overlay" class="cart-overlay" hidden></div>
+
+      <aside id="carrito" class="cart-drawer" aria-hidden="true">
+        <div class="glass cart-drawer-panel rounded-[2rem] p-5 shadow-neon sm:p-6">
         <div class="flex items-start justify-between gap-4">
           <div>
             <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Carrito</p>
-            <h3 class="mt-2 text-2xl font-bold text-white">Tu pedido Marche!</h3>
+            <h3 class="mt-2 text-2xl font-bold text-white">Tu pedido listo</h3>
           </div>
-          <button id="clear-cart" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Vaciar</button>
+          <div class="flex items-center gap-2">
+            <button id="clear-cart" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Vaciar</button>
+            <button id="close-cart" type="button" aria-label="Cerrar carrito" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Cerrar</button>
+          </div>
         </div>
 
         <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 p-4">
           <div class="flex items-center justify-between text-sm text-slate-300">
-            <span>Tarifa activa</span>
+            <span>Lista activa</span>
             <span id="pricing-mode-badge" class="rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric">Público</span>
           </div>
-          <p class="mt-3 text-sm text-slate-300">Sumá productos y completá tus datos para enviar un pedido listo por WhatsApp. Si cambiás a Mayorista, el carrito se reinicia para evitar mezclar listas.</p>
+          <p class="mt-3 text-sm text-slate-300">Sumá productos y completá tus datos para enviar el pedido listo por WhatsApp. Si cambiás de lista, reiniciamos el carrito para no mezclar precios.</p>
         </div>
 
         <div id="cart-items" class="mt-6 flex max-h-[22rem] flex-col gap-3 overflow-y-auto pr-1"></div>
 
         <div id="cart-empty" class="mt-6 rounded-3xl border border-dashed border-white/10 px-5 py-8 text-center text-sm text-slate-400">
-          Agrega productos para preparar el pedido.
+          Todavía no sumaste productos.
         </div>
 
         <div class="mt-6 rounded-3xl bg-white/5 p-4">
@@ -391,6 +585,7 @@
             <span>Total</span>
             <span id="cart-count-summary">0 items</span>
           </div>
+          <span id="cart-total-label" class="mt-3 inline-flex rounded-full bg-electric/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-electric">Total Público</span>
           <p id="cart-total" class="mt-3 text-3xl font-extrabold text-white">$0</p>
           <form id="pedido-form" class="mt-4 space-y-3">
             <div class="grid gap-3 sm:grid-cols-2">
@@ -399,30 +594,214 @@
             </div>
             <input id="customer-email" type="email" placeholder="Email" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
             <select id="customer-segment" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-neon focus:ring-2 focus:ring-neon/30">
-              <option value="" class="bg-slate-900 text-white">Seleccioná destino del pedido</option>
-              <option value="Negocios" class="bg-slate-900 text-white">Negocios</option>
-              <option value="Empresas" class="bg-slate-900 text-white">Empresas</option>
-              <option value="Eventos" class="bg-slate-900 text-white">Eventos</option>
+              <option value="Publico" class="bg-slate-900 text-white">Público</option>
+              <option value="Mayorista" class="bg-slate-900 text-white">Mayorista</option>
+              <option value="Granel" class="bg-slate-900 text-white">Granel</option>
             </select>
-            <input id="customer-address" type="text" placeholder="Direccion" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+            <input id="customer-address" type="text" placeholder="Dirección" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+            <p id="shipping-note" class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-medium text-slate-300">Público: envío con recargo. Mayorista y Granel: envío incluido desde $100.000.</p>
             <p id="pedido-error" class="hidden text-sm font-medium text-amber-300"></p>
             <button id="whatsapp-button" type="submit" class="w-full rounded-2xl bg-green-500 px-4 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40" disabled>
-              Hacer pedido
+              Enviar por WhatsApp
             </button>
           </form>
-          <p class="mt-3 text-xs text-slate-400">Completá tus datos para enviar el pedido armado con productos, total y datos de contacto al WhatsApp de Marche!.</p>
+          <p class="mt-3 text-xs text-slate-400">Completá tus datos y enviá el pedido con productos, total, lista elegida y condición de envío.</p>
+        </div>
         </div>
       </aside>
     </section>
   </main>
 
+  <footer class="mx-auto w-full max-w-7xl px-4 pb-20 pt-6 text-center sm:px-6 lg:px-8">
+    <p class="text-xs font-medium uppercase tracking-[0.24em] text-slate-500 sm:text-sm">
+      Todos los derechos reservados por MARCHE! 2026
+      <button id="metrics-toggle" type="button" class="ml-2 inline-flex items-center justify-center rounded-full border border-white/10 bg-transparent px-2 py-0.5 text-sm font-bold text-slate-400 transition hover:border-neon/40 hover:text-neon" aria-label="Abrir panel de métricas">@</button>
+    </p>
+  </footer>
+
+  <button id="floating-cart-button" type="button" class="cart-fab transition hover:-translate-y-1 hover:shadow-neon">
+    <span id="floating-cart-count" class="cart-fab-count">0</span>
+    <span class="text-left">
+      <span class="block text-[11px] font-bold uppercase tracking-[0.32em] text-[#5d4310]">Carrito</span>
+      <span class="block text-xs font-extrabold uppercase tracking-[0.16em] sm:text-sm">Ver pedido</span>
+    </span>
+  </button>
+
+  <button id="assistant-toggle" type="button" class="assistant-fab transition hover:-translate-y-1 hover:shadow-neon" aria-expanded="false" aria-controls="assistant-panel">
+    <span class="assistant-fab-mark">AM</span>
+    <span class="text-left">
+      <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-neon">Asist.Marche</span>
+      <span class="block text-xs font-semibold text-slate-200 sm:text-sm">Preguntas frecuentes</span>
+    </span>
+  </button>
+
+  <section id="assistant-panel" class="assistant-panel rounded-[1.75rem] p-4 sm:p-5" hidden aria-label="Asistente Marche">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.28em] text-neon">Asist.Marche</p>
+        <h3 class="mt-2 text-xl font-bold text-white">Respuestas rápidas</h3>
+      </div>
+      <button id="assistant-close" type="button" class="rounded-full border border-white/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-300 transition hover:border-neon/50 hover:text-neon">Cerrar</button>
+    </div>
+
+    <p class="mt-3 text-sm leading-6 text-slate-300">Elegí una consulta frecuente y te doy la respuesta al instante.</p>
+
+    <div id="assistant-faq-list" class="mt-4 grid gap-2"></div>
+
+    <div class="mt-4 rounded-3xl border border-white/10 bg-white/5 px-4 py-4">
+      <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-neon">Respuesta</p>
+      <p id="assistant-answer" class="mt-2 text-sm leading-6 text-slate-200">Abrí una pregunta para ver la respuesta de Asist.Marche.</p>
+    </div>
+  </section>
+
+  <div id="pricing-access-modal" class="password-modal" hidden>
+    <div class="glass w-full max-w-md rounded-[2rem] p-6 shadow-neon">
+      <p id="pricing-access-kicker" class="font-display text-xs uppercase tracking-[0.35em] text-neon">Acceso mayorista</p>
+      <h3 id="pricing-access-title" class="mt-3 text-3xl font-bold text-white">Ingresá la contraseña para ver la lista mayorista</h3>
+      <form id="pricing-access-form" class="mt-6 space-y-4">
+        <input id="pricing-access-input" type="password" placeholder="Contraseña" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30" autocomplete="current-password">
+        <p id="pricing-access-error" class="hidden text-sm font-medium text-amber-300">Contraseña incorrecta.</p>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <button id="pricing-access-cancel" type="button" class="w-full rounded-2xl border border-white/10 px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-slate-200 transition hover:border-neon hover:text-neon">Cancelar</button>
+          <button id="pricing-access-submit" type="submit" class="w-full rounded-2xl bg-electric px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-white transition hover:bg-neon hover:text-[#11151b]">Ver precios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="metrics-access-modal" class="password-modal" hidden>
+    <div class="glass w-full max-w-md rounded-[2rem] p-6 shadow-neon">
+      <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Panel de métricas</p>
+      <h3 class="mt-3 text-3xl font-bold text-white">Ingresá la clave para abrir el panel</h3>
+      <form id="metrics-access-form" class="mt-6 space-y-4">
+        <input id="metrics-access-input" type="password" placeholder="Contraseña" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30" autocomplete="current-password">
+        <p id="metrics-access-error" class="hidden text-sm font-medium text-amber-300">Clave incorrecta.</p>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <button id="metrics-access-cancel" type="button" class="w-full rounded-2xl border border-white/10 px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-slate-200 transition hover:border-neon hover:text-neon">Cancelar</button>
+          <button type="submit" class="w-full rounded-2xl bg-electric px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-white transition hover:bg-neon hover:text-[#11151b]">Abrir panel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="metrics-panel-modal" class="password-modal" hidden>
+    <div class="glass max-h-[calc(100vh-2rem)] w-full max-w-3xl overflow-y-auto rounded-[2rem] p-6 shadow-neon">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="font-display text-xs uppercase tracking-[0.35em] text-neon">Métricas CEO</p>
+          <h3 class="mt-2 text-3xl font-bold text-white">Views, clicks y conversiones</h3>
+        </div>
+        <button id="metrics-panel-close" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Cerrar</button>
+      </div>
+
+      <div class="mt-4 rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300">
+        Métricas acumuladas en este navegador.
+      </div>
+
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="paper-chip rounded-3xl p-4">
+          <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Views</p>
+          <p id="metrics-views-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
+        </div>
+        <div class="paper-chip rounded-3xl p-4">
+          <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Clicks</p>
+          <p id="metrics-clicks-count" class="mt-2 text-3xl font-extrabold ink-title">0</p>
+        </div>
+        <div class="paper-chip rounded-3xl p-4">
+          <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Conversiones</p>
+          <p id="metrics-conversions-count" class="mt-2 text-3xl font-extrabold text-neon">0</p>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-[1.75rem] border border-white/10 bg-white/5 p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Resumen mensual</p>
+            <p id="metrics-month-label" class="mt-2 text-xl font-extrabold text-white">-</p>
+          </div>
+          <div class="text-right">
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Total convertido</p>
+            <p id="metrics-month-total" class="mt-2 text-2xl font-extrabold text-neon">$0</p>
+          </div>
+        </div>
+
+        <div class="mt-4 grid gap-3 lg:grid-cols-3">
+          <div class="paper-chip rounded-3xl p-4">
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Público</p>
+            <p id="metrics-publico-count" class="mt-2 text-2xl font-extrabold ink-title">0 conversiones</p>
+            <p id="metrics-publico-value" class="mt-2 text-sm font-semibold text-slate-300">$0</p>
+          </div>
+          <div class="paper-chip rounded-3xl p-4">
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Mayorista</p>
+            <p id="metrics-mayorista-count" class="mt-2 text-2xl font-extrabold ink-title">0 conversiones</p>
+            <p id="metrics-mayorista-value" class="mt-2 text-sm font-semibold text-slate-300">$0</p>
+          </div>
+          <div class="paper-chip rounded-3xl p-4">
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Granel</p>
+            <p id="metrics-granel-count" class="mt-2 text-2xl font-extrabold ink-title">0 conversiones</p>
+            <p id="metrics-granel-value" class="mt-2 text-sm font-semibold text-slate-300">$0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
   <script src="data.js"></script>
   <script>
     const state = {
       modo: "publico",
       categoriaActiva: "todos",
       busqueda: "",
-      carrito: []
+      carrito: [],
+      detalleActivo: ""
+    };
+
+    const STORAGE_KEY = "marche-app-state";
+    const METRICS_STORAGE_KEY = "marche-app-metrics";
+    const WHOLESALE_MIN_TOTAL = 100000;
+    const MAYORISTA_PASSWORD = "pichu";
+    const GRANEL_PASSWORD = "pichu1";
+    const METRICS_PASSWORD = "1234";
+    const SUPABASE_CONFIG = {
+      url: window.MARCHE_SUPABASE_CONFIG?.url || "",
+      anonKey: window.MARCHE_SUPABASE_CONFIG?.anonKey || "",
+      eventsTable: window.MARCHE_SUPABASE_CONFIG?.eventsTable || "marche_events",
+      enabled: Boolean(window.MARCHE_SUPABASE_CONFIG?.enabled)
+    };
+    const PRICING_MODES = {
+      publico: {
+        label: "Público",
+        badgeClass: "rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric",
+        heroClass: "mt-2 text-3xl font-extrabold text-electric",
+        buttonClass: "pricing-mode-button rounded-full bg-electric px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white transition"
+      },
+      mayorista: {
+        label: "Mayorista",
+        badgeClass: "rounded-full bg-neon/20 px-3 py-1 font-semibold text-neon",
+        heroClass: "mt-2 text-3xl font-extrabold text-neon",
+        buttonClass: "pricing-mode-button rounded-full bg-neon px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#11151b] transition"
+      },
+      granel: {
+        label: "Granel",
+        badgeClass: "rounded-full bg-amber-200/20 px-3 py-1 font-semibold text-amber-200",
+        heroClass: "mt-2 text-3xl font-extrabold text-amber-200",
+        buttonClass: "pricing-mode-button rounded-full bg-amber-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#11151b] transition"
+      }
+    };
+    const PROTECTED_MODES = {
+      mayorista: {
+        password: MAYORISTA_PASSWORD,
+        kicker: "Acceso mayorista",
+        title: "Ingresá la clave para ver precios mayoristas",
+        action: "Ver precios"
+      },
+      granel: {
+        password: GRANEL_PASSWORD,
+        kicker: "Acceso granel",
+        title: "Ingresá la clave para ver precios a granel",
+        action: "Ver precios"
+      }
     };
 
     const categoryAliases = {
@@ -437,18 +816,21 @@
     const tabsContainer = document.getElementById("tabs-container");
     const searchInput = document.getElementById("search-input");
     const emptyState = document.getElementById("empty-state");
-    const toggleBtn = document.getElementById("view-toggle");
-    const toggleDot = document.getElementById("toggle-dot");
-    const labelPublico = document.getElementById("label-publico");
-    const labelMayorista = document.getElementById("label-mayorista");
+    const pricingModeButtons = document.querySelectorAll("[data-mode-button]");
     const pricingModeBadge = document.getElementById("pricing-mode-badge");
     const cartItems = document.getElementById("cart-items");
     const cartEmpty = document.getElementById("cart-empty");
     const cartTotal = document.getElementById("cart-total");
+    const cartTotalLabel = document.getElementById("cart-total-label");
     const cartCountSummary = document.getElementById("cart-count-summary");
+    const floatingCartCount = document.getElementById("floating-cart-count");
     const headerCartCount = document.getElementById("header-cart-count");
     const whatsappButton = document.getElementById("whatsapp-button");
     const clearCartButton = document.getElementById("clear-cart");
+    const closeCartButton = document.getElementById("close-cart");
+    const floatingCartButton = document.getElementById("floating-cart-button");
+    const cartOverlay = document.getElementById("cart-overlay");
+    const cartDrawer = document.getElementById("carrito");
     const updateBannerContent = document.getElementById("update-banner-content");
     const bannerToggle = document.getElementById("banner-toggle");
     const bannerToggleIcon = document.getElementById("banner-toggle-icon");
@@ -459,13 +841,82 @@
     const customerEmail = document.getElementById("customer-email");
     const customerSegment = document.getElementById("customer-segment");
     const customerAddress = document.getElementById("customer-address");
+    const shippingNote = document.getElementById("shipping-note");
     const instagramLink = document.getElementById("instagram-link");
     const whatsappDirectLink = document.getElementById("whatsapp-direct-link");
     const heroCategoriesCount = document.getElementById("hero-categories-count");
     const heroProductsCount = document.getElementById("hero-products-count");
     const heroModeLabel = document.getElementById("hero-mode-label");
+    const cartShortcutLinks = document.querySelectorAll('a[href="#carrito"], a[href="#pedido-form"]');
+    const pricingAccessModal = document.getElementById("pricing-access-modal");
+    const pricingAccessForm = document.getElementById("pricing-access-form");
+    const pricingAccessInput = document.getElementById("pricing-access-input");
+    const pricingAccessError = document.getElementById("pricing-access-error");
+    const pricingAccessCancel = document.getElementById("pricing-access-cancel");
+    const pricingAccessKicker = document.getElementById("pricing-access-kicker");
+    const pricingAccessTitle = document.getElementById("pricing-access-title");
+    const pricingAccessSubmit = document.getElementById("pricing-access-submit");
+    const metricsToggle = document.getElementById("metrics-toggle");
+    const metricsAccessModal = document.getElementById("metrics-access-modal");
+    const metricsAccessForm = document.getElementById("metrics-access-form");
+    const metricsAccessInput = document.getElementById("metrics-access-input");
+    const metricsAccessError = document.getElementById("metrics-access-error");
+    const metricsAccessCancel = document.getElementById("metrics-access-cancel");
+    const metricsPanelModal = document.getElementById("metrics-panel-modal");
+    const metricsPanelClose = document.getElementById("metrics-panel-close");
+    const metricsViewsCount = document.getElementById("metrics-views-count");
+    const metricsClicksCount = document.getElementById("metrics-clicks-count");
+    const metricsConversionsCount = document.getElementById("metrics-conversions-count");
+    const metricsMonthLabel = document.getElementById("metrics-month-label");
+    const metricsMonthTotal = document.getElementById("metrics-month-total");
+    const metricsPublicoCount = document.getElementById("metrics-publico-count");
+    const metricsPublicoValue = document.getElementById("metrics-publico-value");
+    const metricsMayoristaCount = document.getElementById("metrics-mayorista-count");
+    const metricsMayoristaValue = document.getElementById("metrics-mayorista-value");
+    const metricsGranelCount = document.getElementById("metrics-granel-count");
+    const metricsGranelValue = document.getElementById("metrics-granel-value");
+    const assistantToggle = document.getElementById("assistant-toggle");
+    const assistantPanel = document.getElementById("assistant-panel");
+    const assistantClose = document.getElementById("assistant-close");
+    const assistantFaqList = document.getElementById("assistant-faq-list");
+    const assistantAnswer = document.getElementById("assistant-answer");
     let bannerPinnedOpen = false;
     let lastScrollY = window.scrollY;
+    let resolvePricingAccess = null;
+    let pendingProtectedMode = null;
+    let revealObserver = null;
+    let searchDebounceId = null;
+    let activeAssistantQuestion = "";
+
+    const metricsState = loadMetricsState();
+
+    const assistantFaqs = [
+      {
+        id: "pedido",
+        question: "¿Cómo hago un pedido?",
+        answer: "Elegí la lista que querés ver, sumá productos al carrito, completá tus datos y enviá el pedido por WhatsApp desde el botón final."
+      },
+      {
+        id: "mayorista",
+        question: "¿Cuándo se habilitan Mayorista y Granel?",
+        answer: "Las opciones Mayorista y Granel se habilitan desde $100.000. Antes de ese monto, queda disponible la lista Público."
+      },
+      {
+        id: "envio",
+        question: "¿Cómo funciona el envío?",
+        answer: "En Público el envío tiene recargo. En Mayorista y Granel el envío está incluido desde $100.000."
+      },
+      {
+        id: "whatsapp",
+        question: "¿El pedido se envía por WhatsApp?",
+        answer: "Sí. Cuando terminás de armarlo, la web prepara el mensaje con productos, total, lista elegida y tus datos para enviarlo directo por WhatsApp."
+      },
+      {
+        id: "conservacion",
+        question: "¿Cómo se conservan los productos?",
+        answer: "Todos los productos están pensados para conservarse congelados hasta el momento de regenerar, hornear o servir según el tipo de producto."
+      }
+    ];
 
     document.getElementById("fecha-actualizacion").textContent = catalogoMarche.fechaActualizacion;
     instagramLink.href = catalogoMarche.instagram;
@@ -477,9 +928,463 @@
       return new Intl.NumberFormat("es-AR").format(value);
     }
 
+    function hasSupabaseEnabled() {
+      return SUPABASE_CONFIG.enabled && Boolean(SUPABASE_CONFIG.url) && Boolean(SUPABASE_CONFIG.anonKey);
+    }
+
+    function getSupabaseEventsUrl(query = "") {
+      const normalizedUrl = SUPABASE_CONFIG.url.replace(/\/$/, "");
+      return `${normalizedUrl}/rest/v1/${SUPABASE_CONFIG.eventsTable}${query}`;
+    }
+
+    function getSupabaseHeaders() {
+      return {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_CONFIG.anonKey,
+        Authorization: `Bearer ${SUPABASE_CONFIG.anonKey}`,
+        Prefer: "return=minimal"
+      };
+    }
+
+    function getRemoteEventName(metricName) {
+      if (metricName === "views") {
+        return "view";
+      }
+
+      if (metricName === "clicks") {
+        return "click";
+      }
+
+      if (metricName === "conversions") {
+        return "conversion";
+      }
+
+      return metricName;
+    }
+
+    async function sendSupabaseEvent(payload) {
+      if (!hasSupabaseEnabled()) {
+        return;
+      }
+
+      try {
+        await fetch(getSupabaseEventsUrl(), {
+          method: "POST",
+          headers: getSupabaseHeaders(),
+          body: JSON.stringify(payload),
+          keepalive: true
+        });
+      } catch {
+      }
+    }
+
+    function loadMetricsState() {
+      try {
+        const rawState = window.localStorage.getItem(METRICS_STORAGE_KEY);
+        if (!rawState) {
+          return { views: 0, clicks: 0, conversions: 0, months: {} };
+        }
+
+        const parsedState = JSON.parse(rawState);
+        return {
+          views: Number.isFinite(parsedState?.views) ? parsedState.views : 0,
+          clicks: Number.isFinite(parsedState?.clicks) ? parsedState.clicks : 0,
+          conversions: Number.isFinite(parsedState?.conversions) ? parsedState.conversions : 0,
+          months: parsedState?.months && typeof parsedState.months === "object" ? parsedState.months : {}
+        };
+      } catch {
+        return { views: 0, clicks: 0, conversions: 0, months: {} };
+      }
+    }
+
+    function getCurrentMetricsMonth() {
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      return `${year}-${month}`;
+    }
+
+    function createEmptyMonthSummary() {
+      return {
+        publico: { conversions: 0, value: 0 },
+        mayorista: { conversions: 0, value: 0 },
+        granel: { conversions: 0, value: 0 }
+      };
+    }
+
+    function getMonthSummary(monthKey) {
+      const rawSummary = metricsState.months?.[monthKey];
+      const summary = createEmptyMonthSummary();
+
+      ["publico", "mayorista", "granel"].forEach((mode) => {
+        summary[mode].conversions = Number.isFinite(rawSummary?.[mode]?.conversions) ? rawSummary[mode].conversions : 0;
+        summary[mode].value = Number.isFinite(rawSummary?.[mode]?.value) ? rawSummary[mode].value : 0;
+      });
+
+      return summary;
+    }
+
+    function persistMetricsState() {
+      try {
+        window.localStorage.setItem(METRICS_STORAGE_KEY, JSON.stringify(metricsState));
+      } catch {
+      }
+    }
+
+    function trackMetric(metricName, { skipRemote = false, metadata = null } = {}) {
+      if (!(metricName in metricsState)) {
+        return;
+      }
+
+      metricsState[metricName] += 1;
+      persistMetricsState();
+
+      if (!skipRemote) {
+        void sendSupabaseEvent({
+          event_type: getRemoteEventName(metricName),
+          mode: null,
+          total: null,
+          metadata: metadata || {}
+        });
+      }
+    }
+
+    function trackConversion(mode, amount) {
+      const safeMode = ["publico", "mayorista", "granel"].includes(mode) ? mode : "publico";
+      const safeAmount = Number.isFinite(amount) ? amount : 0;
+      const monthKey = getCurrentMetricsMonth();
+      const monthSummary = getMonthSummary(monthKey);
+
+      monthSummary[safeMode].conversions += 1;
+      monthSummary[safeMode].value += safeAmount;
+      metricsState.months[monthKey] = monthSummary;
+
+      trackMetric("conversions", { skipRemote: true });
+
+      void sendSupabaseEvent({
+        event_type: "conversion",
+        mode: safeMode,
+        total: safeAmount,
+        metadata: {
+          month: monthKey,
+          items: state.carrito.length,
+          list_label: getModeLabel(safeMode)
+        }
+      });
+    }
+
+    function getModeConfig(mode) {
+      return PRICING_MODES[mode] || PRICING_MODES.publico;
+    }
+
+    function getModeLabel(mode) {
+      return getModeConfig(mode).label;
+    }
+
+    function getProductKey(nombre, categoria) {
+      return `${categoria}__${nombre}`;
+    }
+
+    function getLocalMetricsSummary() {
+      const monthKey = getCurrentMetricsMonth();
+      const monthSummary = getMonthSummary(monthKey);
+      return {
+        views: metricsState.views,
+        clicks: metricsState.clicks,
+        conversions: metricsState.conversions,
+        monthKey,
+        monthSummary
+      };
+    }
+
+    function renderMetricsSummary(summary) {
+      const monthTotal = summary.monthSummary.publico.value + summary.monthSummary.mayorista.value + summary.monthSummary.granel.value;
+
+      metricsViewsCount.textContent = String(summary.views);
+      metricsClicksCount.textContent = String(summary.clicks);
+      metricsConversionsCount.textContent = String(summary.conversions);
+      metricsMonthLabel.textContent = summary.monthKey;
+      metricsMonthTotal.textContent = `$${formatCurrency(monthTotal)}`;
+      metricsPublicoCount.textContent = `${summary.monthSummary.publico.conversions} conversiones`;
+      metricsPublicoValue.textContent = `$${formatCurrency(summary.monthSummary.publico.value)}`;
+      metricsMayoristaCount.textContent = `${summary.monthSummary.mayorista.conversions} conversiones`;
+      metricsMayoristaValue.textContent = `$${formatCurrency(summary.monthSummary.mayorista.value)}`;
+      metricsGranelCount.textContent = `${summary.monthSummary.granel.conversions} conversiones`;
+      metricsGranelValue.textContent = `$${formatCurrency(summary.monthSummary.granel.value)}`;
+    }
+
+    async function loadRemoteMetricsSummary() {
+      if (!hasSupabaseEnabled()) {
+        return null;
+      }
+
+      try {
+        const query = "?select=event_type,mode,total,created_at&order=created_at.desc&limit=5000";
+        const response = await fetch(getSupabaseEventsUrl(query), {
+          method: "GET",
+          headers: getSupabaseHeaders()
+        });
+
+        if (!response.ok) {
+          return null;
+        }
+
+        const rows = await response.json();
+        const monthKey = getCurrentMetricsMonth();
+        const monthSummary = createEmptyMonthSummary();
+        const summary = {
+          views: 0,
+          clicks: 0,
+          conversions: 0,
+          monthKey,
+          monthSummary
+        };
+
+        rows.forEach((row) => {
+          if (row.event_type === "view") {
+            summary.views += 1;
+            return;
+          }
+
+          if (row.event_type === "click") {
+            summary.clicks += 1;
+            return;
+          }
+
+          if (row.event_type !== "conversion") {
+            return;
+          }
+
+          summary.conversions += 1;
+
+          if (typeof row.created_at === "string" && row.created_at.slice(0, 7) === monthKey) {
+            const safeMode = ["publico", "mayorista", "granel"].includes(row.mode) ? row.mode : "publico";
+            const safeTotal = Number.isFinite(Number(row.total)) ? Number(row.total) : 0;
+            summary.monthSummary[safeMode].conversions += 1;
+            summary.monthSummary[safeMode].value += safeTotal;
+          }
+        });
+
+        return summary;
+      } catch {
+        return null;
+      }
+    }
+
+    async function updateMetricsPanel() {
+      renderMetricsSummary(getLocalMetricsSummary());
+
+      const remoteSummary = await loadRemoteMetricsSummary();
+      if (remoteSummary) {
+        renderMetricsSummary(remoteSummary);
+      }
+    }
+
+    function openMetricsAccessModal() {
+      metricsAccessModal.hidden = false;
+      metricsAccessError.classList.add("hidden");
+      metricsAccessInput.value = "";
+      document.body.classList.add("body-cart-open");
+      window.setTimeout(() => metricsAccessInput.focus(), 0);
+    }
+
+    function closeMetricsAccessModal() {
+      metricsAccessModal.hidden = true;
+      metricsAccessError.classList.add("hidden");
+      metricsAccessInput.value = "";
+      document.body.classList.remove("body-cart-open");
+    }
+
+    function openMetricsPanel() {
+      void updateMetricsPanel();
+      metricsPanelModal.hidden = false;
+      document.body.classList.add("body-cart-open");
+      window.setTimeout(() => metricsPanelClose.focus(), 0);
+    }
+
+    function closeMetricsPanel() {
+      metricsPanelModal.hidden = true;
+      document.body.classList.remove("body-cart-open");
+      metricsToggle.focus();
+    }
+
+    function renderAssistantFaqs() {
+      assistantFaqList.innerHTML = assistantFaqs.map((item) => `
+        <button
+          type="button"
+          class="assistant-question rounded-2xl px-4 py-3 text-left text-sm font-semibold"
+          data-assistant-question="${item.id}"
+          aria-pressed="${item.id === activeAssistantQuestion ? "true" : "false"}"
+        >
+          ${item.question}
+        </button>
+      `).join("");
+    }
+
+    function setAssistantOpen(isOpen) {
+      assistantPanel.hidden = !isOpen;
+      assistantToggle.setAttribute("aria-expanded", String(isOpen));
+
+      if (isOpen) {
+        assistantClose.focus();
+        return;
+      }
+
+      assistantToggle.focus();
+    }
+
+    function selectAssistantQuestion(questionId) {
+      const item = assistantFaqs.find((entry) => entry.id === questionId);
+      if (!item) {
+        return;
+      }
+
+      activeAssistantQuestion = item.id;
+      assistantAnswer.textContent = item.answer;
+      renderAssistantFaqs();
+    }
+
+    function getOrderTypeValueFromMode(mode) {
+      if (mode === "mayorista") {
+        return "Mayorista";
+      }
+
+      if (mode === "granel") {
+        return "Granel";
+      }
+
+      return "Publico";
+    }
+
+    function getModeFromOrderType(value) {
+      if (value === "Mayorista") {
+        return "mayorista";
+      }
+
+      if (value === "Granel") {
+        return "granel";
+      }
+
+      return "publico";
+    }
+
+    function getCartTotal() {
+      return state.carrito.reduce((acc, item) => acc + item.precio, 0);
+    }
+
+    function findCatalogItem(nombre, categoria) {
+      const category = catalogoMarche.categorias.find((itemCategory) => itemCategory.nombre === categoria);
+      return category?.items.find((item) => item.nombre === nombre) || null;
+    }
+
+    function getPriceForMode(nombre, categoria, mode) {
+      const item = findCatalogItem(nombre, categoria);
+      return item?.[mode] ?? item?.publico ?? null;
+    }
+
+    function getCartQualificationTotal() {
+      return state.carrito.reduce((acc, item) => {
+        return acc + (getPriceForMode(item.nombre, item.categoria, "publico") ?? item.precio);
+      }, 0);
+    }
+
+    function repriceCartForMode(mode) {
+      state.carrito = state.carrito.map((item) => ({
+        ...item,
+        precio: getPriceForMode(item.nombre, item.categoria, mode) ?? item.precio
+      }));
+    }
+
+    function updateOrderTypeOptions(total) {
+      const canUseProtectedModes = getCartQualificationTotal() >= WHOLESALE_MIN_TOTAL;
+
+      Array.from(customerSegment.options).forEach((option) => {
+        const isProtectedMode = option.value === "Mayorista" || option.value === "Granel";
+        option.disabled = isProtectedMode && !canUseProtectedModes;
+      });
+
+      if ((customerSegment.value === "Mayorista" || customerSegment.value === "Granel") && !canUseProtectedModes) {
+        customerSegment.value = "Publico";
+      }
+
+      shippingNote.textContent = canUseProtectedModes
+        ? "Público: envío con recargo. Mayorista y Granel: envío incluido desde $100.000."
+        : "Público: envío con recargo. Mayorista y Granel se habilitan desde $100.000 con envío incluido.";
+
+      const modeValue = getOrderTypeValueFromMode(state.modo);
+      customerSegment.value = canUseProtectedModes || modeValue === "Publico" ? modeValue : "Publico";
+    }
+
+    function getPersistedState() {
+      try {
+        const rawState = window.localStorage.getItem(STORAGE_KEY);
+        if (!rawState) {
+          return null;
+        }
+
+        const parsedState = JSON.parse(rawState);
+        if (!parsedState || typeof parsedState !== "object") {
+          return null;
+        }
+
+        return parsedState;
+      } catch {
+        return null;
+      }
+    }
+
+    function applyCustomerData(customer = {}) {
+      customerName.value = typeof customer.nombre === "string" ? customer.nombre : "";
+      customerLastName.value = typeof customer.apellido === "string" ? customer.apellido : "";
+      customerEmail.value = typeof customer.email === "string" ? customer.email : "";
+      customerSegment.value = typeof customer.segmento === "string" ? customer.segmento : "";
+      customerAddress.value = typeof customer.direccion === "string" ? customer.direccion : "";
+    }
+
+    function persistState() {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          modo: state.modo,
+          categoriaActiva: state.categoriaActiva,
+          busqueda: state.busqueda,
+          carrito: state.carrito,
+          customer: getCustomerData()
+        }));
+      } catch {
+      }
+    }
+
+    function restoreState() {
+      const persistedState = getPersistedState();
+      if (!persistedState) {
+        return;
+      }
+
+      if (persistedState.modo === "publico") {
+        state.modo = persistedState.modo;
+      }
+
+      if (typeof persistedState.categoriaActiva === "string") {
+        state.categoriaActiva = persistedState.categoriaActiva;
+      }
+
+      if (typeof persistedState.busqueda === "string") {
+        state.busqueda = persistedState.busqueda;
+        searchInput.value = persistedState.busqueda;
+      }
+
+      if (Array.isArray(persistedState.carrito)) {
+        state.carrito = persistedState.carrito.filter((item) => (
+          item && typeof item.nombre === "string" && typeof item.categoria === "string" && Number.isFinite(item.precio)
+        ));
+      }
+
+      applyCustomerData(persistedState.customer);
+    }
+
     function getVisibleCategories() {
       return [
-        { id: "todos", label: "Todo el menú", description: "Catálogo completo" },
+        { id: "todos", label: "Todo el menú", description: "Todo el catálogo" },
         { id: "pizzas", label: "Pizzas", description: "Clásicas y especiales" },
         { id: "empanadas", label: "Empanadas", description: "Empanadas y canastitas" },
         { id: "pastas", label: "Pastas", description: "Viandas y rellenas" },
@@ -517,7 +1422,7 @@
             ...item,
             categoria: categoria.nombre,
             categoriaSlug: categoria.slug,
-            precio: item[state.modo]
+            precio: item[state.modo] ?? item.publico
           }));
       });
     }
@@ -530,9 +1435,9 @@
             <button
               type="button"
               data-tab="${tab.id}"
-              class="group min-w-max rounded-2xl border px-4 py-3 text-left transition ${active ? "border-neon bg-neon/12 text-white shadow-electric" : "border-white/10 bg-white/5 text-slate-200 hover:border-neon/50 hover:text-neon"}"
+              class="group min-w-max rounded-2xl border px-3 py-2.5 text-left transition ${active ? "border-neon bg-neon/12 text-white shadow-electric" : "border-white/10 bg-white/5 text-slate-200 hover:border-neon/50 hover:text-neon"}"
             >
-              <span class="block text-sm font-bold uppercase tracking-[0.18em]">${tab.label}</span>
+              <span class="block text-xs font-bold uppercase tracking-[0.16em] sm:text-sm">${tab.label}</span>
               <span class="mt-1 block text-xs ${active ? "text-neon" : "text-slate-400 group-hover:text-slate-200"}">${tab.description}</span>
             </button>
           `;
@@ -542,32 +1447,56 @@
 
     function renderProducts() {
       const items = getFilteredItems();
+      const quantityMap = getCartQuantityMap();
 
       emptyState.classList.toggle("hidden", items.length > 0);
       container.classList.toggle("hidden", items.length === 0);
 
       container.innerHTML = items
-        .map((item) => `
-          <article class="menu-surface reveal group flex h-full flex-col rounded-[1.75rem] p-5 shadow-electric transition duration-300 hover:-translate-y-1 hover:border-neon/30 hover:shadow-neon">
+        .map((item) => {
+          const quantity = quantityMap.get(`${item.nombre}-${item.precio}`) || 0;
+          const detailKey = getProductKey(item.nombre, item.categoria);
+          const detailOpen = state.detalleActivo === detailKey;
+
+          return `
+          <article class="menu-surface reveal group relative flex h-full flex-col rounded-[1.5rem] p-4 shadow-electric transition duration-300 hover:-translate-y-1 hover:border-neon/30 hover:shadow-neon">
             <div class="flex items-start justify-between gap-4">
               <div>
                 <p class="text-xs font-semibold uppercase tracking-[0.28em] text-neon">${item.categoria}</p>
-                <h3 class="mt-2 text-2xl font-bold ink-title">${item.nombre}</h3>
+                <h3 class="mt-2 text-xl font-bold ink-title">${item.nombre}</h3>
               </div>
-              <span class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-neon">${state.modo === "publico" ? "Público" : "Mayorista"}</span>
+              <span class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-neon">${getModeLabel(state.modo)}</span>
             </div>
 
-            <div class="mt-8 flex items-end justify-between gap-3">
+            <div class="mt-6 flex items-end justify-between gap-3">
               <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Precio final</p>
-                <p class="mt-2 text-4xl font-extrabold ink-title">$${formatCurrency(item.precio)}</p>
+                <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Precio por unidad</p>
+                <p class="mt-2 text-3xl font-extrabold ink-title">$${formatCurrency(item.precio)}</p>
               </div>
-              <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-white/10 to-neon/25"></div>
+              <div class="relative flex flex-col items-end gap-2">
+                ${quantity ? `<span data-cart-quantity-badge class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-neon">${quantity} en pedido</span>` : ""}
+                <button
+                  type="button"
+                  class="product-detail-toggle inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-neon/25 text-sm font-extrabold text-neon transition hover:border-neon/50 hover:text-white"
+                  data-name="${item.nombre}"
+                  data-category="${item.categoria}"
+                  aria-expanded="${detailOpen ? "true" : "false"}"
+                  aria-label="Ver información de ${item.nombre}"
+                >
+                  i
+                </button>
+                ${detailOpen ? `
+                  <div class="product-detail-popover rounded-2xl px-4 py-3 text-sm leading-6 text-slate-200">
+                    <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-neon">Detalle del producto</p>
+                    <p class="mt-2">${item.detalle}</p>
+                  </div>
+                ` : ""}
+              </div>
             </div>
 
             <button
               type="button"
-              class="add-to-cart mt-8 w-full rounded-2xl bg-electric px-4 py-4 text-sm font-bold uppercase tracking-[0.28em] text-white transition hover:bg-neon hover:text-[#11151b]"
+              class="add-to-cart mt-6 w-full rounded-2xl bg-electric px-4 py-3 text-xs font-bold uppercase tracking-[0.24em] text-white transition hover:bg-neon hover:text-[#11151b] sm:text-sm"
               data-name="${item.nombre}"
               data-category="${item.categoria}"
               data-price="${item.precio}"
@@ -575,10 +1504,40 @@
               Agregar al pedido
             </button>
           </article>
-        `)
+        `;
+        })
         .join("");
 
       activateRevealAnimations();
+    }
+
+    function syncVisibleProductCards() {
+      const quantityMap = getCartQuantityMap();
+
+      container.querySelectorAll(".add-to-cart").forEach((button) => {
+        const quantity = quantityMap.get(`${button.dataset.name}-${Number(button.dataset.price)}`) || 0;
+        const detailButton = button.closest("article")?.querySelector(".product-detail-toggle");
+        const badgeContainer = detailButton?.parentElement;
+        if (!detailButton || !badgeContainer) {
+          return;
+        }
+
+        let badge = badgeContainer.querySelector("[data-cart-quantity-badge]");
+
+        if (!quantity) {
+          badge?.remove();
+          return;
+        }
+
+        if (!badge) {
+          badge = document.createElement("span");
+          badge.setAttribute("data-cart-quantity-badge", "true");
+          badge.className = "rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-neon";
+          badgeContainer.insertBefore(badge, detailButton);
+        }
+
+        badge.textContent = `${quantity} en pedido`;
+      });
     }
 
     function summarizeCart() {
@@ -595,17 +1554,28 @@
       return Array.from(map.values());
     }
 
-    function updateCart() {
+    function getCartQuantityMap() {
+      return summarizeCart().reduce((map, item) => {
+        map.set(`${item.nombre}-${item.precio}`, item.cantidad);
+        return map;
+      }, new Map());
+    }
+
+    function updateCart({ refreshProducts = false } = {}) {
       const summary = summarizeCart();
       const totalItems = state.carrito.length;
-      const total = state.carrito.reduce((acc, item) => acc + item.precio, 0);
+      const total = getCartTotal();
 
       cartEmpty.classList.toggle("hidden", totalItems > 0);
       whatsappButton.disabled = totalItems === 0;
       pedidoError.classList.add("hidden");
+      floatingCartCount.textContent = String(totalItems);
       headerCartCount.textContent = String(totalItems);
-      cartCountSummary.textContent = `${totalItems} ${totalItems === 1 ? "item" : "items"}`;
+      cartCountSummary.textContent = `${totalItems} ${totalItems === 1 ? "producto" : "productos"}`;
+      cartTotalLabel.textContent = `Total ${getModeLabel(state.modo)}`;
+      cartTotalLabel.className = getModeConfig(state.modo).badgeClass.replace("px-3 py-1", "mt-3 inline-flex px-3 py-1") + " text-xs uppercase tracking-[0.24em]";
       cartTotal.textContent = `$${formatCurrency(total)}`;
+      updateOrderTypeOptions(total);
 
       cartItems.innerHTML = summary
         .map((item) => `
@@ -615,7 +1585,10 @@
                 <p class="text-sm font-bold ink-title">${item.nombre}</p>
                 <p class="mt-1 text-xs uppercase tracking-[0.28em] text-slate-400">${item.categoria}</p>
               </div>
-              <button type="button" class="remove-item rounded-full border border-white/10 px-2 py-1 text-xs font-bold text-slate-300 hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-price="${item.precio}">Quitar</button>
+              <div class="flex items-center gap-2">
+                <button type="button" class="cart-adjust rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-slate-300 transition hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-category="${item.categoria}" data-price="${item.precio}" data-action="decrement">-</button>
+                <button type="button" class="cart-adjust rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-slate-300 transition hover:border-neon/50 hover:text-neon" data-name="${item.nombre}" data-category="${item.categoria}" data-price="${item.precio}" data-action="increment">+</button>
+              </div>
             </div>
             <div class="mt-4 flex items-end justify-between gap-4">
               <span class="inline-flex rounded-full bg-neon/12 px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-neon">${item.cantidad} x</span>
@@ -624,32 +1597,49 @@
           </div>
         `)
         .join("");
+
+      persistState();
+
+      if (refreshProducts) {
+        renderProducts();
+        return;
+      }
+
+      syncVisibleProductCards();
+    }
+
+    function setCartDrawerOpen(isOpen) {
+      if (!isOpen && cartDrawer.contains(document.activeElement)) {
+        floatingCartButton.focus();
+      }
+
+      cartDrawer.classList.toggle("is-open", isOpen);
+      cartOverlay.classList.toggle("is-open", isOpen);
+      cartDrawer.setAttribute("aria-hidden", String(!isOpen));
+      cartOverlay.hidden = !isOpen;
+      document.body.classList.toggle("body-cart-open", isOpen);
+
+      if (isOpen) {
+        closeCartButton.focus();
+      }
     }
 
     function syncModeUI() {
-      const isMayorista = state.modo === "mayorista";
-      toggleBtn.setAttribute("aria-pressed", String(isMayorista));
-      toggleBtn.classList.toggle("bg-white/10", !isMayorista);
-      toggleBtn.classList.toggle("bg-neon", isMayorista);
-      toggleDot.style.transform = isMayorista ? "translateX(2rem)" : "translateX(0)";
+      const modeConfig = getModeConfig(state.modo);
 
-      labelPublico.className = isMayorista
-        ? "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400"
-        : "rounded-full bg-electric px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white";
+      pricingModeButtons.forEach((button) => {
+        const isActive = button.dataset.modeButton === state.modo;
+        button.className = isActive
+          ? modeConfig.buttonClass
+          : "pricing-mode-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400 transition hover:text-slate-100";
+        button.setAttribute("aria-pressed", String(isActive));
+      });
 
-      labelMayorista.className = isMayorista
-        ? "rounded-full bg-neon px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#11151b]"
-        : "rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400";
+      pricingModeBadge.textContent = modeConfig.label;
+      pricingModeBadge.className = modeConfig.badgeClass;
 
-      pricingModeBadge.textContent = isMayorista ? "Mayorista" : "Público";
-      pricingModeBadge.className = isMayorista
-        ? "rounded-full bg-neon/20 px-3 py-1 font-semibold text-neon"
-        : "rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric";
-
-      heroModeLabel.textContent = isMayorista ? "Mayorista" : "Público";
-      heroModeLabel.className = isMayorista
-        ? "mt-2 text-3xl font-extrabold text-neon"
-        : "mt-2 text-3xl font-extrabold text-electric";
+      heroModeLabel.textContent = modeConfig.label;
+      heroModeLabel.className = modeConfig.heroClass;
     }
 
     function updateHeroStats() {
@@ -668,20 +1658,22 @@
         return;
       }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-            observer.unobserve(entry.target);
-          }
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12
         });
-      }, {
-        threshold: 0.12
-      });
+      }
 
       revealElements.forEach((element) => {
         if (!element.classList.contains("reveal-visible")) {
-          observer.observe(element);
+          revealObserver.observe(element);
         }
       });
     }
@@ -737,11 +1729,15 @@
       const customer = getCustomerData();
 
       if (!customer.nombre || !customer.apellido || !customer.email || !customer.segmento || !customer.direccion) {
-        return "Completá nombre, apellido, email, tipo de pedido y direccion para continuar.";
+        return "Completá nombre, apellido, email, tipo de pedido y dirección para continuar.";
+      }
+
+      if ((customer.segmento === "Mayorista" || customer.segmento === "Granel") && getCartQualificationTotal() < WHOLESALE_MIN_TOTAL) {
+        return "Mayorista y Granel se habilitan solo a partir de $100.000.";
       }
 
       if (!customer.email.includes("@")) {
-        return "Ingresá un email valido para que Marche! pueda contactarte.";
+        return "Ingresá un email válido para que Marche! pueda contactarte.";
       }
 
       return "";
@@ -749,18 +1745,19 @@
 
     function buildWhatsAppMessage() {
       const summary = summarizeCart();
-      const total = state.carrito.reduce((acc, item) => acc + item.precio, 0);
+      const total = getCartTotal();
       const lines = summary.map((item) => `• ${item.cantidad}x ${item.nombre} - $${formatCurrency(item.precio * item.cantidad)}`);
       const customer = getCustomerData();
 
       return [
-        "Hola Marche!",
+        "Hola, Marche!",
         "",
-        `Quiero hacer un pedido ${state.modo === "publico" ? "Público" : "Mayorista"}:`,
+        `Quiero hacer un pedido con lista ${getModeLabel(state.modo)}:`,
         `Nombre: ${customer.nombre} ${customer.apellido}`,
         `Email: ${customer.email}`,
-        `Destino: ${customer.segmento}`,
-        `Direccion: ${customer.direccion}`,
+        `Tipo de pedido: ${customer.segmento}`,
+        `Condición de envío: ${customer.segmento === "Publico" ? "Envío con recargo" : "Envío incluido"}`,
+        `Dirección: ${customer.direccion}`,
         "",
         "Detalle del pedido:",
         ...lines,
@@ -783,10 +1780,59 @@
       }
 
       pedidoError.classList.add("hidden");
+      trackConversion(state.modo, getCartTotal());
 
       const number = catalogoMarche.whatsapp;
       const message = encodeURIComponent(buildWhatsAppMessage());
       window.open(`https://wa.me/${number}?text=${message}`, "_blank", "noopener");
+    }
+
+    function closePricingAccessModal(isAuthorized) {
+      pricingAccessModal.hidden = true;
+      pricingAccessError.classList.add("hidden");
+      pricingAccessInput.value = "";
+      document.body.classList.remove("body-cart-open");
+
+      if (resolvePricingAccess) {
+        resolvePricingAccess(isAuthorized);
+        resolvePricingAccess = null;
+      }
+
+      const targetButton = document.querySelector(`[data-mode-button="${pendingProtectedMode || state.modo}"]`);
+      if (targetButton) {
+        targetButton.focus();
+      }
+
+      pendingProtectedMode = null;
+    }
+
+    function requestProtectedModeAccess(mode) {
+      const protectedMode = PROTECTED_MODES[mode];
+      if (!protectedMode) {
+        return Promise.resolve(true);
+      }
+
+      pendingProtectedMode = mode;
+      pricingAccessKicker.textContent = protectedMode.kicker;
+      pricingAccessTitle.textContent = protectedMode.title;
+      pricingAccessSubmit.textContent = protectedMode.action;
+      pricingAccessModal.hidden = false;
+      pricingAccessError.classList.add("hidden");
+      pricingAccessInput.value = "";
+      document.body.classList.add("body-cart-open");
+      window.setTimeout(() => pricingAccessInput.focus(), 0);
+
+      return new Promise((resolve) => {
+        resolvePricingAccess = resolve;
+      });
+    }
+
+    function openCartDrawer() {
+      setCartDrawerOpen(true);
+    }
+
+    function closeCartDrawer() {
+      setCartDrawerOpen(false);
     }
 
     tabsContainer.addEventListener("click", (event) => {
@@ -795,30 +1841,154 @@
         return;
       }
 
+      trackMetric("clicks");
+
       state.categoriaActiva = button.dataset.tab;
+      persistState();
       renderTabs();
       renderProducts();
     });
 
     searchInput.addEventListener("input", (event) => {
       state.busqueda = event.target.value;
-      renderProducts();
+      persistState();
+      window.clearTimeout(searchDebounceId);
+      searchDebounceId = window.setTimeout(() => {
+        renderProducts();
+      }, 90);
     });
 
-    toggleBtn.addEventListener("click", () => {
-      state.modo = state.modo === "publico" ? "mayorista" : "publico";
-      resetCart();
+    pricingModeButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const nextMode = button.dataset.modeButton;
+        if (!nextMode || nextMode === state.modo) {
+          return;
+        }
+
+        trackMetric("clicks");
+
+        if (!(await requestProtectedModeAccess(nextMode))) {
+          return;
+        }
+
+        state.modo = nextMode;
+        resetCart();
+        syncModeUI();
+        renderProducts();
+      });
+    });
+
+    pricingAccessForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const protectedMode = PROTECTED_MODES[pendingProtectedMode];
+      if (!protectedMode) {
+        closePricingAccessModal(true);
+        return;
+      }
+
+      if (pricingAccessInput.value !== protectedMode.password) {
+        pricingAccessError.classList.remove("hidden");
+        pricingAccessInput.select();
+        return;
+      }
+
+      closePricingAccessModal(true);
+    });
+
+    pricingAccessCancel.addEventListener("click", () => {
+      closePricingAccessModal(false);
+    });
+
+    pricingAccessInput.addEventListener("input", () => {
+      pricingAccessError.classList.add("hidden");
+    });
+
+    metricsToggle.addEventListener("click", () => {
+      openMetricsAccessModal();
+    });
+
+    metricsAccessForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (metricsAccessInput.value !== METRICS_PASSWORD) {
+        metricsAccessError.classList.remove("hidden");
+        metricsAccessInput.select();
+        return;
+      }
+
+      closeMetricsAccessModal();
+      openMetricsPanel();
+    });
+
+    metricsAccessCancel.addEventListener("click", () => {
+      closeMetricsAccessModal();
+      metricsToggle.focus();
+    });
+
+    metricsAccessInput.addEventListener("input", () => {
+      metricsAccessError.classList.add("hidden");
+    });
+
+    metricsPanelClose.addEventListener("click", () => {
+      closeMetricsPanel();
+    });
+
+    assistantToggle.addEventListener("click", () => {
+      setAssistantOpen(assistantPanel.hidden);
+    });
+
+    assistantClose.addEventListener("click", () => {
+      setAssistantOpen(false);
+    });
+
+    assistantFaqList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-assistant-question]");
+      if (!button) {
+        return;
+      }
+
+      trackMetric("clicks");
+
+      selectAssistantQuestion(button.dataset.assistantQuestion);
+    });
+
+    customerSegment.addEventListener("change", () => {
+      const nextMode = getModeFromOrderType(customerSegment.value);
+      if (nextMode === state.modo) {
+        persistState();
+        return;
+      }
+
+      state.modo = nextMode;
+      repriceCartForMode(nextMode);
       syncModeUI();
-      renderProducts();
+      updateCart({ refreshProducts: true });
+    });
+
+    [customerName, customerLastName, customerEmail, customerSegment, customerAddress].forEach((field) => {
+      field.addEventListener("input", () => {
+        persistState();
+      });
     });
 
     container.addEventListener("click", (event) => {
+      const detailButton = event.target.closest(".product-detail-toggle");
+      if (detailButton) {
+        trackMetric("clicks");
+        const detailKey = getProductKey(detailButton.dataset.name, detailButton.dataset.category);
+        state.detalleActivo = state.detalleActivo === detailKey ? "" : detailKey;
+        renderProducts();
+        return;
+      }
+
       const button = event.target.closest(".add-to-cart");
       if (!button) {
         return;
       }
 
       const { name, category, price } = button.dataset;
+      trackMetric("clicks");
       addToCart(name, category, Number(price));
 
       const originalText = button.textContent;
@@ -834,15 +2004,38 @@
     });
 
     cartItems.addEventListener("click", (event) => {
-      const button = event.target.closest(".remove-item");
+      const button = event.target.closest(".cart-adjust");
       if (!button) {
+        return;
+      }
+
+      trackMetric("clicks");
+
+      if (button.dataset.action === "increment") {
+        addToCart(button.dataset.name, button.dataset.category, Number(button.dataset.price));
         return;
       }
 
       removeFromCart(button.dataset.name, Number(button.dataset.price));
     });
 
-    clearCartButton.addEventListener("click", resetCart);
+    clearCartButton.addEventListener("click", () => {
+      trackMetric("clicks");
+      resetCart();
+    });
+    floatingCartButton.addEventListener("click", () => {
+      trackMetric("clicks");
+      openCartDrawer();
+    });
+    closeCartButton.addEventListener("click", closeCartDrawer);
+    cartOverlay.addEventListener("click", closeCartDrawer);
+    cartShortcutLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        trackMetric("clicks");
+        openCartDrawer();
+      });
+    });
     bannerToggle.addEventListener("click", () => {
       const isCollapsed = updateBannerContent.classList.contains("is-collapsed");
       if (isCollapsed) {
@@ -858,11 +2051,40 @@
       event.preventDefault();
       sendToWhatsApp();
     });
+    window.addEventListener("keydown", (event) => {
+      if (!metricsAccessModal.hidden && event.key === "Escape") {
+        closeMetricsAccessModal();
+        metricsToggle.focus();
+        return;
+      }
+
+      if (!metricsPanelModal.hidden && event.key === "Escape") {
+        closeMetricsPanel();
+        return;
+      }
+
+      if (!pricingAccessModal.hidden && event.key === "Escape") {
+        closePricingAccessModal(false);
+        return;
+      }
+
+      if (!assistantPanel.hidden && event.key === "Escape") {
+        setAssistantOpen(false);
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeCartDrawer();
+      }
+    });
     window.addEventListener("scroll", handleBannerScroll, { passive: true });
 
+    restoreState();
+    trackMetric("views");
     updateHeroStats();
     renderTabs();
     syncModeUI();
+    renderAssistantFaqs();
     renderProducts();
     updateCart();
     setBannerCollapsed(false);
