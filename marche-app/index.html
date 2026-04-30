@@ -1040,7 +1040,6 @@
 
     const STORAGE_KEY = "marche-app-state";
     const METRICS_STORAGE_KEY = "marche-app-metrics";
-    const WHOLESALE_MIN_TOTAL = 100000;
     const MAYORISTA_PASSWORD = "pichu";
     const GRANEL_PASSWORD = "pichu1";
     const METRICS_PASSWORD = "1234";
@@ -1238,7 +1237,7 @@
       {
         id: "mayorista",
         question: "¿Cuándo se habilitan Mayorista y Granel?",
-        answer: "Las opciones Mayorista y Granel se habilitan desde $100.000. Antes de ese monto, queda disponible la lista Público."
+        answer: "Mayorista y Granel dependen del acceso correspondiente. Si elegís Público, el pedido sale en Público; si elegís Mayorista, sale en Mayorista; y si elegís Granel, sale en Granel."
       },
       {
         id: "envio",
@@ -1824,12 +1823,6 @@
       return item?.[mode] ?? item?.publico ?? null;
     }
 
-    function getCartQualificationTotal() {
-      return state.carrito.reduce((acc, item) => {
-        return acc + (getPriceForMode(item.nombre, item.categoria, "publico", item.size) ?? item.precio);
-      }, 0);
-    }
-
     function repriceCartForMode(mode) {
       state.carrito = state.carrito.map((item) => ({
         ...item,
@@ -1837,22 +1830,11 @@
       }));
     }
 
-    function updateOrderTypeOptions(total) {
-      const canUseProtectedModes = getCartQualificationTotal() >= WHOLESALE_MIN_TOTAL;
-
-      Array.from(customerSegment.options).forEach((option) => {
-        const isProtectedMode = option.value === "Mayorista" || option.value === "Granel";
-        option.disabled = isProtectedMode && !canUseProtectedModes;
-      });
-
-      if ((customerSegment.value === "Mayorista" || customerSegment.value === "Granel") && !canUseProtectedModes) {
-        customerSegment.value = "Publico";
-      }
-
+    function updateOrderTypeOptions() {
       shippingNoteText.textContent = ACTIVE_COUPON_TEXT;
 
       const modeValue = getOrderTypeValueFromMode(state.modo);
-      customerSegment.value = canUseProtectedModes || modeValue === "Publico" ? modeValue : "Publico";
+      customerSegment.value = modeValue;
     }
 
     function getPersistedState() {
@@ -1934,9 +1916,9 @@
         { id: "todos", label: "Todo el menú", description: "Todo el catálogo" },
         { id: "pizzas", label: "Pizzas", description: "Clásicas y especiales" },
         { id: "empanadas", label: "Empanadas", description: "Empanadas y canastitas" },
-        { id: "pastas", label: "Pastas", description: "Viandas y rellenas" },
-        { id: "tartas", label: "Tartas", description: "Grandes y listas" },
-        { id: "salsas", label: "Salsas", description: "Complementos" }
+        { id: "pastas", label: "Pastas", description: "Sorrentinos y canelones" },
+        { id: "tartas", label: "Tartas", description: "Grandes y chicas" },
+        { id: "salsas", label: "Salsas", description: "Grandes y chicas" }
       ];
     }
 
@@ -2238,7 +2220,7 @@
       cartTotalLabel.textContent = `Total ${getModeLabel(state.modo)}`;
       cartTotalLabel.className = getModeConfig(state.modo).badgeClass.replace("px-3 py-1", "mt-3 inline-flex px-3 py-1") + " text-xs uppercase tracking-[0.24em]";
       cartTotal.textContent = `$${formatCurrency(total)}`;
-      updateOrderTypeOptions(total);
+      updateOrderTypeOptions();
 
       cartItems.innerHTML = summary
         .map((item) => `
@@ -2450,10 +2432,6 @@
 
       if (!customer.nombre || !customer.apellido || !customer.email || !customer.segmento || !customer.direccion) {
         return "Completá nombre, apellido, email, tipo de pedido y dirección para continuar.";
-      }
-
-      if ((customer.segmento === "Mayorista" || customer.segmento === "Granel") && getCartQualificationTotal() < WHOLESALE_MIN_TOTAL) {
-        return "Mayorista y Granel se habilitan solo a partir de $100.000.";
       }
 
       if (!customer.email.includes("@")) {
