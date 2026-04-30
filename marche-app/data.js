@@ -1,5 +1,5 @@
 const catalogoMarche = {
-  fechaActualizacion: "Febrero 2026",
+  fechaActualizacion: "Abril 2026",
   whatsapp: "5492615908933",
   instagram: "https://www.instagram.com/marche.congelados/?hl=es",
   categorias: [
@@ -7,70 +7,70 @@ const catalogoMarche = {
       nombre: "Pizzas",
       slug: "pizzas",
       items: [
-        { nombre: "Muzza", publico: 8085, mayorista: 6200 },
-        { nombre: "4 Quesos", publico: 9438, mayorista: 7260 },
-        { nombre: "Especial", publico: 9592, mayorista: 7300 },
-        { nombre: "Fugazzeta", publico: 7920, mayorista: 6100 },
-        { nombre: "Napolitana", publico: 11495, mayorista: 8800 },
-        { nombre: "Doble Muzza", publico: 11253, mayorista: 8650 },
-        { nombre: "Provolone", publico: 11528, mayorista: 8900 },
-        { nombre: "Marche", publico: 11275, mayorista: 8650 }
+        { nombre: "Muzza", publico: 8060, mayorista: 6200, granel: 6200 },
+        { nombre: "4 Quesos", publico: 9438, mayorista: 7260, granel: 7260 },
+        { nombre: "Especial", publico: 10127, mayorista: 8490, granel: 8490 },
+        { nombre: "Fugazzeta", publico: 9685, mayorista: 7450, granel: 7450 },
+        { nombre: "Napolitana", publico: 11440, mayorista: 8800, granel: 8800 },
+        { nombre: "Doble Muzza", publico: 11635, mayorista: 8950, granel: 8950 },
+        { nombre: "Provolone", publico: 11570, mayorista: 8900, granel: 8900 },
+        { nombre: "Marche", publico: 11245, mayorista: 8650, granel: 8650 }
       ]
     },
     {
       nombre: "Empanadas",
       slug: "empanadas",
       items: [
-        { nombre: "Carne x6", publico: 6699, mayorista: 5148 },
-        { nombre: "JyQ x6", publico: 8723, mayorista: 6710 },
-        { nombre: "Pollo x6", publico: 6765, mayorista: 6150 }
+        { nombre: "Carne x6", publico: 7605, mayorista: 5850, granel: 10960, granelLabel: "Carne x12", granelDetalle: "Caja de 12 empanadas de carne condimentada. Presentación exclusiva para la lista Granel." },
+        { nombre: "JyQ x6", publico: 10010, mayorista: 7700, granel: 14660, granelLabel: "JyQ x12", granelDetalle: "Caja de 12 empanadas de jamón y queso, con relleno cremoso y formato exclusivo para Granel." },
+        { nombre: "Pollo x6", publico: 8814, mayorista: 6780, granel: 13560, granelLabel: "Pollo x12", granelDetalle: "Caja de 12 empanadas de pollo sazonado. Venta exclusiva por docena en lista Granel." }
       ]
     },
     {
       nombre: "Canastitas",
       slug: "canastitas",
       items: [
-        { nombre: "Caprese x6", publico: 7425, mayorista: 5700 },
-        { nombre: "Humita x6", publico: 5698, mayorista: 4387 },
-        { nombre: "Verdura x6", publico: 5104, mayorista: 3927 }
+        { nombre: "Caprese x6", publico: 7410, mayorista: 5700, granel: 11400, granelLabel: "Caprese x12", granelDetalle: "Caja de 12 canastitas caprese con tomate, queso y albahaca. Presentación exclusiva para Granel." },
+        { nombre: "Humita x6", publico: 5707, mayorista: 4390, granel: 8780, granelLabel: "Humita x12", granelDetalle: "Caja de 12 canastitas de humita, cremosas y suaves. Venta exclusiva por docena en Granel." },
+        { nombre: "Verdura x6", publico: 6305, mayorista: 4850, granel: 9700, granelLabel: "Verdura x12", granelDetalle: "Caja de 12 canastitas de verdura, listas para horno y pensadas para la lista Granel." }
       ]
     },
     {
       nombre: "Pastas",
       slug: "pastas",
       items: [
-        { nombre: "Sorrentinos 4 Quesos", publico: 10050, mayorista: 7730 },
-        { nombre: "Sorrentinos JyQ", publico: 8877, mayorista: 6830 },
-        { nombre: "Canelones JyQ", publico: 14883, mayorista: 11446 },
-        { nombre: "Canelones Pollo y Verdura", publico: 9163, mayorista: 7050 },
-        { nombre: "Canelones Verdura y Ricota", publico: 8855, mayorista: 6809 },
-        { nombre: "Lasagna 1 porción", publico: 6292, mayorista: 4840 },
-        { nombre: "Lasagna 2 porciones", publico: 12155, mayorista: 9350 },
-        { nombre: "Pastel de Papas Chico", publico: 4576, mayorista: 3520 },
-        { nombre: "Pastel de Papas Grande", publico: 12914, mayorista: 9930 }
+        { nombre: "Sorrentinos 4 Quesos", publico: 11662, mayorista: 8940, granel: 4285 },
+        { nombre: "Sorrentinos JyQ", publico: 9906, mayorista: 7620, granel: 3625 },
+        { nombre: "Canelones JyQ", publico: 16887, mayorista: 12990, granel: 4270 },
+        { nombre: "Canelones Pollo y Verdura", publico: 11037, mayorista: 8490, granel: 2707 },
+        { nombre: "Canelones Verdura y Ricota", publico: 10595, mayorista: 8150, granel: 2593 },
+        { nombre: "Lasagna 1 porción", publico: 6825, mayorista: 5250, granel: 5030 },
+        { nombre: "Lasagna 2 porciones", publico: 13390, mayorista: 10300, granel: 10645 },
+        { nombre: "Pastel de Papas Chico", publico: 5330, mayorista: 4100, granel: 4100 },
+        { nombre: "Pastel de Papas Grande", publico: 16094, mayorista: 12980 }
       ]
     },
     {
       nombre: "Tartas",
       slug: "tartas",
       items: [
-        { nombre: "Brócoli Grande", publico: 9262, mayorista: 7130 },
-        { nombre: "Humita Grande", publico: 9251, mayorista: 7100 },
-        { nombre: "JyQ Grande", publico: 13178, mayorista: 10100 },
-        { nombre: "Pollo Grande", publico: 9460, mayorista: 7200 },
-        { nombre: "Verdura Grande", publico: 9317, mayorista: 7200 },
-        { nombre: "Zapallito Grande", publico: 9284, mayorista: 7100 },
-        { nombre: "Zapallo Grande", publico: 7172, mayorista: 5500 }
+        { nombre: "Brócoli Grande", publico: 9269, mayorista: 7130, granel: 7130, smallPublico: 5265 },
+        { nombre: "Humita Grande", publico: 9230, mayorista: 7100, granel: 7100, smallPublico: 4615 },
+        { nombre: "JyQ Grande", publico: 13553, mayorista: 10410, granel: 10410, smallPublico: 6968 },
+        { nombre: "Pollo Grande", publico: 12051, mayorista: 9270, granel: 9270, smallPublico: 6227 },
+        { nombre: "Verdura Grande", publico: 10080, mayorista: 7760, granel: 7760, smallPublico: 5785 },
+        { nombre: "Zapallito Grande", publico: 9230, mayorista: 7100, granel: 7100, smallPublico: 4160 },
+        { nombre: "Zapallo Grande", publico: 7150, mayorista: 5500, granel: 5500, smallPublico: 5330 }
       ]
     },
     {
       nombre: "Salsas",
       slug: "salsas",
       items: [
-        { nombre: "Fileto 190g", publico: 1133, mayorista: 900 },
-        { nombre: "Fileto 350g", publico: 2013, mayorista: 1560 },
-        { nombre: "Bolognesa 190g", publico: 2046, mayorista: 1570 },
-        { nombre: "Bolognesa 350g", publico: 3729, mayorista: 2870 }
+        { nombre: "Fileto 190g", publico: 1235, mayorista: 950, granel: 950 },
+        { nombre: "Fileto 350g", publico: 2145, mayorista: 1650, granel: 1650 },
+        { nombre: "Bolognesa 190g", publico: 2132, mayorista: 1640, granel: 1640 },
+        { nombre: "Bolognesa 350g", publico: 4030, mayorista: 3100, granel: 3100 }
       ]
     }
   ]
@@ -98,15 +98,15 @@ const detalleProductos = {
     "Verdura x6": "Caja de 6 canastitas de verdura, listas para horno. Prácticas y rendidoras para tener siempre a mano."
   },
   Pastas: {
-    "Sorrentinos 4 Quesos": "Sorrentinos rellenos de cuatro quesos. Una pasta sabrosa y rendidora para vender como plato principal.",
-    "Sorrentinos JyQ": "Sorrentinos de jamón y queso, fáciles de regenerar y con excelente rendimiento por porción.",
-    "Canelones JyQ": "Canelones de jamón y queso, listos para sumar salsa, gratinar y servir sin complicaciones.",
-    "Canelones Pollo y Verdura": "Canelones de pollo y verdura, prácticos para porciones completas y con muy buena rotación.",
-    "Canelones Verdura y Ricota": "Canelones de verdura y ricota, de perfil suave y casero. Una alternativa clásica y confiable.",
+    "Sorrentinos 4 Quesos": "Sorrentinos x6 unidades rellenos de cuatro quesos. Una pasta sabrosa y rendidora para vender como plato principal.",
+    "Sorrentinos JyQ": "Sorrentinos x6 unidades de jamón y queso, fáciles de regenerar y con excelente rendimiento por porción.",
+    "Canelones JyQ": "Canelones x2 unidades de jamón y queso, listos para sumar salsa, gratinar y servir sin complicaciones.",
+    "Canelones Pollo y Verdura": "Canelones x2 unidades de pollo y verdura, prácticos para porciones completas y con muy buena rotación.",
+    "Canelones Verdura y Ricota": "Canelones x2 unidades de verdura y ricota, de perfil suave y casero. Una alternativa clásica y confiable.",
     "Lasagna 1 porción": "Lasaña individual lista para horno. Ideal para viandas, menú ejecutivo o consumo personal.",
     "Lasagna 2 porciones": "Lasaña para dos porciones. Práctica para compartir o vender como comida completa.",
-    "Pastel de Papas Chico": "Pastel de papas en formato individual. Resuelve almuerzos rápidos y viandas con buen margen.",
-    "Pastel de Papas Grande": "Pastel de papas grande, ideal para compartir o para propuestas gastronómicas de mayor volumen."
+    "Pastel de Papas Chico": "Pastel de papas de 600g. Comen 1. Resuelve almuerzos rápidos y viandas con buen margen.",
+    "Pastel de Papas Grande": "Pastel de papas de 1.800g. Comen 2 y pican 3. Ideal para compartir o para propuestas gastronómicas de mayor volumen."
   },
   Tartas: {
     "Brócoli Grande": "Tarta grande de brócoli, rendidora y fácil de porcionar. Ideal para freezer, viandas o mostrador.",
