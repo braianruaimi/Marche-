@@ -620,10 +620,20 @@
     <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8">
       <div id="header-brand-wrap" class="header-brand-wrap relative flex min-h-[9rem] items-center justify-center sm:min-h-[10.5rem] lg:min-h-[11.5rem] xl:min-h-[12rem]">
         <img id="header-brand-logo" src="../images/logo.webp" alt="Logo Marche!" class="header-brand-logo h-auto w-full max-w-[24rem] object-contain px-2 sm:max-w-[36rem] sm:px-12 lg:max-w-[52rem] lg:px-16 xl:max-w-[64rem] xl:px-20">
-        <a href="#carrito" class="glass absolute right-0 top-1/2 hidden -translate-y-1/2 items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-100 shadow-electric sm:flex">
-          <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
-          Pedido en curso
-        </a>
+        <div class="absolute right-0 top-1/2 hidden -translate-y-1/2 sm:flex sm:flex-col sm:items-end sm:gap-2">
+          <a href="#carrito" class="glass items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-100 shadow-electric sm:inline-flex">
+            <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
+            Pedido en curso
+          </a>
+          <div>
+            <p class="mb-2 text-right text-[10px] font-extrabold uppercase tracking-[0.3em] text-slate-300">Lista disponible</p>
+            <div id="pricing-mode-selector" class="flex flex-wrap items-center justify-end gap-1.5 rounded-[1.25rem] border border-white/10 bg-white/5 p-1.5 backdrop-blur-sm">
+              <button type="button" data-mode-button="publico" class="pricing-mode-button rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Público</button>
+              <button type="button" data-mode-button="mayorista" class="pricing-mode-button rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Mayorista</button>
+              <button type="button" data-mode-button="granel" class="pricing-mode-button rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Granel</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="update-banner" class="glass rounded-3xl p-3 shadow-electric">
@@ -655,20 +665,14 @@
                   </svg>
                 </a>
               </div>
-              <div class="mt-1 max-w-3xl rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-4 shadow-[0_16px_34px_rgba(0,0,0,0.2)] backdrop-blur-sm sm:p-5">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-neon sm:text-[11px]">Punto de retiro y red Marche!</p>
-                <p class="mt-2 text-xs font-medium leading-6 text-slate-100 sm:text-sm">Estamos en Republica del Libano 682, esquina Modesto Lima, Lujan d Cuyo 5507 Mendoza.</p>
-                <p class="mt-1 text-xs font-medium leading-6 text-slate-300 sm:text-sm">Nos podes encontrar en mas de 30 puntos de venta Marche!</p>
-                <a href="https://www.google.com/maps/d/u/0/viewer?mid=19UPPBsqWoIhsuoejkta6dqT9zgn-iWc&g_ep=CAESBzI2LjE3LjUYACDdYiqKASw5NDI2NzcyNyw5NDI5MjE5NSw5NDI5OTUzMiwxMDA3OTY0OTgsMTAwNzk3NzYxLDEwMDc5NTYyNSw5NDI4NDQ5Myw5NDI4MDU3Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw5NDI3OTYxOUICQVI%3D&skid=aa41c89f-5c91-4508-9f8c-5e34584430d7&shorturl=1&ll=-32.95045510523765%2C-68.86029919999999&z=12" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ver puntos</a>
+              <div class="mt-2 flex flex-wrap items-center gap-3">
+                <p class="text-xs font-medium leading-6 text-slate-100 sm:text-sm">Nos encontramos en Republica del Libano 682, esquina Modesto Lima, Lujan de Cuyo, 5507 Mendoza.</p>
+                <a href="https://maps.app.goo.gl/9ytjrpRGr8nhvAt7A" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ubicación</a>
               </div>
-
-              <div class="pt-1">
-                <p class="mb-2 text-[10px] font-extrabold uppercase tracking-[0.3em] text-slate-300 sm:text-[11px]">Lista disponible</p>
-                <div id="pricing-mode-selector" class="flex flex-wrap items-center gap-2 self-start rounded-[1.25rem] border border-white/10 bg-white/5 p-1.5">
-                  <button type="button" data-mode-button="publico" class="pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-xs">Público</button>
-                  <button type="button" data-mode-button="mayorista" class="pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-xs">Mayorista</button>
-                  <button type="button" data-mode-button="granel" class="pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-xs">Granel</button>
-                </div>
+              <div class="mt-1 max-w-3xl rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-4 shadow-[0_16px_34px_rgba(0,0,0,0.2)] backdrop-blur-sm sm:p-5">
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-neon sm:text-[11px]">Puntos de venta de nuestros productos</p>
+                <p class="mt-2 text-xs font-medium leading-6 text-slate-300 sm:text-sm">También podés encontrar nuestros productos en más de 30 puntos de venta.</p>
+                <a href="https://www.google.com/maps/d/u/0/viewer?mid=19UPPBsqWoIhsuoejkta6dqT9zgn-iWc&g_ep=CAESBzI2LjE3LjUYACDdYiqKASw5NDI2NzcyNyw5NDI5MjE5NSw5NDI5OTUzMiwxMDA3OTY0OTgsMTAwNzk3NzYxLDEwMDc5NTYyNSw5NDI4NDQ5Myw5NDI4MDU3Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw5NDI3OTYxOUICQVI%3D&skid=aa41c89f-5c91-4508-9f8c-5e34584430d7&shorturl=1&ll=-32.95045510523765%2C-68.86029919999999&z=12" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ver puntos</a>
               </div>
             </div>
           </div>
@@ -717,21 +721,12 @@
         </div>
 
         <div class="menu-surface reveal rounded-[1.75rem] p-5 shadow-neon">
-          <div class="relative overflow-hidden rounded-[1.5rem] catalog-photo">
-            <img src="assets/pdf/page-1.png" alt="Imagen del catálogo digital de Marche!" decoding="async" class="h-[24rem] w-full object-cover sm:h-[28rem]">
-            <div class="photo-wash absolute inset-0"></div>
-            <div class="absolute inset-x-0 bottom-0 p-5">
-              <p class="text-xs font-semibold uppercase tracking-[0.35em] text-neon">Lista de ventas</p>
-              <h3 class="mt-2 font-display text-3xl font-bold text-white">De nuestros productos congelados. Adherite al sistema y obtenes los descuentos en tu pedido.</h3>
-            </div>
-          </div>
-
-          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="grid gap-3 sm:grid-cols-2">
             <div class="paper-chip overflow-hidden rounded-3xl">
-              <img src="assets/pdf/page-2.png" alt="Página del catálogo con pizzas y empanadas" loading="lazy" decoding="async" class="h-44 w-full object-cover object-top">
+              <img src="../images/march.jpg" alt="March" loading="lazy" decoding="async" class="h-44 w-full object-cover object-top">
             </div>
             <div class="paper-chip overflow-hidden rounded-3xl">
-              <img src="assets/pdf/page-3.png" alt="Página del catálogo con productos Marche!" loading="lazy" decoding="async" class="h-44 w-full object-cover object-top">
+              <img src="../images/marche.jpg" alt="Marche" loading="lazy" decoding="async" class="h-44 w-full object-cover object-center">
             </div>
           </div>
 
@@ -739,14 +734,6 @@
             <div class="paper-chip rounded-3xl p-4">
               <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Pedido directo</p>
               <p class="mt-2 text-lg font-bold ink-title">Armás el pedido, completás tus datos y lo enviás listo por WhatsApp.</p>
-            </div>
-            <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Para hogar o negocio</p>
-              <p class="mt-2 text-lg font-bold ink-title">Pensado para compras del hogar, reventa, oficinas, eventos y abastecimiento.</p>
-            </div>
-            <div class="paper-chip rounded-3xl p-4">
-              <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Cierre rápido</p>
-              <p class="mt-2 text-lg font-bold ink-title">Precios claros, listas ordenadas y una ruta simple hasta el pedido.</p>
             </div>
           </div>
         </div>
@@ -820,7 +807,7 @@
               <input id="customer-lastname" type="text" placeholder="Apellido" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
             </div>
             <input id="customer-email" type="email" placeholder="Email" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
-            <select id="customer-segment" class="w-full cursor-default rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none opacity-90" disabled aria-disabled="true">
+            <select id="customer-segment" class="w-full cursor-pointer rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none opacity-90">
               <option value="Publico" class="bg-slate-900 text-white">Público</option>
               <option value="Mayorista" class="bg-slate-900 text-white">Mayorista</option>
               <option value="Granel" class="bg-slate-900 text-white">Granel</option>
@@ -833,6 +820,7 @@
               </div>
               <button id="shipping-note-add" type="button" aria-label="Agregar cupón activado al ticket" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-amber-200/40 bg-amber-200/18 text-lg font-extrabold text-amber-50 transition hover:-translate-y-0.5 hover:border-amber-100 hover:bg-amber-200/28">+</button>
             </div>
+            <p id="shipping-condition-note" class="mt-2 px-1 text-[11px] font-medium text-slate-300">En Público el envío tiene recargo.</p>
             <p id="pedido-error" class="hidden text-sm font-medium text-amber-300"></p>
             <button id="whatsapp-button" type="submit" class="w-full rounded-2xl bg-green-500 px-4 py-4 text-sm font-bold uppercase tracking-[0.3em] text-slate-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-40" disabled>
               Enviar por WhatsApp
@@ -894,6 +882,7 @@
     <span class="text-left">
       <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-neon">App Marche</span>
       <span id="install-app-label" class="block text-xs font-semibold text-slate-200 sm:text-sm">Instalar app</span>
+      <span id="install-app-note" class="hidden text-[10px] font-medium text-slate-400 sm:text-[11px]">Hay una nueva versión disponible</span>
     </span>
   </button>
 
@@ -1054,19 +1043,19 @@
         label: "Público",
         badgeClass: "rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric",
         heroClass: "mt-2 text-3xl font-extrabold text-electric",
-        buttonClass: "pricing-mode-button rounded-full bg-electric px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white transition"
+        buttonClass: "pricing-mode-button rounded-full bg-electric px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition"
       },
       mayorista: {
         label: "Mayorista",
         badgeClass: "rounded-full bg-neon/20 px-3 py-1 font-semibold text-neon",
         heroClass: "mt-2 text-3xl font-extrabold text-neon",
-        buttonClass: "pricing-mode-button rounded-full bg-neon px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#11151b] transition"
+        buttonClass: "pricing-mode-button rounded-full bg-neon px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#11151b] transition"
       },
       granel: {
         label: "Granel",
         badgeClass: "rounded-full bg-amber-200/20 px-3 py-1 font-semibold text-amber-200",
         heroClass: "mt-2 text-3xl font-extrabold text-amber-200",
-        buttonClass: "pricing-mode-button rounded-full bg-amber-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#11151b] transition"
+        buttonClass: "pricing-mode-button rounded-full bg-amber-200 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#11151b] transition"
       }
     };
     const PROTECTED_MODES = {
@@ -1148,6 +1137,7 @@
     const customerAddress = document.getElementById("customer-address");
     const shippingNote = document.getElementById("shipping-note");
     const shippingNoteText = document.getElementById("shipping-note-text");
+    const shippingConditionNote = document.getElementById("shipping-condition-note");
     const shippingNoteAdd = document.getElementById("shipping-note-add");
     const instagramLink = document.getElementById("instagram-link");
     const whatsappDirectLink = document.getElementById("whatsapp-direct-link");
@@ -1194,6 +1184,7 @@
     const metricsGranelValue = document.getElementById("metrics-granel-value");
     const installAppButton = document.getElementById("install-app-button");
     const installAppLabel = document.getElementById("install-app-label");
+    const installAppNote = document.getElementById("install-app-note");
     const assistantToggle = document.getElementById("assistant-toggle");
     const assistantPanel = document.getElementById("assistant-panel");
     const assistantClose = document.getElementById("assistant-close");
@@ -1210,6 +1201,8 @@
     let pendingScrollY = window.scrollY;
     let headerBrandAnimationFrame = 0;
     let deferredInstallPrompt = null;
+    let serviceWorkerRegistration = null;
+    let appUpdateReady = false;
     let currentPricingAccessStep = "password";
     let appInstalled = (() => {
       try {
@@ -1237,7 +1230,7 @@
       {
         id: "mayorista",
         question: "¿Cuándo se habilitan Mayorista y Granel?",
-        answer: "Mayorista y Granel dependen del acceso correspondiente. Si elegís Público, el pedido sale en Público; si elegís Mayorista, sale en Mayorista; y si elegís Granel, sale en Granel."
+        answer: "Si tenes un comercio accedes con una clave a nuestra lista exclusiva y granel si contas con un rubro gastronomico."
       },
       {
         id: "envio",
@@ -1373,6 +1366,17 @@
     }
 
     function updateInstallButtonState() {
+      if (appUpdateReady) {
+        installAppButton.hidden = false;
+        installAppButton.disabled = false;
+        installAppButton.classList.remove("opacity-60", "cursor-default");
+        installAppLabel.textContent = "Actualizar app";
+        installAppNote.classList.remove("hidden");
+        return;
+      }
+
+      installAppNote.classList.add("hidden");
+
       if (isStandaloneMode() || appInstalled) {
         installAppButton.hidden = true;
         return;
@@ -1396,18 +1400,46 @@
       installAppLabel.textContent = "Publicala para instalar";
     }
 
+    function setAppUpdateReady(isReady) {
+      appUpdateReady = isReady;
+      updateInstallButtonState();
+    }
+
     async function registerServiceWorker() {
       if (!("serviceWorker" in navigator) || !window.isSecureContext) {
         return;
       }
 
       try {
-        await navigator.serviceWorker.register("service-worker.js");
+        serviceWorkerRegistration = await navigator.serviceWorker.register("service-worker.js");
+
+        if (serviceWorkerRegistration.waiting) {
+          setAppUpdateReady(true);
+        }
+
+        serviceWorkerRegistration.addEventListener("updatefound", () => {
+          const newWorker = serviceWorkerRegistration.installing;
+          if (!newWorker) {
+            return;
+          }
+
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              setAppUpdateReady(true);
+            }
+          });
+        });
       } catch {
       }
     }
 
     async function handleInstallApp() {
+      if (appUpdateReady) {
+        installAppLabel.textContent = "Actualizando...";
+        window.location.reload();
+        return;
+      }
+
       if (isStandaloneMode() || appInstalled) {
         return;
       }
@@ -1830,11 +1862,39 @@
       }));
     }
 
+    async function changePricingMode(nextMode) {
+      const normalizedMode = ["publico", "mayorista", "granel"].includes(nextMode) ? nextMode : "publico";
+      if (normalizedMode === state.modo) {
+        syncModeUI();
+        return true;
+      }
+
+      if (!(await requestProtectedModeAccess(normalizedMode))) {
+        syncModeUI();
+        return false;
+      }
+
+      state.modo = normalizedMode;
+      repriceCartForMode(normalizedMode);
+      syncModeUI();
+      renderProducts();
+      updateCart();
+      persistState();
+      return true;
+    }
+
     function updateOrderTypeOptions() {
       shippingNoteText.textContent = ACTIVE_COUPON_TEXT;
+      shippingConditionNote.textContent = getShippingConditionText(state.modo);
 
       const modeValue = getOrderTypeValueFromMode(state.modo);
       customerSegment.value = modeValue;
+    }
+
+    function getShippingConditionText(mode) {
+      return mode === "publico"
+        ? "En Público el envío tiene recargo."
+        : "En Mayorista y Granel el envío está incluido superando los $100.000.";
     }
 
     function getPersistedState() {
@@ -1866,11 +1926,6 @@
     function persistState() {
       try {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
-          modo: state.modo,
-          categoriaActiva: state.categoriaActiva,
-          busqueda: state.busqueda,
-          carrito: state.carrito,
-          tartaSizeSelections: state.tartaSizeSelections,
           customer: getCustomerData()
         }));
       } catch {
@@ -1881,31 +1936,6 @@
       const persistedState = getPersistedState();
       if (!persistedState) {
         return;
-      }
-
-      if (persistedState.modo === "publico") {
-        state.modo = persistedState.modo;
-      }
-
-      if (typeof persistedState.categoriaActiva === "string") {
-        state.categoriaActiva = persistedState.categoriaActiva;
-      }
-
-      if (typeof persistedState.busqueda === "string") {
-        state.busqueda = persistedState.busqueda;
-        searchInput.value = persistedState.busqueda;
-      }
-
-      if (Array.isArray(persistedState.carrito)) {
-        state.carrito = persistedState.carrito.filter((item) => (
-          item && typeof item.nombre === "string" && typeof item.categoria === "string" && Number.isFinite(item.precio)
-        ));
-      }
-
-      if (persistedState.tartaSizeSelections && typeof persistedState.tartaSizeSelections === "object") {
-        state.tartaSizeSelections = Object.fromEntries(
-          Object.entries(persistedState.tartaSizeSelections).filter(([, value]) => value === "grande" || value === "chica")
-        );
       }
 
       applyCustomerData(persistedState.customer);
@@ -1954,7 +1984,7 @@
     }
 
     function getTartaDisplayName(item) {
-      return item.smallPublico ? item.nombre.replace(/\s+Grande$/, "") : item.nombre;
+      return Number.isFinite(item.smallPublico) ? item.nombre.replace(/\s+Grande$/, "") : item.nombre;
     }
 
     function getTartaSmallPriceForMode(item, mode) {
@@ -1976,7 +2006,7 @@
     }
 
     function getProductDisplayPrice(item, detailKey) {
-      const isTartaWithSmallPrice = item.categoriaSlug === "tartas" && Number.isFinite(item.smallPublico);
+      const isTartaWithSmallPrice = (item.categoriaSlug === "tartas" || item.categoria === "Tartas") && Number.isFinite(item.smallPublico);
       if (!isTartaWithSmallPrice) {
         return {
           hasSizeToggle: false,
@@ -2133,7 +2163,8 @@
     }
 
     function updateProductCardByKey(productKey) {
-      const existingCard = container.querySelector(`[data-product-key="${productKey}"]`);
+      const existingCard = Array.from(container.querySelectorAll("[data-product-key]"))
+        .find((card) => card.dataset.productKey === productKey);
       const item = catalogItemsIndex.get(productKey);
       if (!existingCard || !item || !matchesCurrentFilters(item)) {
         return;
@@ -2206,10 +2237,15 @@
       }, new Map());
     }
 
+    function hasActiveCouponInCart() {
+      return state.carrito.some((item) => item.nombre === ACTIVE_COUPON_ITEM.nombre && (item.size || "grande") === ACTIVE_COUPON_ITEM.size);
+    }
+
     function updateCart({ refreshProducts = false } = {}) {
       const summary = summarizeCart();
       const totalItems = state.carrito.length;
       const total = getCartTotal();
+      const couponApplied = hasActiveCouponInCart();
 
       cartEmpty.classList.toggle("hidden", totalItems > 0);
       whatsappButton.disabled = totalItems === 0;
@@ -2220,6 +2256,10 @@
       cartTotalLabel.textContent = `Total ${getModeLabel(state.modo)}`;
       cartTotalLabel.className = getModeConfig(state.modo).badgeClass.replace("px-3 py-1", "mt-3 inline-flex px-3 py-1") + " text-xs uppercase tracking-[0.24em]";
       cartTotal.textContent = `$${formatCurrency(total)}`;
+      shippingNoteAdd.disabled = couponApplied;
+      shippingNoteAdd.textContent = couponApplied ? "OK" : "+";
+      shippingNoteAdd.classList.toggle("opacity-50", couponApplied);
+      shippingNoteAdd.classList.toggle("cursor-not-allowed", couponApplied);
       updateOrderTypeOptions();
 
       cartItems.innerHTML = summary
@@ -2276,7 +2316,7 @@
         const isActive = button.dataset.modeButton === state.modo;
         button.className = isActive
           ? modeConfig.buttonClass
-          : "pricing-mode-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-slate-400 transition hover:text-slate-100";
+          : "pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400 transition hover:text-slate-100";
         button.setAttribute("aria-pressed", String(isActive));
       });
 
@@ -2401,6 +2441,10 @@
     }
 
     function addActiveCouponToCart() {
+      if (hasActiveCouponInCart()) {
+        return;
+      }
+
       addToCart(ACTIVE_COUPON_ITEM.nombre, ACTIVE_COUPON_ITEM.categoria, ACTIVE_COUPON_ITEM.precio, ACTIVE_COUPON_ITEM.size);
     }
 
@@ -2454,7 +2498,7 @@
         `Nombre: ${customer.nombre} ${customer.apellido}`,
         `Email: ${customer.email}`,
         `Tipo de pedido: ${customer.segmento}`,
-        `Condición de envío: ${customer.segmento === "Publico" ? "Envío con recargo" : "Envío incluido"}`,
+        `Condición de envío: ${getShippingConditionText(getModeFromOrderType(customer.segmento))}`,
         `Dirección: ${customer.direccion}`,
         "",
         "Detalle del pedido:",
@@ -2582,16 +2626,14 @@
         }
 
         trackMetric("clicks");
-
-        if (!(await requestProtectedModeAccess(nextMode))) {
-          return;
-        }
-
-        state.modo = nextMode;
-        resetCart();
-        syncModeUI();
-        renderProducts();
+        await changePricingMode(nextMode);
       });
+    });
+
+    customerSegment.addEventListener("change", async (event) => {
+      const nextMode = getModeFromOrderType(event.target.value);
+      trackMetric("clicks");
+      await changePricingMode(nextMode);
     });
 
     pricingAccessForm.addEventListener("submit", (event) => {
@@ -2724,15 +2766,6 @@
     shippingNoteAdd.addEventListener("click", () => {
       trackMetric("clicks");
       addActiveCouponToCart();
-
-      const originalText = shippingNoteAdd.textContent;
-      shippingNoteAdd.textContent = "OK";
-      shippingNoteAdd.disabled = true;
-
-      window.setTimeout(() => {
-        shippingNoteAdd.textContent = originalText;
-        shippingNoteAdd.disabled = false;
-      }, 700);
     });
 
     [customerName, customerLastName, customerEmail, customerSegment, customerAddress].forEach((field) => {
@@ -2752,7 +2785,7 @@
         trackMetric("clicks");
         state.tartaSizeSelections[productKey] = sizeToggle;
         persistState();
-        updateProductCardByKey(productKey);
+        renderProducts();
         return;
       }
 
