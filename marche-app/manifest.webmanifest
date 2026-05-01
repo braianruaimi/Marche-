@@ -16,6 +16,11 @@
       "purpose": "any"
     },
     {
+      "src": "../images/marche.jpg",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
       "src": "assets/logo-marche.svg",
       "sizes": "any",
       "type": "image/svg+xml",

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Marche! | Carta Italiana</title>
   <meta name="description" content="Pizzas, empanadas, pastas, tartas y salsas congeladas Marche! para hogar, negocios y eventos. Armá tu pedido y envialo por WhatsApp con total actualizado.">
   <meta name="theme-color" content="#0D1014">
@@ -18,7 +18,7 @@
   <meta name="twitter:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total actualizado y entrega coordinada.">
   <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="../images/marche.jpg">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -55,6 +55,13 @@
   <style>
     :root {
       color-scheme: dark;
+      --safe-area-top: env(safe-area-inset-top, 0px);
+      --safe-area-right: env(safe-area-inset-right, 0px);
+      --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-area-left: env(safe-area-inset-left, 0px);
+      --floating-controls-offset: calc(var(--safe-area-bottom) + 0.9rem);
+      --floating-secondary-offset: calc(var(--safe-area-bottom) + 5.35rem);
+      --page-bottom-clearance: calc(var(--safe-area-bottom) + 7.5rem);
     }
 
     body {
@@ -65,6 +72,11 @@
         radial-gradient(circle at 55% 0%, rgba(230, 197, 111, 0.08), transparent 18%),
         linear-gradient(180deg, #0d1014 0%, #131820 100%);
       color: #f5f1e8;
+      padding-bottom: var(--page-bottom-clearance);
+    }
+
+    body > header {
+      padding-top: var(--safe-area-top);
     }
 
     .glass {
@@ -152,9 +164,13 @@
     }
 
     .size-toggle-button {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
       border: 0;
       border-radius: 999px;
-      padding: 0.38rem 0.72rem;
+      padding: 0.52rem 0.9rem;
       background: rgba(9, 12, 16, 0.72);
       color: #9ca3af;
       font-size: 0.68rem;
@@ -224,6 +240,13 @@
       transform: rotate(-90deg);
     }
 
+    .pricing-mode-button {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+    }
+
     .header-brand-wrap,
     .header-brand-logo {
       transition: min-height 0.18s ease, max-width 0.18s ease, padding 0.18s ease;
@@ -231,8 +254,8 @@
 
     .cart-fab {
       position: fixed;
-      left: 0.8rem;
-      bottom: 0.9rem;
+      left: calc(var(--safe-area-left) + 0.8rem);
+      bottom: var(--floating-controls-offset);
       z-index: 60;
       display: inline-flex;
       align-items: center;
@@ -280,8 +303,8 @@
 
     .floating-category-shortcut {
       position: fixed;
-      left: 0.8rem;
-      bottom: 5.35rem;
+      left: calc(var(--safe-area-left) + 0.8rem);
+      bottom: var(--floating-secondary-offset);
       z-index: 59;
       display: flex;
       flex-direction: column;
@@ -331,8 +354,8 @@
 
     .assistant-fab {
       position: fixed;
-      right: 0.8rem;
-      bottom: 0.9rem;
+      right: calc(var(--safe-area-right) + 0.8rem);
+      bottom: var(--floating-controls-offset);
       z-index: 60;
       display: inline-flex;
       align-items: center;
@@ -347,8 +370,8 @@
 
     .install-fab {
       position: fixed;
-      right: 0.8rem;
-      bottom: 5.35rem;
+      right: calc(var(--safe-area-right) + 0.8rem);
+      bottom: var(--floating-secondary-offset);
       z-index: 59;
       display: inline-flex;
       align-items: center;
@@ -397,8 +420,8 @@
 
     .assistant-panel {
       position: fixed;
-      right: 0.8rem;
-      bottom: 4.9rem;
+      right: calc(var(--safe-area-right) + 0.8rem);
+      bottom: calc(var(--safe-area-bottom) + 4.9rem);
       z-index: 58;
       width: min(24rem, calc(100vw - 1.6rem));
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -426,22 +449,117 @@
       color: #fffaf0;
     }
 
-    @media (max-width: 640px) {
+    .app-footer {
+      padding-bottom: calc(var(--safe-area-bottom) + 5rem);
+    }
+
+    .floating-copy {
+      min-width: 0;
+    }
+
+    .floating-copy-kicker,
+    .floating-copy-note {
+      display: block;
+    }
+
+    .floating-copy-main {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --floating-controls-offset: calc(var(--safe-area-bottom) + 0.7rem);
+        --floating-secondary-offset: calc(var(--safe-area-bottom) + 4.9rem);
+        --page-bottom-clearance: calc(var(--safe-area-bottom) + 10.75rem);
+      }
+
       .assistant-panel {
-        bottom: 5.3rem;
+        right: calc(var(--safe-area-right) + 0.8rem);
+        bottom: calc(var(--safe-area-bottom) + 5.3rem);
       }
 
       .floating-category-shortcut {
-        bottom: 4.95rem;
+        bottom: var(--floating-secondary-offset);
       }
 
       .install-fab {
-        bottom: 4.95rem;
+        bottom: var(--floating-secondary-offset);
+        gap: 0;
+        padding: 0.58rem;
       }
 
       .assistant-fab,
       .cart-fab {
-        bottom: 0.7rem;
+        bottom: var(--floating-controls-offset);
+        max-width: calc(50vw - var(--safe-area-left) - var(--safe-area-right) - 1.35rem);
+        gap: 0.48rem;
+        padding: 0.68rem 0.74rem;
+      }
+
+      .assistant-fab {
+        max-width: calc(43vw - var(--safe-area-left) - var(--safe-area-right));
+        gap: 0.38rem;
+        padding: 0.58rem 0.62rem;
+      }
+
+      .floating-category-toggle,
+      .install-fab {
+        height: 3rem;
+        width: 3rem;
+        justify-content: center;
+      }
+
+      .install-fab-mark {
+        height: 1.85rem;
+        width: 1.85rem;
+        font-size: 0.9rem;
+      }
+
+      .assistant-fab-mark {
+        height: 1.75rem;
+        width: 1.75rem;
+      }
+
+      .floating-copy-kicker,
+      .floating-copy-note,
+      .install-fab .floating-copy {
+        display: none;
+      }
+
+      .floating-copy-main {
+        font-size: 0.74rem;
+        line-height: 1.1;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .assistant-fab .floating-copy-main {
+        color: #f5f1e8;
+      }
+
+      .cart-fab .floating-copy-main {
+        color: #17120a;
+      }
+
+      .app-footer {
+        padding-bottom: calc(var(--safe-area-bottom) + 8.5rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .assistant-fab,
+      .cart-fab {
+        max-width: calc(50vw - var(--safe-area-left) - var(--safe-area-right) - 1rem);
+        padding: 0.62rem 0.68rem;
+      }
+
+      .assistant-fab {
+        max-width: calc(40vw - var(--safe-area-left) - var(--safe-area-right));
+        padding: 0.54rem 0.58rem;
+      }
+
+      .floating-copy-main {
+        font-size: 0.68rem;
       }
     }
 
@@ -621,25 +739,34 @@
       <div id="header-brand-wrap" class="header-brand-wrap relative flex min-h-[9rem] items-center justify-center sm:min-h-[10.5rem] lg:min-h-[11.5rem] xl:min-h-[12rem]">
         <img id="header-brand-logo" src="../images/logo.webp" alt="Logo Marche!" class="header-brand-logo h-auto w-full max-w-[24rem] object-contain px-2 sm:max-w-[36rem] sm:px-12 lg:max-w-[52rem] lg:px-16 xl:max-w-[64rem] xl:px-20">
         <div class="absolute right-0 top-1/2 hidden -translate-y-1/2 sm:flex sm:flex-col sm:items-end sm:gap-2">
-          <a href="#carrito" class="glass items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-100 shadow-electric sm:inline-flex">
+          <a href="#carrito" class="glass items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-slate-100 shadow-electric sm:inline-flex sm:min-h-[44px]">
             <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-electric text-white" id="header-cart-count">0</span>
             Pedido en curso
           </a>
           <div>
             <p class="mb-2 text-right text-[10px] font-extrabold uppercase tracking-[0.3em] text-slate-300">Lista disponible</p>
             <div id="pricing-mode-selector" class="flex flex-wrap items-center justify-end gap-1.5 rounded-[1.25rem] border border-white/10 bg-white/5 p-1.5 backdrop-blur-sm">
-              <button type="button" data-mode-button="publico" class="pricing-mode-button rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Público</button>
-              <button type="button" data-mode-button="mayorista" class="pricing-mode-button rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Mayorista</button>
-              <button type="button" data-mode-button="granel" class="pricing-mode-button rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Granel</button>
+              <button type="button" data-mode-button="publico" class="pricing-mode-button rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Público</button>
+              <button type="button" data-mode-button="mayorista" class="pricing-mode-button rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Mayorista</button>
+              <button type="button" data-mode-button="granel" class="pricing-mode-button rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] transition focus:outline-none focus:ring-2 focus:ring-neon/50 sm:text-[11px]">Granel</button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="sm:hidden">
+        <p class="mb-2 text-center text-[10px] font-extrabold uppercase tracking-[0.3em] text-slate-300">Lista disponible</p>
+        <div class="grid grid-cols-3 gap-2 rounded-[1.25rem] border border-white/10 bg-white/5 p-1.5 backdrop-blur-sm">
+          <button type="button" data-mode-button="publico" class="pricing-mode-button justify-center rounded-full px-2 py-2 text-[10px] font-bold uppercase tracking-[0.14em] transition focus:outline-none focus:ring-2 focus:ring-neon/50">Público</button>
+          <button type="button" data-mode-button="mayorista" class="pricing-mode-button justify-center rounded-full px-2 py-2 text-[10px] font-bold uppercase tracking-[0.14em] transition focus:outline-none focus:ring-2 focus:ring-neon/50">Mayorista</button>
+          <button type="button" data-mode-button="granel" class="pricing-mode-button justify-center rounded-full px-2 py-2 text-[10px] font-bold uppercase tracking-[0.14em] transition focus:outline-none focus:ring-2 focus:ring-neon/50">Granel</button>
         </div>
       </div>
 
       <div id="update-banner" class="glass rounded-3xl p-3 shadow-electric">
         <div class="flex items-center justify-between gap-3">
           <p class="text-xs font-semibold text-slate-200 sm:text-sm">Lista vigente a <span id="fecha-actualizacion" class="text-neon"></span></p>
-          <button id="banner-toggle" type="button" aria-expanded="true" aria-controls="update-banner-content" class="paper-chip inline-flex items-center justify-center rounded-full px-2.5 py-1.5 text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
+          <button id="banner-toggle" type="button" aria-expanded="true" aria-controls="update-banner-content" class="paper-chip inline-flex h-11 w-11 items-center justify-center rounded-full p-0 text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
             <svg id="banner-toggle-icon" class="banner-toggle-icon h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M5 8L10 13L15 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -651,14 +778,14 @@
             <div class="flex flex-col gap-2">
               <p class="max-w-2xl text-xs ink-body sm:text-sm">Congelados listos para tu hogar, reventa o eventos. Elegís la lista, armás el pedido y lo enviás en un solo paso.</p>
               <div class="flex flex-wrap items-center gap-3 pt-1">
-                <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram Marche" class="paper-chip inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
+                <a id="instagram-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram Marche" class="paper-chip inline-flex h-11 w-11 items-center justify-center rounded-full text-slate-100 transition hover:border-neon/40 hover:bg-neon/10 hover:text-neon">
                   <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.25" stroke="currentColor" stroke-width="1.8"/>
                     <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
                     <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor"/>
                   </svg>
                 </a>
-                <a id="whatsapp-direct-link" href="#carrito" aria-label="Pedir por WhatsApp" class="paper-chip inline-flex h-10 w-10 items-center justify-center rounded-full text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">
+                <a id="whatsapp-direct-link" href="#carrito" aria-label="Pedir por WhatsApp" class="paper-chip inline-flex h-11 w-11 items-center justify-center rounded-full text-slate-100 transition hover:border-neon/50 hover:bg-neon/10 hover:text-neon">
                   <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M12.05 4C7.63 4 4.05 7.5 4.05 11.82C4.05 13.47 4.57 15.01 5.46 16.29L4.58 19.8L8.21 18.95C9.43 19.71 10.87 20.12 12.37 20.12C16.79 20.12 20.37 16.62 20.37 12.3C20.37 7.98 16.48 4 12.05 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                     <path d="M9.42 8.95C9.7 8.31 9.99 8.29 10.27 8.3C10.5 8.31 10.77 8.31 11.03 8.32C11.22 8.33 11.5 8.39 11.63 8.7C11.79 9.08 12.19 10.05 12.23 10.13C12.36 10.39 12.34 10.56 12.23 10.74C12.13 10.91 12.04 11.01 11.89 11.17C11.73 11.34 11.56 11.55 11.79 11.95C12.03 12.35 12.83 13.64 14.06 14.5C15.64 15.6 16.93 15.94 17.33 16.11C17.73 16.28 17.97 16.25 18.14 16.07C18.31 15.89 18.83 15.28 19.03 14.99C19.23 14.69 19.42 14.74 19.76 14.86C20.1 14.98 21.88 15.84 22.25 16.02C22.62 16.2 22.87 16.29 22.94 16.4" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
@@ -667,12 +794,12 @@
               </div>
               <div class="mt-2 flex flex-wrap items-center gap-3">
                 <p class="text-xs font-medium leading-6 text-slate-100 sm:text-sm">Nos encontramos en Republica del Libano 682, esquina Modesto Lima, Lujan de Cuyo, 5507 Mendoza.</p>
-                <a href="https://maps.app.goo.gl/9ytjrpRGr8nhvAt7A" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ubicación</a>
+                <a href="https://maps.app.goo.gl/9ytjrpRGr8nhvAt7A" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ubicación</a>
               </div>
               <div class="mt-1 max-w-3xl rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-4 shadow-[0_16px_34px_rgba(0,0,0,0.2)] backdrop-blur-sm sm:p-5">
                 <p class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-neon sm:text-[11px]">Puntos de venta de nuestros productos</p>
                 <p class="mt-2 text-xs font-medium leading-6 text-slate-300 sm:text-sm">También podés encontrar nuestros productos en más de 30 puntos de venta.</p>
-                <a href="https://www.google.com/maps/d/u/0/viewer?mid=19UPPBsqWoIhsuoejkta6dqT9zgn-iWc&g_ep=CAESBzI2LjE3LjUYACDdYiqKASw5NDI2NzcyNyw5NDI5MjE5NSw5NDI5OTUzMiwxMDA3OTY0OTgsMTAwNzk3NzYxLDEwMDc5NTYyNSw5NDI4NDQ5Myw5NDI4MDU3Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw5NDI3OTYxOUICQVI%3D&skid=aa41c89f-5c91-4508-9f8c-5e34584430d7&shorturl=1&ll=-32.95045510523765%2C-68.86029919999999&z=12" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ver puntos</a>
+                <a href="https://www.google.com/maps/d/u/0/viewer?mid=19UPPBsqWoIhsuoejkta6dqT9zgn-iWc&g_ep=CAESBzI2LjE3LjUYACDdYiqKASw5NDI2NzcyNyw5NDI5MjE5NSw5NDI5OTUzMiwxMDA3OTY0OTgsMTAwNzk3NzYxLDEwMDc5NTYyNSw5NDI4NDQ5Myw5NDI4MDU3Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw5NDI3OTYxOUICQVI%3D&skid=aa41c89f-5c91-4508-9f8c-5e34584430d7&shorturl=1&ll=-32.95045510523765%2C-68.86029919999999&z=12" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-full border border-neon/45 bg-neon/12 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.24em] text-neon shadow-[0_0_0_1px_rgba(230,197,111,0.12)_inset,0_0_20px_rgba(230,197,111,0.18)] transition hover:-translate-y-0.5 hover:border-neon/70 hover:bg-neon/18 hover:text-[#fff7df] hover:shadow-[0_0_0_1px_rgba(230,197,111,0.2)_inset,0_0_28px_rgba(230,197,111,0.28)] sm:text-xs">Ver puntos</a>
               </div>
             </div>
           </div>
@@ -775,8 +902,8 @@
             <h3 class="mt-2 text-2xl font-bold text-white">Tu pedido listo</h3>
           </div>
           <div class="flex items-center gap-2">
-            <button id="clear-cart" type="button" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Vaciar</button>
-            <button id="close-cart" type="button" aria-label="Cerrar carrito" class="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Cerrar</button>
+            <button id="clear-cart" type="button" class="inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Vaciar</button>
+            <button id="close-cart" type="button" aria-label="Cerrar carrito" class="inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-300 transition hover:border-neon hover:text-neon">Cerrar</button>
           </div>
         </div>
 
@@ -818,7 +945,7 @@
                 <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-amber-200">Cupón activado</p>
                 <p id="shipping-note-text" class="mt-1 text-xs font-medium text-amber-50">LLEVATE una tarta J y Q chica + una de Pollo con un -10% a $10503.</p>
               </div>
-              <button id="shipping-note-add" type="button" aria-label="Agregar cupón activado al ticket" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-amber-200/40 bg-amber-200/18 text-lg font-extrabold text-amber-50 transition hover:-translate-y-0.5 hover:border-amber-100 hover:bg-amber-200/28">+</button>
+              <button id="shipping-note-add" type="button" aria-label="Agregar cupón activado al ticket" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/40 bg-amber-200/18 text-lg font-extrabold text-amber-50 transition hover:-translate-y-0.5 hover:border-amber-100 hover:bg-amber-200/28">+</button>
             </div>
             <p id="shipping-condition-note" class="mt-2 px-1 text-[11px] font-medium text-slate-300">En Público el envío tiene recargo.</p>
             <p id="pedido-error" class="hidden text-sm font-medium text-amber-300"></p>
@@ -833,10 +960,10 @@
     </section>
   </main>
 
-  <footer class="mx-auto w-full max-w-7xl px-4 pb-20 pt-6 text-center sm:px-6 lg:px-8">
+  <footer class="app-footer mx-auto w-full max-w-7xl px-4 pb-20 pt-6 text-center sm:px-6 lg:px-8">
     <p class="text-xs font-medium uppercase tracking-[0.24em] text-slate-500 sm:text-sm">
       Todos los derechos reservados por MARCHE! 2026
-      <button id="metrics-toggle" type="button" class="ml-2 inline-flex items-center justify-center rounded-full border border-white/10 bg-transparent px-2 py-0.5 text-sm font-bold text-slate-400 transition hover:border-neon/40 hover:text-neon" aria-label="Abrir panel de métricas">@</button>
+      <button id="metrics-toggle" type="button" class="ml-2 inline-flex h-11 min-w-[44px] items-center justify-center rounded-full border border-white/10 bg-transparent px-3 py-2 text-sm font-bold text-slate-400 transition hover:border-neon/40 hover:text-neon" aria-label="Abrir panel de métricas">@</button>
     </p>
   </footer>
 
@@ -845,9 +972,9 @@
       <img src="../images/m.webp" alt="Pedido Marche" class="h-full w-full object-cover" loading="lazy" decoding="async">
       <span id="floating-cart-count" class="cart-fab-count">0</span>
     </span>
-    <span class="text-left">
-      <span class="block text-[11px] font-bold uppercase tracking-[0.32em] text-[#5d4310]">Carrito</span>
-      <span class="block text-xs font-extrabold uppercase tracking-[0.16em] sm:text-sm">Ver pedido</span>
+    <span class="floating-copy text-left">
+      <span class="floating-copy-kicker text-[11px] font-bold uppercase tracking-[0.32em] text-[#5d4310]">Carrito</span>
+      <span class="floating-copy-main text-xs font-extrabold uppercase tracking-[0.16em] sm:text-sm">Ver pedido</span>
     </span>
   </button>
 
@@ -871,18 +998,18 @@
     <span class="assistant-fab-mark">
       <img src="../images/m.webp" alt="Asist.Marche" class="h-full w-full object-cover" loading="lazy" decoding="async">
     </span>
-    <span class="text-left">
-      <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-neon">Asist.Marche</span>
-      <span class="block text-xs font-semibold text-slate-200 sm:text-sm">Preguntas frecuentes</span>
+    <span class="floating-copy text-left">
+      <span class="floating-copy-kicker text-[11px] font-bold uppercase tracking-[0.28em] text-neon">Asist.Marche</span>
+      <span class="floating-copy-main text-xs font-semibold text-slate-200 sm:text-sm">Preguntas</span>
     </span>
   </button>
 
   <button id="install-app-button" type="button" class="install-fab transition hover:-translate-y-1 hover:shadow-neon" aria-live="polite">
     <span class="install-fab-mark">+</span>
-    <span class="text-left">
-      <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-neon">App Marche</span>
-      <span id="install-app-label" class="block text-xs font-semibold text-slate-200 sm:text-sm">Instalar app</span>
-      <span id="install-app-note" class="hidden text-[10px] font-medium text-slate-400 sm:text-[11px]">Hay una nueva versión disponible</span>
+    <span class="floating-copy text-left">
+      <span class="floating-copy-kicker text-[11px] font-bold uppercase tracking-[0.28em] text-neon">App Marche</span>
+      <span id="install-app-label" class="floating-copy-main text-xs font-semibold text-slate-200 sm:text-sm">Instalar App</span>
+      <span id="install-app-note" class="floating-copy-note hidden text-[10px] font-medium text-slate-400 sm:text-[11px]">Hay una nueva versión disponible</span>
     </span>
   </button>
 
@@ -1043,19 +1170,19 @@
         label: "Público",
         badgeClass: "rounded-full bg-electric/15 px-3 py-1 font-semibold text-electric",
         heroClass: "mt-2 text-3xl font-extrabold text-electric",
-        buttonClass: "pricing-mode-button rounded-full bg-electric px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition"
+        buttonClass: "pricing-mode-button rounded-full bg-electric px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition"
       },
       mayorista: {
         label: "Mayorista",
         badgeClass: "rounded-full bg-neon/20 px-3 py-1 font-semibold text-neon",
         heroClass: "mt-2 text-3xl font-extrabold text-neon",
-        buttonClass: "pricing-mode-button rounded-full bg-neon px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#11151b] transition"
+        buttonClass: "pricing-mode-button rounded-full bg-neon px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[#11151b] transition"
       },
       granel: {
         label: "Granel",
         badgeClass: "rounded-full bg-amber-200/20 px-3 py-1 font-semibold text-amber-200",
         heroClass: "mt-2 text-3xl font-extrabold text-amber-200",
-        buttonClass: "pricing-mode-button rounded-full bg-amber-200 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#11151b] transition"
+        buttonClass: "pricing-mode-button rounded-full bg-amber-200 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[#11151b] transition"
       }
     };
     const PROTECTED_MODES = {
@@ -1263,6 +1390,15 @@
       return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
     }
 
+    function isIosInstallableContext() {
+      const userAgent = window.navigator.userAgent || "";
+      const touchMac = /Macintosh/.test(userAgent) && navigator.maxTouchPoints > 1;
+      const iosDevice = /iPad|iPhone|iPod/.test(userAgent) || touchMac;
+      const safari = /Safari/.test(userAgent) && !/CriOS|FxiOS|EdgiOS/.test(userAgent);
+
+      return iosDevice && safari && !isStandaloneMode();
+    }
+
     function persistInstalledAppState() {
       try {
         window.localStorage.setItem("marche-app-installed", "1");
@@ -1370,7 +1506,10 @@
         installAppButton.hidden = false;
         installAppButton.disabled = false;
         installAppButton.classList.remove("opacity-60", "cursor-default");
-        installAppLabel.textContent = "Actualizar app";
+        installAppLabel.textContent = "Actualizar App";
+        installAppButton.setAttribute("aria-label", "Actualizar app Marche");
+        installAppButton.title = "Actualizar app Marche";
+        installAppNote.textContent = "Hay una nueva versión disponible";
         installAppNote.classList.remove("hidden");
         return;
       }
@@ -1383,21 +1522,35 @@
       }
 
       installAppButton.hidden = false;
-
       installAppButton.disabled = false;
       installAppButton.classList.remove("opacity-60", "cursor-default");
 
+      if (isIosInstallableContext()) {
+        installAppLabel.textContent = "Instalar App";
+        installAppButton.setAttribute("aria-label", "Instalar app en iPhone o iPad");
+        installAppButton.title = "Safari: Compartir y Agregar a pantalla de inicio";
+        installAppNote.textContent = "Safari: Compartir y Agregar a pantalla de inicio";
+        installAppNote.classList.remove("hidden");
+        return;
+      }
+
       if (deferredInstallPrompt) {
-        installAppLabel.textContent = "Instalar app";
+        installAppLabel.textContent = "Instalar App";
+        installAppButton.setAttribute("aria-label", "Instalar App Marche");
+        installAppButton.title = "Instalar App Marche";
         return;
       }
 
       if (window.isSecureContext) {
-        installAppLabel.textContent = "Instalar app";
+        installAppLabel.textContent = "Instalar App";
+        installAppButton.setAttribute("aria-label", "Cómo instalar la app Marche");
+        installAppButton.title = "Cómo instalar la app Marche";
         return;
       }
 
       installAppLabel.textContent = "Publicala para instalar";
+      installAppButton.setAttribute("aria-label", "Publicala para instalar la app");
+      installAppButton.title = "Publicala para instalar la app";
     }
 
     function setAppUpdateReady(isReady) {
@@ -1454,6 +1607,13 @@
 
         deferredInstallPrompt = null;
         updateInstallButtonState();
+        return;
+      }
+
+      if (isIosInstallableContext()) {
+        installAppLabel.textContent = "Abrí Compartir";
+        installAppNote.textContent = "Safari: Compartir y Agregar a pantalla de inicio";
+        installAppNote.classList.remove("hidden");
         return;
       }
 
@@ -2271,8 +2431,8 @@
                 <p class="mt-1 text-xs uppercase tracking-[0.28em] text-slate-400">${item.categoria}</p>
               </div>
               <div class="flex items-center gap-2">
-                <button type="button" class="cart-adjust rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-slate-300 transition hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-category="${item.categoria}" data-price="${item.precio}" data-size="${item.size || "grande"}" data-action="decrement">-</button>
-                <button type="button" class="cart-adjust rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-slate-300 transition hover:border-neon/50 hover:text-neon" data-name="${item.nombre}" data-category="${item.categoria}" data-price="${item.precio}" data-size="${item.size || "grande"}" data-action="increment">+</button>
+                <button type="button" class="cart-adjust inline-flex h-11 min-w-[44px] items-center justify-center rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-slate-300 transition hover:border-red-400 hover:text-red-300" data-name="${item.nombre}" data-category="${item.categoria}" data-price="${item.precio}" data-size="${item.size || "grande"}" data-action="decrement">-</button>
+                <button type="button" class="cart-adjust inline-flex h-11 min-w-[44px] items-center justify-center rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-slate-300 transition hover:border-neon/50 hover:text-neon" data-name="${item.nombre}" data-category="${item.categoria}" data-price="${item.precio}" data-size="${item.size || "grande"}" data-action="increment">+</button>
               </div>
             </div>
             <div class="mt-4 flex items-end justify-between gap-4">
@@ -2316,7 +2476,7 @@
         const isActive = button.dataset.modeButton === state.modo;
         button.className = isActive
           ? modeConfig.buttonClass
-          : "pricing-mode-button rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400 transition hover:text-slate-100";
+          : "pricing-mode-button rounded-full px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400 transition hover:text-slate-100";
         button.setAttribute("aria-pressed", String(isActive));
       });
 
@@ -2545,7 +2705,8 @@
         resolvePricingAccess = null;
       }
 
-      const targetButton = document.querySelector(`[data-mode-button="${pendingProtectedMode || state.modo}"]`);
+      const targetButtons = Array.from(document.querySelectorAll(`[data-mode-button="${pendingProtectedMode || state.modo}"]`));
+      const targetButton = targetButtons.find((button) => button.offsetParent !== null) || targetButtons[0];
       if (targetButton) {
         targetButton.focus();
       }

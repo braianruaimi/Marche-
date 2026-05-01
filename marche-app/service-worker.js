@@ -1,4 +1,4 @@
-const CACHE_NAME = "marche-app-v2";
+const CACHE_NAME = "marche-app-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,7 +7,8 @@ const APP_SHELL = [
   "./manifest.webmanifest",
   "./assets/favicon.svg",
   "./assets/logo-marche.svg",
-  "./assets/og-marche.svg"
+  "./assets/og-marche.svg",
+  "../images/marche.jpg"
 ];
 
 self.addEventListener("install", (event) => {
