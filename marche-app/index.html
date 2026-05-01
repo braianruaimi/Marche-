@@ -118,8 +118,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 38%);
-      opacity: 0.45;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 42%);
+      opacity: 0.58;
     }
 
     .card-photo-backdrop::after {
@@ -127,9 +127,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(11, 14, 19, 0.52) 0%, rgba(11, 14, 19, 0.74) 36%, rgba(11, 14, 19, 0.92) 100%),
-        linear-gradient(0deg, rgba(11, 14, 19, 0.9) 0%, rgba(11, 14, 19, 0) 38%),
-        radial-gradient(circle at top right, rgba(230, 197, 111, 0.14), transparent 42%);
+        linear-gradient(180deg, rgba(11, 14, 19, 0.42) 0%, rgba(11, 14, 19, 0.62) 36%, rgba(11, 14, 19, 0.84) 100%),
+        linear-gradient(0deg, rgba(11, 14, 19, 0.8) 0%, rgba(11, 14, 19, 0) 38%),
+        radial-gradient(circle at top right, rgba(230, 197, 111, 0.18), transparent 46%);
     }
 
     .card-photo-backdrop img {
@@ -137,9 +137,9 @@
       width: 100%;
       object-fit: cover;
       object-position: center center;
-      opacity: 0.27;
+      opacity: 0.38;
       transform: scale(1.06);
-      filter: saturate(0.92) contrast(0.96) blur(0.9px);
+      filter: saturate(1) contrast(1.02) brightness(1.06) blur(0.6px);
     }
 
     .menu-card-content {
@@ -635,12 +635,35 @@
       animation: fadeLiftIn 0.18s ease;
     }
 
+    .mobile-detail-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(7, 10, 14, 0.62);
+      backdrop-filter: blur(8px);
+    }
+
+    .mobile-detail-overlay[hidden] {
+      display: none;
+    }
+
+    .mobile-detail-dialog {
+      width: min(17rem, calc(100vw - 1.25rem));
+      max-height: min(72vh, 25rem);
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(180deg, rgba(19, 24, 31, 0.98), rgba(14, 18, 24, 0.99));
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.36);
+      animation: fadeLiftIn 0.18s ease;
+    }
+
     @media (max-width: 640px) {
       .product-detail-popover {
-        left: 50%;
-        right: auto;
-        width: min(16rem, calc(100vw - 1.5rem));
-        transform: translateX(-50%);
+        display: none;
       }
     }
 
@@ -1045,6 +1068,10 @@
     </div>
   </section>
 
+  <div id="mobile-detail-overlay" class="mobile-detail-overlay" hidden>
+    <div id="mobile-detail-dialog" class="mobile-detail-dialog rounded-[1.5rem] p-4"></div>
+  </div>
+
   <div id="pricing-access-modal" class="password-modal" hidden>
     <div class="glass w-full max-w-md rounded-[2rem] p-6 shadow-neon">
       <p id="pricing-access-kicker" class="font-display text-xs uppercase tracking-[0.35em] text-neon">Acceso mayorista</p>
@@ -1330,6 +1357,8 @@
     const assistantClose = document.getElementById("assistant-close");
     const assistantFaqList = document.getElementById("assistant-faq-list");
     const assistantAnswer = document.getElementById("assistant-answer");
+    const mobileDetailOverlay = document.getElementById("mobile-detail-overlay");
+    const mobileDetailDialog = document.getElementById("mobile-detail-dialog");
     let bannerPinnedOpen = false;
     let lastScrollY = window.scrollY;
     let resolvePricingAccess = null;
@@ -2254,6 +2283,7 @@
     function renderProductCard(item, quantityMap) {
       const detailKey = getProductKey(item.nombre, item.categoria);
       const detailOpen = state.detalleActivo === detailKey;
+      const showInlineDetail = detailOpen && window.innerWidth >= 640;
       const { hasSizeToggle, selectedSize, selectedPrice, canSelectSmall } = getProductDisplayPrice(item, detailKey);
       const quantity = quantityMap.get(`${item.nombre}-${selectedPrice}-${selectedSize}`) || 0;
       const displayName = getProductDisplayName(item);
@@ -2266,7 +2296,7 @@
               <img src="${item.cardBackground}" alt="" loading="lazy" decoding="async">
             </div>
           ` : ""}
-          <div class="menu-card-content flex items-start justify-between gap-2 sm:gap-4">
+          <div class="menu-card-content flex items-start gap-2 sm:gap-4">
             <div class="min-w-0 flex-1">
               <p class="text-xs font-semibold uppercase tracking-[0.28em] text-neon">${item.categoria}</p>
               <div class="mt-2 flex flex-wrap items-center gap-2 sm:gap-3">
@@ -2292,20 +2322,19 @@
                 ` : ""}
               </div>
             </div>
-            <span class="rounded-full border border-neon/30 bg-neon/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-neon sm:px-3 sm:text-[11px]">${getModeLabel(state.modo)}</span>
           </div>
 
           <div class="mt-auto pt-4 sm:pt-6">
             <div class="menu-card-content flex items-end justify-between gap-2 sm:gap-3">
               <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Precio por unidad</p>
+                <p class="text-[10px] uppercase tracking-[0.24em] text-slate-400 sm:text-xs sm:tracking-[0.3em]">Precio por unidad</p>
                 <p class="mt-2 text-xl font-extrabold leading-none ink-title sm:text-3xl">$${formatCurrency(selectedPrice)}</p>
               </div>
               <div class="relative flex flex-col items-end gap-2">
                 ${quantity ? `<span data-cart-quantity-badge class="rounded-full border border-neon/30 bg-neon/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-neon">${quantity} en pedido</span>` : ""}
                 <button
                   type="button"
-                  class="product-detail-toggle inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-white/10 to-neon/25 text-base font-extrabold text-neon transition hover:border-neon/50 hover:text-white sm:h-11 sm:w-11 sm:rounded-2xl"
+                  class="product-detail-toggle inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-white/10 to-neon/25 text-sm font-extrabold text-neon transition hover:border-neon/50 hover:text-white sm:h-10 sm:w-10 sm:rounded-xl sm:text-base"
                   data-name="${item.nombre}"
                   data-category="${item.categoria}"
                   aria-expanded="${detailOpen ? "true" : "false"}"
@@ -2313,7 +2342,7 @@
                 >
                   !
                 </button>
-                ${detailOpen ? `
+                ${showInlineDetail ? `
                   <div class="product-detail-popover rounded-2xl px-4 py-3 text-sm leading-6 text-slate-200">
                     <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-neon">Detalle del producto</p>
                     <p class="mt-2">${detailText}</p>
@@ -2325,7 +2354,7 @@
             <div class="menu-card-action mt-4 flex items-center gap-2 sm:mt-6">
               <button
                 type="button"
-                class="product-quantity-adjust inline-flex h-10 min-w-[40px] items-center justify-center rounded-xl border border-white/10 bg-white/5 px-2 text-base font-extrabold text-slate-200 transition hover:border-red-400 hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-35 sm:min-w-[44px]"
+                class="product-quantity-adjust inline-flex h-8 min-w-[32px] items-center justify-center rounded-lg border border-white/10 bg-white/5 px-1.5 text-sm font-extrabold text-slate-200 transition hover:border-red-400 hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-35 sm:h-10 sm:min-w-[44px] sm:rounded-xl sm:px-2 sm:text-base"
                 data-name="${item.nombre}"
                 data-category="${item.categoria}"
                 data-price="${selectedPrice}"
@@ -2336,12 +2365,12 @@
               >
                 -
               </button>
-              <div data-card-quantity class="flex h-10 min-w-[42px] items-center justify-center rounded-xl border border-neon/25 bg-neon/10 px-2 text-sm font-extrabold text-neon sm:min-w-[48px]">
+              <div data-card-quantity class="flex h-8 min-w-[34px] items-center justify-center rounded-lg border border-neon/25 bg-neon/10 px-1.5 text-xs font-extrabold text-neon sm:h-10 sm:min-w-[48px] sm:rounded-xl sm:px-2 sm:text-sm">
                 ${quantity}
               </div>
               <button
                 type="button"
-                class="product-quantity-adjust inline-flex h-10 min-w-[40px] items-center justify-center rounded-xl bg-electric px-2 text-base font-extrabold text-white transition hover:bg-neon hover:text-[#11151b] sm:min-w-[44px]"
+                class="product-quantity-adjust inline-flex h-8 min-w-[32px] items-center justify-center rounded-lg bg-electric px-1.5 text-sm font-extrabold text-white transition hover:bg-neon hover:text-[#11151b] sm:h-10 sm:min-w-[44px] sm:rounded-xl sm:px-2 sm:text-base"
                 data-name="${item.nombre}"
                 data-category="${item.categoria}"
                 data-price="${selectedPrice}"
@@ -2382,8 +2411,42 @@
       emptyState.classList.toggle("hidden", items.length > 0);
       container.classList.toggle("hidden", items.length === 0);
       container.innerHTML = items.map((item) => renderProductCard(item, quantityMap)).join("");
+      renderMobileDetailOverlay();
 
       activateRevealAnimations();
+    }
+
+    function renderMobileDetailOverlay() {
+      if (!mobileDetailOverlay || !mobileDetailDialog) {
+        return;
+      }
+
+      if (!state.detalleActivo || window.innerWidth >= 640) {
+        mobileDetailOverlay.hidden = true;
+        mobileDetailDialog.innerHTML = "";
+        return;
+      }
+
+      const item = catalogItemsIndex.get(state.detalleActivo);
+      if (!item) {
+        mobileDetailOverlay.hidden = true;
+        mobileDetailDialog.innerHTML = "";
+        return;
+      }
+
+      const detailText = getProductDetailText(item);
+      mobileDetailDialog.innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-neon">Detalle del producto</p>
+            <h3 class="mt-2 text-lg font-bold text-white">${getProductDisplayName(item)}</h3>
+            <p class="mt-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">${item.categoria}</p>
+          </div>
+          <button type="button" id="mobile-detail-close" class="inline-flex h-8 min-w-[32px] items-center justify-center rounded-full border border-white/10 px-2 text-xs font-bold uppercase tracking-[0.18em] text-slate-300 transition hover:border-neon/50 hover:text-neon">Cerrar</button>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-slate-200">${detailText}</p>
+      `;
+      mobileDetailOverlay.hidden = false;
     }
 
     function syncVisibleProductCards() {
@@ -3018,6 +3081,7 @@
           updateProductCardByKey(previousDetailKey);
         }
         updateProductCardByKey(detailKey);
+        renderMobileDetailOverlay();
         return;
       }
 
@@ -3057,6 +3121,25 @@
         button.classList.add("bg-electric");
         button.classList.remove("bg-neon", "text-[#11151b]");
       }, 700);
+    });
+
+    mobileDetailOverlay?.addEventListener("click", (event) => {
+      const closeButton = event.target.closest("#mobile-detail-close");
+      if (closeButton || event.target === mobileDetailOverlay) {
+        const previousDetailKey = state.detalleActivo;
+        state.detalleActivo = "";
+        renderMobileDetailOverlay();
+        if (previousDetailKey) {
+          updateProductCardByKey(previousDetailKey);
+        }
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (state.detalleActivo) {
+        updateProductCardByKey(state.detalleActivo);
+      }
+      renderMobileDetailOverlay();
     });
 
     cartItems.addEventListener("click", (event) => {
