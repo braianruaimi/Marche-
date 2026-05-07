@@ -1466,6 +1466,26 @@
       }
     }
 
+    function getInstallHelpMessage() {
+      const ua = navigator.userAgent || "";
+      const isAndroid = /Android/i.test(ua);
+      const isChromeLike = /Chrome|Chromium|CriOS|EdgA?/i.test(ua) && !/OPR|Opera|SamsungBrowser/i.test(ua);
+
+      if (isIosInstallableContext()) {
+        return "En Safari toca Compartir y después Agregar a pantalla de inicio.";
+      }
+
+      if (isAndroid && isChromeLike) {
+        return "Abrí el menú del navegador y elegí Instalar app o Agregar a pantalla principal.";
+      }
+
+      if (window.isSecureContext) {
+        return "Abrí esta página en Chrome, Edge o Safari y usá la opción Instalar app desde el menú del navegador.";
+      }
+
+      return "La instalación solo funciona en https o en localhost.";
+    }
+
     function getPricingRequestData() {
       return {
         nombre: pricingRequestName.value.trim(),
@@ -1602,9 +1622,11 @@
       }
 
       if (window.isSecureContext) {
-        installAppLabel.textContent = "Instalar App";
-        installAppButton.setAttribute("aria-label", "Cómo instalar la app Marche");
-        installAppButton.title = "Cómo instalar la app Marche";
+        installAppLabel.textContent = "Instalar desde menú";
+        installAppButton.setAttribute("aria-label", "Cómo instalar la app Marche desde el navegador");
+        installAppButton.title = "Cómo instalar la app Marche desde el navegador";
+        installAppNote.textContent = "Si no aparece el aviso, usá el menú del navegador";
+        installAppNote.classList.remove("hidden");
         return;
       }
 
@@ -1674,15 +1696,20 @@
         installAppLabel.textContent = "Abrí Compartir";
         installAppNote.textContent = "Safari: Compartir y Agregar a pantalla de inicio";
         installAppNote.classList.remove("hidden");
+        window.alert(getInstallHelpMessage());
         return;
       }
 
       if (!window.isSecureContext) {
         installAppLabel.textContent = "Usa https o localhost";
+        window.alert(getInstallHelpMessage());
         return;
       }
 
-      installAppLabel.textContent = "Menú del navegador";
+      installAppLabel.textContent = "Instalar desde menú";
+      installAppNote.textContent = "Buscá Instalar app o Agregar a pantalla principal";
+      installAppNote.classList.remove("hidden");
+      window.alert(getInstallHelpMessage());
     }
 
     function hasSupabaseEnabled() {
@@ -2113,8 +2140,8 @@
 
     function getShippingConditionText(mode) {
       return mode === "publico"
-        ? "En Público el envío tiene recargo."
-        : "En Mayorista y Granel el envío está incluido superando los $100.000.";
+        ? "Envio $5.000"
+        : "Envio incluido";
     }
 
     function getPersistedState() {
@@ -2797,7 +2824,7 @@
         `Nombre: ${customer.nombre} ${customer.apellido}`,
         `Email: ${customer.email}`,
         `Tipo de pedido: ${customer.segmento}`,
-        `Condición de envío: ${getShippingConditionText(getModeFromOrderType(customer.segmento))}`,
+        `Condición de envío: ${getShippingConditionText(state.modo)}`,
         `Dirección: ${customer.direccion}`,
         "",
         "Detalle del pedido:",

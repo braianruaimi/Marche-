@@ -1,5 +1,5 @@
 const catalogoMarche = {
-  fechaActualizacion: "Abril 2026",
+  fechaActualizacion: "Mayo 2026",
   whatsapp: "5492615908933",
   instagram: "https://www.instagram.com/marche.congelados/?hl=es",
   categorias: [
