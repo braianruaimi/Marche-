@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://braianruaimi.github.io/Marche-/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Marche! | Carta">
-  <meta property="og:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total y entrega coordinada.">
+  <meta property="og:description" content="Elegí productos Marche!, selecciona desde nuestra App y enviá tu pedido por WhatsApp con total y entrega coordinada.">
   <meta property="og:url" content="https://braianruaimi.github.io/Marche-/">
   <meta property="og:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <meta property="og:locale" content="es_AR">
@@ -18,7 +18,7 @@
   <meta name="twitter:description" content="Elegí productos Marche!, compará listas de precios y enviá tu pedido por WhatsApp con total actualizado y entrega coordinada.">
   <meta name="twitter:image" content="https://braianruaimi.github.io/Marche-/assets/og-marche.svg">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="apple-touch-icon" href="../images/marche.jpg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -92,6 +92,41 @@
         linear-gradient(180deg, var(--marche-dark-bg) 0%, #161616 100%);
       color: var(--marche-text-light);
       padding-bottom: var(--page-bottom-clearance);
+    }
+
+    .app-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background:
+        radial-gradient(circle at center, rgba(212, 175, 55, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.98), rgba(10, 10, 10, 1));
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .app-splash.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .app-splash-card {
+      display: grid;
+      justify-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .app-splash-logo {
+      width: min(8.5rem, 38vw);
+      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.38));
+      animation: splashLogoReveal 0.9s ease both;
     }
 
     body > header {
@@ -998,6 +1033,15 @@
       animation: buttonShine 0.72s ease-out forwards;
     }
 
+    .cart-fab.is-pulsing {
+      animation: cartFabPulse 0.62s ease;
+    }
+
+    .cart-fab.is-pulsing::after {
+      opacity: 1;
+      animation: buttonShine 0.72s ease-out forwards;
+    }
+
     #metrics-toggle {
       margin-left: 0.3rem;
       padding: 0;
@@ -1368,6 +1412,18 @@
       }
     }
 
+    @keyframes splashLogoReveal {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
     @keyframes buttonShine {
       0% {
         transform: skewX(-24deg) translateX(0);
@@ -1375,6 +1431,26 @@
 
       100% {
         transform: skewX(-24deg) translateX(420%);
+      }
+    }
+
+    @keyframes cartFabPulse {
+      0% {
+        transform: translateY(0) scale(1);
+        border-color: var(--marche-cta-border);
+        box-shadow: var(--marche-shadow);
+      }
+
+      38% {
+        transform: translateY(-0.12rem) scale(1.03);
+        border-color: rgba(212, 175, 55, 0.72);
+        box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.22), 0 16px 30px rgba(0, 0, 0, 0.28), 0 0 26px rgba(212, 175, 55, 0.2);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        border-color: var(--marche-cta-border);
+        box-shadow: var(--marche-shadow);
       }
     }
 
@@ -1394,6 +1470,12 @@
   </style>
 </head>
 <body class="min-h-screen text-[color:var(--marche-text-light)]">
+  <div id="app-splash" class="app-splash" aria-hidden="true">
+    <div class="app-splash-card">
+      <img src="assets/favicon.svg" alt="M de Marche!" class="app-splash-logo">
+    </div>
+  </div>
+
   <div class="fixed inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-[0.03]"></div>
   <div class="fixed inset-x-0 top-0 h-72 -z-10 blur-3xl" aria-hidden="true">
     <div class="mx-auto h-full w-11/12 rounded-full bg-[radial-gradient(circle,_rgba(212,175,55,0.14)_0%,_rgba(193,154,107,0.08)_45%,_transparent_75%)]"></div>
@@ -1499,17 +1581,17 @@
           </div>
 
           <div class="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
-            <div class="paper-chip reveal stagger-1 min-w-0 rounded-3xl p-3 sm:p-4">
+            <div class="paper-chip reveal stagger-1 min-w-0 rounded-[1.2rem] px-2 py-2.5 sm:rounded-3xl sm:p-4">
               <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400 sm:text-xs sm:tracking-[0.3em]">Categorías</p>
               <p id="hero-categories-count" class="mt-1 text-xl font-extrabold leading-none ink-title sm:mt-2 sm:text-3xl">0</p>
             </div>
-            <div class="paper-chip reveal stagger-2 min-w-0 rounded-3xl p-3 sm:p-4">
+            <div class="paper-chip reveal stagger-2 min-w-0 rounded-[1.2rem] px-2 py-2.5 sm:rounded-3xl sm:p-4">
               <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400 sm:text-xs sm:tracking-[0.3em]">Productos</p>
               <p id="hero-products-count" class="mt-1 text-xl font-extrabold leading-none ink-title sm:mt-2 sm:text-3xl">0</p>
             </div>
-            <div class="paper-chip reveal stagger-3 min-w-0 rounded-3xl p-3 sm:p-4">
+            <div class="paper-chip reveal stagger-3 min-w-0 rounded-[1.2rem] px-2 py-2.5 sm:rounded-3xl sm:p-4">
               <p class="text-[10px] uppercase tracking-[0.14em] text-slate-400 sm:text-xs sm:tracking-[0.3em]">Lista activa</p>
-              <p id="hero-mode-label" class="mt-1 truncate text-base font-extrabold leading-none text-electric sm:mt-2 sm:text-3xl">Público</p>
+              <p id="hero-mode-label" class="mt-1 truncate text-[0.82rem] font-extrabold leading-none text-electric sm:mt-2 sm:text-3xl">Público</p>
             </div>
           </div>
         </div>
@@ -1841,19 +1923,19 @@
       publico: {
         label: "Público",
         badgeClass: "rounded-full border border-[rgba(212,175,55,0.24)] bg-[rgba(212,175,55,0.08)] px-3 py-1 font-semibold text-[color:var(--marche-gold)]",
-        heroClass: "mt-2 text-3xl font-extrabold text-[color:var(--marche-gold)]",
+        heroClass: "mt-1 truncate text-[0.82rem] font-extrabold leading-none text-[color:var(--marche-gold)] sm:mt-2 sm:text-3xl",
         buttonClass: "pricing-mode-button rounded-full px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] transition"
       },
       mayorista: {
         label: "Mayorista",
         badgeClass: "rounded-full border border-[rgba(193,154,107,0.24)] bg-[rgba(193,154,107,0.08)] px-3 py-1 font-semibold text-[color:var(--marche-gold-deep)]",
-        heroClass: "mt-2 text-3xl font-extrabold text-[color:var(--marche-gold-deep)]",
+        heroClass: "mt-1 truncate text-[0.82rem] font-extrabold leading-none text-[color:var(--marche-gold-deep)] sm:mt-2 sm:text-3xl",
         buttonClass: "pricing-mode-button rounded-full px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] transition"
       },
       granel: {
         label: "Granel",
         badgeClass: "rounded-full border border-[rgba(212,175,55,0.24)] bg-[rgba(212,175,55,0.08)] px-3 py-1 font-semibold text-[color:var(--marche-gold)]",
-        heroClass: "mt-2 text-3xl font-extrabold text-[color:var(--marche-gold)]",
+        heroClass: "mt-1 truncate text-[0.82rem] font-extrabold leading-none text-[color:var(--marche-gold)] sm:mt-2 sm:text-3xl",
         buttonClass: "pricing-mode-button rounded-full px-3 py-2 text-[11px] font-bold uppercase tracking-[0.22em] transition"
       }
     };
@@ -1906,6 +1988,8 @@
     const searchInput = document.getElementById("search-input");
     const emptyState = document.getElementById("empty-state");
     const pricingModeButtons = document.querySelectorAll("[data-mode-button]");
+    const splashScreen = document.getElementById("app-splash");
+    const splashStartedAt = window.performance?.now?.() ?? Date.now();
     const pricingModeBadge = document.getElementById("pricing-mode-badge");
     const cartItems = document.getElementById("cart-items");
     const cartEmpty = document.getElementById("cart-empty");
@@ -2002,6 +2086,8 @@
     let floatingCategoryMenuOpen = false;
     let pendingScrollY = window.scrollY;
     let headerBrandAnimationFrame = 0;
+    let lastCartItemCount = state.carrito.length;
+    let cartFabPulseTimeout = 0;
     let deferredInstallPrompt = null;
     let serviceWorkerRegistration = null;
     let appUpdateReady = false;
@@ -3172,11 +3258,38 @@
       return state.carrito.some((item) => item.nombre === ACTIVE_COUPON_ITEM.nombre && (item.size || "grande") === ACTIVE_COUPON_ITEM.size);
     }
 
+    function triggerCartFabPulse() {
+      if (!floatingCartButton) {
+        return;
+      }
+
+      floatingCartButton.classList.remove("is-pulsing");
+      void floatingCartButton.offsetWidth;
+      floatingCartButton.classList.add("is-pulsing");
+
+      window.clearTimeout(cartFabPulseTimeout);
+      cartFabPulseTimeout = window.setTimeout(() => {
+        floatingCartButton.classList.remove("is-pulsing");
+      }, 700);
+    }
+
+    function hideSplashScreen() {
+      if (!splashScreen || splashScreen.classList.contains("is-hidden")) {
+        return;
+      }
+
+      splashScreen.classList.add("is-hidden");
+      window.setTimeout(() => {
+        splashScreen.remove();
+      }, 520);
+    }
+
     function updateCart({ refreshProducts = false } = {}) {
       const summary = summarizeCart();
       const totalItems = state.carrito.length;
       const total = getCartTotal();
       const couponApplied = hasActiveCouponInCart();
+      const cartCountChanged = totalItems !== lastCartItemCount;
 
       cartEmpty.classList.toggle("hidden", totalItems > 0);
       whatsappButton.disabled = totalItems === 0;
@@ -3215,6 +3328,12 @@
         .join("");
 
       persistState();
+
+      if (cartCountChanged) {
+        triggerCartFabPulse();
+      }
+
+      lastCartItemCount = totalItems;
 
       if (refreshProducts) {
         renderProducts();
@@ -3931,6 +4050,10 @@
     updateHeaderBrandScale(window.scrollY);
     updateInstallButtonState();
     registerServiceWorker();
+
+    const splashElapsed = (window.performance?.now?.() ?? Date.now()) - splashStartedAt;
+    const splashDelay = Math.max(420, 1100 - splashElapsed);
+    window.setTimeout(hideSplashScreen, splashDelay);
   </script>
 </body>
 </html>

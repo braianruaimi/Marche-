@@ -13,17 +13,6 @@
       "src": "assets/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "../images/marche.jpg",
-      "type": "image/jpeg",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/logo-marche.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]
