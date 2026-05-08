@@ -1,6 +1,6 @@
 const catalogoMarche = {
   fechaActualizacion: "Mayo 2026",
-  whatsapp: "5492615908933",
+  whatsapp: "5492612764286",
   instagram: "https://www.instagram.com/marche.congelados/?hl=es",
   categorias: [
     {
