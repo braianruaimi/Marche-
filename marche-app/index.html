@@ -1756,7 +1756,7 @@
     <span class="floating-copy text-left">
       <span class="floating-copy-kicker text-[11px] font-bold uppercase tracking-[0.28em] text-neon">App Marche</span>
       <span id="install-app-label" class="floating-copy-main text-xs font-semibold text-slate-200 sm:text-sm">Instalar App</span>
-      <span id="install-app-note" class="floating-copy-note hidden text-[10px] font-medium text-slate-400 sm:text-[11px]">Hay una nueva versión disponible</span>
+      <span id="install-app-note" class="floating-copy-note hidden text-[10px] font-medium text-slate-400 sm:text-[11px]">Nueva versión disponible para actualizar</span>
     </span>
   </button>
 
@@ -2087,6 +2087,7 @@
     let deferredInstallPrompt = null;
     let serviceWorkerRegistration = null;
     let appUpdateReady = false;
+    let isRefreshingForUpdate = false;
     let currentPricingAccessStep = "password";
     let appInstalled = (() => {
       try {
@@ -2096,6 +2097,8 @@
       }
     })();
     const WHOLESALE_FREE_SHIPPING_THRESHOLD = 100000;
+    const APP_VERSION_STORAGE_KEY = "marche-app-current-signature";
+    const APP_UPDATE_APPLIED_KEY = "marche-app-update-applied";
 
     const metricsState = loadMetricsState();
 
@@ -2277,10 +2280,10 @@
         installAppButton.hidden = false;
         installAppButton.disabled = false;
         installAppButton.classList.remove("opacity-60", "cursor-default");
-        installAppLabel.textContent = "Actualizar App";
+        installAppLabel.textContent = "Nueva versión";
         installAppButton.setAttribute("aria-label", "Actualizar app Marche");
         installAppButton.title = "Actualizar app Marche";
-        installAppNote.textContent = "Hay una nueva versión disponible";
+        installAppNote.textContent = "Tocá acá para actualizar la app";
         installAppNote.classList.remove("hidden");
         return;
       }
@@ -2331,6 +2334,54 @@
       updateInstallButtonState();
     }
 
+    function buildRemoteVersionSignature(response, fallbackUrl) {
+      const etag = response.headers.get("etag") || "";
+      const lastModified = response.headers.get("last-modified") || "";
+      const contentLength = response.headers.get("content-length") || "";
+      return [fallbackUrl, etag, lastModified, contentLength].join("|");
+    }
+
+    async function detectRemoteAppUpdate() {
+      if (!window.isSecureContext) {
+        return;
+      }
+
+      try {
+        const versionTargets = ["./index.html", "./data.js"];
+        const responses = await Promise.all(versionTargets.map((target) => fetch(target, {
+          method: "HEAD",
+          cache: "no-store"
+        })));
+
+        const remoteSignature = responses.map((response, index) => buildRemoteVersionSignature(response, versionTargets[index])).join("::");
+        const storedSignature = window.localStorage.getItem(APP_VERSION_STORAGE_KEY);
+        const updateApplied = window.sessionStorage.getItem(APP_UPDATE_APPLIED_KEY) === "1";
+
+        if (!storedSignature || updateApplied) {
+          window.localStorage.setItem(APP_VERSION_STORAGE_KEY, remoteSignature);
+          if (updateApplied) {
+            window.sessionStorage.removeItem(APP_UPDATE_APPLIED_KEY);
+          }
+          setAppUpdateReady(false);
+          return;
+        }
+
+        setAppUpdateReady(remoteSignature !== storedSignature);
+      } catch {
+      }
+    }
+
+    async function clearAppCaches() {
+      if (!("caches" in window)) {
+        return;
+      }
+
+      const cacheKeys = await caches.keys();
+      await Promise.all(cacheKeys
+        .filter((key) => key.startsWith("marche-app-"))
+        .map((key) => caches.delete(key)));
+    }
+
     async function registerServiceWorker() {
       if (!("serviceWorker" in navigator) || !window.isSecureContext) {
         return;
@@ -2338,6 +2389,15 @@
 
       try {
         serviceWorkerRegistration = await navigator.serviceWorker.register("service-worker.js");
+
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (!isRefreshingForUpdate) {
+            return;
+          }
+
+          isRefreshingForUpdate = false;
+          window.location.reload();
+        });
 
         if (serviceWorkerRegistration.waiting) {
           setAppUpdateReady(true);
@@ -2355,6 +2415,8 @@
             }
           });
         });
+
+        await detectRemoteAppUpdate();
       } catch {
       }
     }
@@ -2362,6 +2424,23 @@
     async function handleInstallApp() {
       if (appUpdateReady) {
         installAppLabel.textContent = "Actualizando...";
+
+        try {
+          if (serviceWorkerRegistration) {
+            await serviceWorkerRegistration.update();
+          }
+
+          await clearAppCaches();
+          window.sessionStorage.setItem(APP_UPDATE_APPLIED_KEY, "1");
+
+          if (serviceWorkerRegistration?.waiting) {
+            isRefreshingForUpdate = true;
+            serviceWorkerRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
+            return;
+          }
+        } catch {
+        }
+
         window.location.reload();
         return;
       }
