@@ -1485,7 +1485,7 @@
 
   <header class="sticky top-0 z-40 border-b border-[rgba(212,175,55,0.14)] bg-[rgba(18,18,18,0.88)] backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8">
-      <div id="header-brand-wrap" class="header-brand-wrap relative flex min-h-[9rem] items-center justify-center sm:min-h-[10.5rem] lg:min-h-[11.5rem] xl:min-h-[12rem]">
+      <div id="header-brand-wrap" class="header-brand-wrap relative flex min-h-[15rem] items-center justify-center sm:min-h-[10.5rem] lg:min-h-[11.5rem] xl:min-h-[12rem]">
         <img id="header-brand-logo" src="../images/logo.webp" alt="Logo Marche!" class="header-brand-logo h-auto w-full max-w-[24rem] object-contain px-2 sm:max-w-[36rem] sm:px-12 lg:max-w-[52rem] lg:px-16 xl:max-w-[64rem] xl:px-20">
         <div class="absolute right-0 top-1/2 hidden -translate-y-1/2 sm:flex sm:flex-col sm:items-end sm:gap-2">
           <a href="#carrito" class="glass items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-[color:var(--marche-text-light)] sm:inline-flex sm:min-h-[44px]">
@@ -1691,12 +1691,9 @@
               <option value="Granel" class="bg-slate-900 text-white">Granel</option>
             </select>
             <input id="customer-address" type="text" placeholder="Dirección" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
-            <div id="shipping-note" class="flex items-center justify-between gap-3 rounded-2xl border border-amber-300/35 bg-amber-300/10 px-4 py-3 text-xs font-medium text-amber-100 shadow-[0_0_18px_rgba(230,197,111,0.14)]">
-              <div>
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-amber-200">Cupón activado</p>
-                <p id="shipping-note-text" class="mt-1 text-xs font-medium text-amber-50">LLEVATE una tarta J y Q chica + una de Pollo con un -10% a $10503.</p>
-              </div>
-              <button id="shipping-note-add" type="button" aria-label="Agregar cupón activado al ticket" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-200/40 bg-amber-200/18 text-lg font-extrabold text-amber-50 transition hover:-translate-y-0.5 hover:border-amber-100 hover:bg-amber-200/28">+</button>
+            <div id="shipping-note" class="rounded-2xl border border-amber-300/35 bg-amber-300/10 px-4 py-3 text-xs font-medium text-amber-100 shadow-[0_0_18px_rgba(230,197,111,0.14)]">
+              <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-amber-200">Entrega y envío</p>
+              <p id="shipping-note-text" class="mt-1 text-xs font-medium text-amber-50">Tiempo estimado de entrega máximo 72Hs.</p>
             </div>
             <p id="shipping-condition-note" class="mt-2 px-1 text-[11px] font-medium text-slate-300">En Público el envío tiene recargo.</p>
             <p id="pedido-error" class="hidden text-sm font-medium text-amber-300"></p>
@@ -1704,7 +1701,7 @@
               Enviar por WhatsApp
             </button>
           </form>
-          <p class="mt-3 text-xs text-slate-400">Completá tus datos y enviá el pedido con productos, total, lista elegida y condición de envío.</p>
+          <p class="mt-3 text-xs text-slate-400">Completá tus datos y enviá el pedido con productos, total, lista elegida, condición de envío y plazo estimado.</p>
         </div>
         </div>
       </aside>
@@ -2022,7 +2019,6 @@
     const shippingNote = document.getElementById("shipping-note");
     const shippingNoteText = document.getElementById("shipping-note-text");
     const shippingConditionNote = document.getElementById("shipping-condition-note");
-    const shippingNoteAdd = document.getElementById("shipping-note-add");
     const instagramLink = document.getElementById("instagram-link");
     const whatsappDirectLink = document.getElementById("whatsapp-direct-link");
     const heroCategoriesCount = document.getElementById("hero-categories-count");
@@ -2099,13 +2095,7 @@
         return false;
       }
     })();
-    const ACTIVE_COUPON_TEXT = "LLEVATE una tarta J y Q chica + una de Pollo con un -10% a $10503.";
-    const ACTIVE_COUPON_ITEM = {
-      nombre: "Cupón activado: Tarta J y Q chica + Pollo",
-      categoria: "Promociones",
-      precio: 10503,
-      size: "promo"
-    };
+    const WHOLESALE_FREE_SHIPPING_THRESHOLD = 100000;
 
     const metricsState = loadMetricsState();
 
@@ -2123,7 +2113,7 @@
       {
         id: "envio",
         question: "¿Cómo funciona el envío?",
-        answer: "En Público el envío tiene recargo. En Mayorista y Granel el envío está incluido desde $100.000."
+        answer: "En Público el envío tiene recargo. En Mayorista y Granel, hasta $100.000 el retiro es en tienda y superando ese monto el envío queda incluido. Tiempo estimado de entrega máximo 72Hs."
       },
       {
         id: "whatsapp",
@@ -2832,17 +2822,27 @@
     }
 
     function updateOrderTypeOptions() {
-      shippingNoteText.textContent = ACTIVE_COUPON_TEXT;
-      shippingConditionNote.textContent = getShippingConditionText(state.modo);
+      shippingNoteText.textContent = getShippingLeadTimeText(state.modo);
+      shippingConditionNote.textContent = getShippingConditionText(state.modo, getCartTotal());
 
       const modeValue = getOrderTypeValueFromMode(state.modo);
       customerSegment.value = modeValue;
     }
 
-    function getShippingConditionText(mode) {
+    function getShippingLeadTimeText(mode) {
       return mode === "publico"
-        ? "Envio $5.000"
-        : "Envio incluido";
+        ? "Coordinamos el envío una vez confirmado el pedido."
+        : "Tiempo estimado de entrega máximo 72Hs.";
+    }
+
+    function getShippingConditionText(mode, total = getCartTotal()) {
+      if (mode === "publico") {
+        return "En Público el envío tiene recargo.";
+      }
+
+      return total >= WHOLESALE_FREE_SHIPPING_THRESHOLD
+        ? "Envío incluido."
+        : "Retiro en tienda.";
     }
 
     function getPersistedState() {
@@ -3254,10 +3254,6 @@
       }, new Map());
     }
 
-    function hasActiveCouponInCart() {
-      return state.carrito.some((item) => item.nombre === ACTIVE_COUPON_ITEM.nombre && (item.size || "grande") === ACTIVE_COUPON_ITEM.size);
-    }
-
     function triggerCartFabPulse() {
       if (!floatingCartButton) {
         return;
@@ -3288,7 +3284,6 @@
       const summary = summarizeCart();
       const totalItems = state.carrito.length;
       const total = getCartTotal();
-      const couponApplied = hasActiveCouponInCart();
       const cartCountChanged = totalItems !== lastCartItemCount;
 
       cartEmpty.classList.toggle("hidden", totalItems > 0);
@@ -3300,10 +3295,6 @@
       cartTotalLabel.textContent = `Total ${getModeLabel(state.modo)}`;
       cartTotalLabel.className = getModeConfig(state.modo).badgeClass.replace("px-3 py-1", "mt-3 inline-flex px-3 py-1") + " text-xs uppercase tracking-[0.24em]";
       cartTotal.textContent = `$${formatCurrency(total)}`;
-      shippingNoteAdd.disabled = couponApplied;
-      shippingNoteAdd.textContent = couponApplied ? "OK" : "+";
-      shippingNoteAdd.classList.toggle("opacity-50", couponApplied);
-      shippingNoteAdd.classList.toggle("cursor-not-allowed", couponApplied);
       updateOrderTypeOptions();
 
       cartItems.innerHTML = summary
@@ -3453,6 +3444,7 @@
         return;
       }
 
+      const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
       const progress = Math.min(scrollY / 120, 1);
       const minHeight = 12 - (11.35 * progress);
       const logoMaxWidth = 64 - (60 * progress);
@@ -3485,11 +3477,15 @@
         const mobileLogoMaxWidth = 24 - (22.4 * progress);
         const mobileHorizontalPadding = 1.5 - (1.35 * progress);
 
-        headerBrandWrap.style.minHeight = `${mobileMinHeight.toFixed(2)}rem`;
-        headerBrandWrap.style.height = `${mobileMinHeight.toFixed(2)}rem`;
         headerBrandLogo.style.maxWidth = `${mobileLogoMaxWidth.toFixed(2)}rem`;
         headerBrandLogo.style.paddingLeft = `${mobileHorizontalPadding.toFixed(2)}rem`;
         headerBrandLogo.style.paddingRight = `${mobileHorizontalPadding.toFixed(2)}rem`;
+
+        const renderedLogoHeight = headerBrandLogo.getBoundingClientRect().height;
+        const mobileHeightPx = Math.max(mobileMinHeight * rootFontSize, renderedLogoHeight);
+
+        headerBrandWrap.style.minHeight = `${mobileHeightPx.toFixed(2)}px`;
+        headerBrandWrap.style.height = `${mobileHeightPx.toFixed(2)}px`;
       }
 
       if (progress >= 0.98) {
@@ -3502,14 +3498,6 @@
     function addToCart(nombre, categoria, precio, size = "grande") {
       state.carrito.push({ nombre, categoria, precio, size });
       updateCart();
-    }
-
-    function addActiveCouponToCart() {
-      if (hasActiveCouponInCart()) {
-        return;
-      }
-
-      addToCart(ACTIVE_COUPON_ITEM.nombre, ACTIVE_COUPON_ITEM.categoria, ACTIVE_COUPON_ITEM.precio, ACTIVE_COUPON_ITEM.size);
     }
 
     function removeFromCart(nombre, precio, size = "grande") {
@@ -3554,6 +3542,8 @@
       const total = getCartTotal();
       const lines = summary.map((item) => `• ${item.cantidad}x ${getCartItemDisplayName(item)} - $${formatCurrency(item.precio * item.cantidad)}`);
       const customer = getCustomerData();
+      const shippingCondition = getShippingConditionText(state.modo, total);
+      const shippingLeadTime = getShippingLeadTimeText(state.modo);
 
       return [
         "Hola, Marche!",
@@ -3562,7 +3552,8 @@
         `Nombre: ${customer.nombre} ${customer.apellido}`,
         `Email: ${customer.email}`,
         `Tipo de pedido: ${customer.segmento}`,
-        `Condición de envío: ${getShippingConditionText(state.modo)}`,
+        `Condición de envío: ${shippingCondition}`,
+        `Entrega: ${shippingLeadTime}`,
         `Dirección: ${customer.direccion}`,
         "",
         "Detalle del pedido:",
@@ -3826,11 +3817,6 @@
       trackMetric("clicks");
 
       selectAssistantQuestion(button.dataset.assistantQuestion);
-    });
-
-    shippingNoteAdd.addEventListener("click", () => {
-      trackMetric("clicks");
-      addActiveCouponToCart();
     });
 
     [customerName, customerLastName, customerEmail, customerSegment, customerAddress].forEach((field) => {
