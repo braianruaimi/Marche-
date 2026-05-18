@@ -1693,6 +1693,7 @@
               <input id="customer-lastname" type="text" placeholder="Apellido" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
             </div>
             <input id="customer-email" type="email" placeholder="Email" class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30">
+              <input id="customer-business" type="text" placeholder="Negocio" class="hidden w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-neon focus:ring-2 focus:ring-neon/30" autocomplete="organization">
             <select id="customer-segment" class="w-full cursor-pointer rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none opacity-90">
               <option value="Publico" class="bg-slate-900 text-white">Público</option>
               <option value="Mayorista" class="bg-slate-900 text-white">Mayorista</option>
@@ -1915,8 +1916,8 @@
 
     const STORAGE_KEY = "marche-app-state";
     const METRICS_STORAGE_KEY = "marche-app-metrics";
-    const MAYORISTA_PASSWORD = "pichu";
-    const GRANEL_PASSWORD = "pichu1";
+    const MAYORISTA_PASSWORD = "Marchemayorista2026";
+    const GRANEL_PASSWORD = "Marchegranel2026";
     const METRICS_PASSWORD = "1234";
     const SUPABASE_CONFIG = {
       url: window.MARCHE_SUPABASE_CONFIG?.url || "",
@@ -2022,6 +2023,7 @@
     const customerName = document.getElementById("customer-name");
     const customerLastName = document.getElementById("customer-lastname");
     const customerEmail = document.getElementById("customer-email");
+    const customerBusiness = document.getElementById("customer-business");
     const customerSegment = document.getElementById("customer-segment");
     const customerAddress = document.getElementById("customer-address");
     const shippingNote = document.getElementById("shipping-note");
@@ -2914,6 +2916,15 @@
 
       const modeValue = getOrderTypeValueFromMode(state.modo);
       customerSegment.value = modeValue;
+      updateCustomerBusinessVisibility();
+    }
+
+    function orderModeRequiresBusiness(mode = state.modo) {
+      return mode === "mayorista" || mode === "granel";
+    }
+
+    function updateCustomerBusinessVisibility() {
+      customerBusiness.classList.toggle("hidden", !orderModeRequiresBusiness());
     }
 
     function getShippingLeadTimeText(mode) {
@@ -2954,8 +2965,10 @@
       customerName.value = typeof customer.nombre === "string" ? customer.nombre : "";
       customerLastName.value = typeof customer.apellido === "string" ? customer.apellido : "";
       customerEmail.value = typeof customer.email === "string" ? customer.email : "";
+      customerBusiness.value = typeof customer.negocio === "string" ? customer.negocio : "";
       customerSegment.value = typeof customer.segmento === "string" ? customer.segmento : "";
       customerAddress.value = typeof customer.direccion === "string" ? customer.direccion : "";
+      updateCustomerBusinessVisibility();
     }
 
     function persistState() {
@@ -3454,6 +3467,7 @@
       heroModeLabel.textContent = modeConfig.label;
       heroModeLabel.className = modeConfig.heroClass;
       customerSegment.value = getOrderTypeValueFromMode(state.modo);
+      updateCustomerBusinessVisibility();
     }
 
     function updateHeroStats() {
@@ -3607,6 +3621,7 @@
         nombre: customerName.value.trim(),
         apellido: customerLastName.value.trim(),
         email: customerEmail.value.trim(),
+        negocio: customerBusiness.value.trim(),
         segmento: customerSegment.value.trim(),
         direccion: customerAddress.value.trim()
       };
@@ -3617,6 +3632,10 @@
 
       if (!customer.nombre || !customer.apellido || !customer.email || !customer.segmento || !customer.direccion) {
         return "Completá nombre, apellido, email, tipo de pedido y dirección para continuar.";
+      }
+
+      if (orderModeRequiresBusiness() && !customer.negocio) {
+        return "Completá el nombre del negocio para continuar con esta lista.";
       }
 
       if (!customer.email.includes("@")) {
@@ -3640,6 +3659,7 @@
         `Quiero hacer un pedido con lista ${getModeLabel(state.modo)}:`,
         `Nombre: ${customer.nombre} ${customer.apellido}`,
         `Email: ${customer.email}`,
+        ...(orderModeRequiresBusiness() ? [`Negocio: ${customer.negocio}`] : []),
         `Tipo de pedido: ${customer.segmento}`,
         `Condición de envío: ${shippingCondition}`,
         `Entrega: ${shippingLeadTime}`,
@@ -3908,7 +3928,7 @@
       selectAssistantQuestion(button.dataset.assistantQuestion);
     });
 
-    [customerName, customerLastName, customerEmail, customerSegment, customerAddress].forEach((field) => {
+    [customerName, customerLastName, customerEmail, customerBusiness, customerSegment, customerAddress].forEach((field) => {
       field.addEventListener("input", () => {
         persistState();
       });
