@@ -9,7 +9,7 @@ const catalogoMarche = {
       items: [
         { nombre: "Muzza", publico: 8060, mayorista: 6200, granel: 6200 },
         { nombre: "4 Quesos", publico: 9438, mayorista: 7260, granel: 7260 },
-        { nombre: "Especial", publico: 10127, mayorista: 8490, granel: 8490 },
+        { nombre: "Especial", publico: 10127, mayorista: 7790, granel: 7790 },
         { nombre: "Fugazzeta", publico: 9685, mayorista: 7450, granel: 7450 },
         { nombre: "Napolitana", publico: 11440, mayorista: 8800, granel: 8800 },
         { nombre: "Doble Muzza", publico: 11635, mayorista: 8950, granel: 8950 },
@@ -39,28 +39,28 @@ const catalogoMarche = {
       nombre: "Pastas",
       slug: "pastas",
       items: [
-        { nombre: "Sorrentinos 4 Quesos", publico: 11662, mayorista: 8940, granel: 4285 },
-        { nombre: "Sorrentinos JyQ", publico: 9906, mayorista: 7620, granel: 3625 },
+        { nombre: "Sorrentinos 4 Quesos", publico: 11662, mayorista: 7730, granel: 4285 },
+        { nombre: "Sorrentinos JyQ", publico: 9906, mayorista: 6830, granel: 3625 },
         { nombre: "Canelones JyQ", publico: 16887, mayorista: 12990, granel: 4270 },
         { nombre: "Canelones Pollo y Verdura", publico: 11037, mayorista: 8490, granel: 2707 },
         { nombre: "Canelones Verdura y Ricota", publico: 10595, mayorista: 8150, granel: 2593 },
         { nombre: "Lasagna 1 porción", publico: 6825, mayorista: 5250, granel: 5030 },
-        { nombre: "Lasagna 2 porciones", publico: 13390, mayorista: 10300, granel: 10645 },
-        { nombre: "Pastel de Papas Chico", publico: 5330, mayorista: 4100, granel: 4100 },
-        { nombre: "Pastel de Papas Grande", publico: 16094, mayorista: 12980 }
-      ]
-    },
+          { nombre: "Lasagna 2 porciones", publico: 13390, granel: 10645 },
+        { nombre: "Pastel de Papas Chico", publico: 5330, mayorista: 4100, granel: 3880 },
+        { nombre: "Pastel de Papas Grande", publico: 16094, mayorista: 12380, granel: 12010 }
+        ]
+      },
     {
       nombre: "Tartas",
       slug: "tartas",
       items: [
         { nombre: "Brócoli Grande", publico: 9269, mayorista: 7130, granel: 7130, smallPublico: 5265 },
-        { nombre: "Humita Grande", publico: 9230, mayorista: 7100, granel: 7100, smallPublico: 4615 },
-        { nombre: "JyQ Grande", publico: 13553, mayorista: 10410, granel: 10410, smallPublico: 6968 },
-        { nombre: "Pollo Grande", publico: 12051, mayorista: 9270, granel: 9270, smallPublico: 6227 },
-        { nombre: "Verdura Grande", publico: 10080, mayorista: 7760, granel: 7760, smallPublico: 5785 },
-        { nombre: "Zapallito Grande", publico: 9230, mayorista: 7100, granel: 7100, smallPublico: 4160 },
-        { nombre: "Zapallo Grande", publico: 7150, mayorista: 5500, granel: 5500, smallPublico: 5330 }
+        { nombre: "Humita Grande", publico: 9230, mayorista: 7100, granel: 6730, smallPublico: 4615, smallGranel: 3330 },
+        { nombre: "JyQ Grande", publico: 13553, mayorista: 10410, granel: 10040, smallPublico: 6968, smallMayorista: 5360, smallGranel: 5140 },
+        { nombre: "Pollo Grande", publico: 12051, mayorista: 9270, granel: 8900, smallPublico: 6227, smallGranel: 4570 },
+        { nombre: "Verdura Grande", publico: 10088, mayorista: 7760, granel: 7390, smallPublico: 4785, smallMayorista: 4450, smallGranel: 4230 },
+        { nombre: "Zapallito Grande", publico: 9230, mayorista: 7100, granel: 6730, smallPublico: 4810, smallMayorista: 3700, smallGranel: 3480 },
+        { nombre: "Zapallo Grande", publico: 7150, mayorista: 5500, granel: 5130, smallPublico: 4160, smallMayorista: 3200, smallGranel: 2980 }
       ]
     },
     {

@@ -2873,6 +2873,10 @@
       return catalogItemsIndex.get(getProductKey(nombre, categoria)) || null;
     }
 
+      function hasPriceForMode(item, mode, size = "grande") {
+        return Number.isFinite(getPriceForMode(item?.nombre, item?.categoria, mode, size));
+      }
+
     function getPriceForMode(nombre, categoria, mode, size = "grande") {
       const item = findCatalogItem(nombre, categoria);
       if (categoria === "Tartas" && size === "chica") {
@@ -2883,10 +2887,17 @@
     }
 
     function repriceCartForMode(mode) {
-      state.carrito = state.carrito.map((item) => ({
-        ...item,
-        precio: getPriceForMode(item.nombre, item.categoria, mode, item.size) ?? item.precio
-      }));
+      state.carrito = state.carrito.flatMap((item) => {
+        const precioActualizado = getPriceForMode(item.nombre, item.categoria, mode, item.size);
+        if (!Number.isFinite(precioActualizado)) {
+          return [];
+        }
+
+        return [{
+          ...item,
+          precio: precioActualizado
+        }];
+      });
     }
 
     async function changePricingMode(nextMode) {
@@ -3010,10 +3021,11 @@
 
     function getFilteredItems() {
       return catalogItemsList
+        .filter((item) => hasPriceForMode(item, state.modo))
         .filter(matchesCurrentFilters)
         .map((item) => ({
           ...item,
-          precio: item[state.modo] ?? item.publico
+          precio: getPriceForMode(item.nombre, item.categoria, state.modo) ?? item.publico
         }));
     }
 
@@ -3036,9 +3048,16 @@
     }
 
     function getTartaSmallPriceForMode(item, mode) {
-      if (!Number.isFinite(item.smallPublico)) {
+        if (!item || !Number.isFinite(item.smallPublico)) {
         return null;
       }
+
+        const explicitModeKey = mode === "publico"
+          ? "smallPublico"
+          : `small${mode.charAt(0).toUpperCase()}${mode.slice(1)}`;
+        if (Number.isFinite(item[explicitModeKey])) {
+          return item[explicitModeKey];
+        }
 
       if (mode === "publico") {
         return item.smallPublico;
@@ -3243,9 +3262,15 @@
         return;
       }
 
+      const precioActualizado = getPriceForMode(item.nombre, item.categoria, state.modo);
+      if (!Number.isFinite(precioActualizado)) {
+        existingCard.remove();
+        return;
+      }
+
       existingCard.outerHTML = renderProductCard({
         ...item,
-        precio: item[state.modo] ?? item.publico
+        precio: precioActualizado
       }, getCartQuantityMap());
 
       const updatedCard = Array.from(container.querySelectorAll("[data-product-key]"))
