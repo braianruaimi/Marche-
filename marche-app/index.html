@@ -2873,17 +2873,25 @@
       return catalogItemsIndex.get(getProductKey(nombre, categoria)) || null;
     }
 
-      function hasPriceForMode(item, mode, size = "grande") {
-        return Number.isFinite(getPriceForMode(item?.nombre, item?.categoria, mode, size));
-      }
+    function hasPriceForMode(item, mode, size = "grande") {
+      return Number.isFinite(getPriceForMode(item?.nombre, item?.categoria, mode, size));
+    }
 
     function getPriceForMode(nombre, categoria, mode, size = "grande") {
       const item = findCatalogItem(nombre, categoria);
-      if (categoria === "Tartas" && size === "chica") {
-        return getTartaSmallPriceForMode(item, mode) ?? item?.[mode] ?? item?.publico ?? null;
+      if (!item) {
+        return null;
       }
 
-      return item?.[mode] ?? item?.publico ?? null;
+      if (categoria === "Tartas" && size === "chica") {
+        return getTartaSmallPriceForMode(item, mode);
+      }
+
+      if (mode === "publico") {
+        return item.publico ?? null;
+      }
+
+      return item[mode] ?? null;
     }
 
     function repriceCartForMode(mode) {
@@ -3048,16 +3056,16 @@
     }
 
     function getTartaSmallPriceForMode(item, mode) {
-        if (!item || !Number.isFinite(item.smallPublico)) {
+      if (!item || !Number.isFinite(item.smallPublico)) {
         return null;
       }
 
-        const explicitModeKey = mode === "publico"
-          ? "smallPublico"
-          : `small${mode.charAt(0).toUpperCase()}${mode.slice(1)}`;
-        if (Number.isFinite(item[explicitModeKey])) {
-          return item[explicitModeKey];
-        }
+      const explicitModeKey = mode === "publico"
+        ? "smallPublico"
+        : `small${mode.charAt(0).toUpperCase()}${mode.slice(1)}`;
+      if (Number.isFinite(item[explicitModeKey])) {
+        return item[explicitModeKey];
+      }
 
       if (mode === "publico") {
         return item.smallPublico;
@@ -3066,7 +3074,7 @@
       const publicPrice = item.publico;
       const modePrice = item[mode];
       if (!Number.isFinite(publicPrice) || !Number.isFinite(modePrice) || publicPrice <= 0) {
-        return item.smallPublico;
+        return null;
       }
 
       return Math.round(item.smallPublico * (modePrice / publicPrice));
