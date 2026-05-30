@@ -2290,10 +2290,10 @@
         installAppButton.hidden = false;
         installAppButton.disabled = false;
         installAppButton.classList.remove("opacity-60", "cursor-default");
-        installAppLabel.textContent = "Nueva versión";
-        installAppButton.setAttribute("aria-label", "Actualizar app Marche");
-        installAppButton.title = "Actualizar app Marche";
-        installAppNote.textContent = "Tocá acá para actualizar la app";
+        installAppLabel.textContent = "Nueva actualización";
+        installAppButton.setAttribute("aria-label", "Nueva actualización disponible para la app Marche");
+        installAppButton.title = "Nueva actualización disponible";
+        installAppNote.textContent = "Tocá para descargar la versión nueva";
         installAppNote.classList.remove("hidden");
         return;
       }
@@ -2425,6 +2425,21 @@
             }
           });
         });
+
+        await detectRemoteAppUpdate();
+      } catch {
+      }
+    }
+
+    async function refreshAppUpdateStatus() {
+      if (!window.isSecureContext) {
+        return;
+      }
+
+      try {
+        if (serviceWorkerRegistration) {
+          await serviceWorkerRegistration.update();
+        }
 
         await detectRemoteAppUpdate();
       } catch {
@@ -4161,6 +4176,14 @@
       appInstalled = true;
       persistInstalledAppState();
       updateInstallButtonState();
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        refreshAppUpdateStatus();
+      }
+    });
+    window.addEventListener("focus", () => {
+      refreshAppUpdateStatus();
     });
 
     restoreState();
