@@ -181,9 +181,5 @@ catalogoMarche.categorias.forEach((categoria) => {
     if (featuredBackground) {
       item.cardBackground = featuredBackground;
     }
-
-    if (!Number.isFinite(item.granel)) {
-      item.granel = Math.round((item.publico + item.mayorista) / 2);
-    }
   });
 });
