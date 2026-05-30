@@ -45,7 +45,7 @@ const catalogoMarche = {
         { nombre: "Canelones Pollo y Verdura", publico: 11037, mayorista: 8490, granel: 2707 },
         { nombre: "Canelones Verdura y Ricota", publico: 10595, mayorista: 8150, granel: 2593 },
         { nombre: "Lasagna 1 porción", publico: 6825, mayorista: 5250, granel: 5030 },
-          { nombre: "Lasagna 2 porciones", publico: 13390, granel: 10645 },
+        { nombre: "Lasagna 2 porciones", publico: 13390, mayorista: 10300 },
         { nombre: "Pastel de Papas Chico", publico: 5330, mayorista: 4100, granel: 3880 },
         { nombre: "Pastel de Papas Grande", publico: 16094, mayorista: 12380, granel: 12010 }
         ]
