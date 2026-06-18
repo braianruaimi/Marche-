@@ -7,70 +7,70 @@ const catalogoMarche = {
       nombre: "Pizzas",
       slug: "pizzas",
       items: [
-        { nombre: "Muzza", publico: 8550, mayorista: 6609, granel: 6200 },
+        { nombre: "Muzza", publico: 8550, mayorista: 6609, granel: 6609 },
         { nombre: "4 Quesos", publico: 9450, mayorista: 7260, granel: 7260 },
-        { nombre: "Especial", publico: 11100, mayorista: 8569, granel: 7790 },
-        { nombre: "Fugazzeta", publico: 9750, mayorista: 7450, granel: 7450 },
-        { nombre: "Napolitana", publico: 14700, mayorista: 11440, granel: 8800 },
-        { nombre: "Doble Muzza", publico: 12300, mayorista: 9479, granel: 8950 },
-        { nombre: "Provolone", publico: 12750, mayorista: 9790, granel: 8900 },
-        { nombre: "Marche", publico: 11700, mayorista: 9085, granel: 8650 }
+        { nombre: "Especial", publico: 11100, mayorista: 8569, granel: 8569 },
+          { nombre: "Fugazzeta", publico: 9750, mayorista: 7450, granel: 7450 },
+        { nombre: "Napolitana", publico: 14700, mayorista: 11440, granel: 11440 },
+        { nombre: "Doble Muzza", publico: 12300, mayorista: 9479, granel: 9479 },
+        { nombre: "Provolone", publico: 12750, mayorista: 9790, granel: 9790 },
+          { nombre: "Marche", publico: 11700, mayorista: 9085, granel: 9085 }
       ]
     },
     {
       nombre: "Empanadas",
       slug: "empanadas",
       items: [
-        { nombre: "Carne x6", publico: 7950, mayorista: 6114, granel: 10960, granelLabel: "Carne x12", granelDetalle: "Caja de 12 empanadas de carne condimentada. Presentación exclusiva para la lista Granel." },
-        { nombre: "JyQ x6", publico: 10350, mayorista: 7959, granel: 14660, granelLabel: "JyQ x12", granelDetalle: "Caja de 12 empanadas de jamón y queso, con relleno cremoso y formato exclusivo para Granel." },
-        { nombre: "Pollo x6", publico: 9150, mayorista: 7008, granel: 13560, granelLabel: "Pollo x12", granelDetalle: "Caja de 12 empanadas de pollo sazonado. Venta exclusiva por docena en lista Granel." }
+        { nombre: "Carne x6", publico: 7950, mayorista: 6114, granel: 11230, granelLabel: "Carne x12", granelDetalle: "Caja de 12 empanadas de carne condimentada. Presentación exclusiva para la lista Granel." },
+        { nombre: "JyQ x6", publico: 10350, mayorista: 7959, granel: 14919, granelLabel: "JyQ x12", granelDetalle: "Caja de 12 empanadas de jamón y queso, con relleno cremoso y formato exclusivo para Granel." },
+        { nombre: "Pollo x6", publico: 9150, mayorista: 7008, granel: 13019, granelLabel: "Pollo x12", granelDetalle: "Caja de 12 empanadas de pollo sazonado. Venta exclusiva por docena en lista Granel." }
       ]
     },
     {
       nombre: "Canastitas",
       slug: "canastitas",
       items: [
-        { nombre: "Caprese x6", publico: 9450, mayorista: 7239, granel: 11400, granelLabel: "Caprese x12", granelDetalle: "Caja de 12 canastitas caprese con tomate, queso y albahaca. Presentación exclusiva para Granel." },
-        { nombre: "Humita x6", publico: 6300, mayorista: 4829, granel: 8780, granelLabel: "Humita x12", granelDetalle: "Caja de 12 canastitas de humita, cremosas y suaves. Venta exclusiva por docena en Granel." },
-        { nombre: "Verdura x6", publico: 6300, mayorista: 4850, granel: 9700, granelLabel: "Verdura x12", granelDetalle: "Caja de 12 canastitas de verdura, listas para horno y pensadas para la lista Granel." }
+        { nombre: "Caprese x6", publico: 9450, mayorista: 7239, granel: 14278, granelLabel: "Caprese x12", granelDetalle: "Caja de 12 canastitas caprese con tomate, queso y albahaca. Presentación exclusiva para Granel." },
+        { nombre: "Humita x6", publico: 6300, mayorista: 4829, granel: 9458, granelLabel: "Humita x12", granelDetalle: "Caja de 12 canastitas de humita, cremosas y suaves. Venta exclusiva por docena en Granel." },
+        { nombre: "Verdura x6", publico: 6300, mayorista: 4850, granel: 9500, granelLabel: "Verdura x12", granelDetalle: "Caja de 12 canastitas de verdura, listas para horno y pensadas para la lista Granel." }
       ]
     },
     {
       nombre: "Pastas",
       slug: "pastas",
       items: [
-        { nombre: "Sorrentinos 4 Quesos", publico: 12300, mayorista: 9500, granel: 4285 },
-        { nombre: "Sorrentinos JyQ", publico: 10650, mayorista: 8234, granel: 3625 },
-        { nombre: "Canelones JyQ", publico: 18600, mayorista: 14289, granel: 4270 },
-        { nombre: "Canelones Pollo y Verdura", publico: 12150, mayorista: 9339, granel: 2707 },
-        { nombre: "Canelones Verdura y Ricota", publico: 10650, mayorista: 8150, granel: 2593 },
-        { nombre: "Lasagna 1 porción", publico: 7500, mayorista: 5775, granel: 5030 },
+        { nombre: "Sorrentinos 4 Quesos", publico: 12300, mayorista: 9500, granel: 4500 },
+        { nombre: "Sorrentinos JyQ", publico: 10650, mayorista: 8234, granel: 3868 },
+        { nombre: "Canelones JyQ", publico: 18600, mayorista: 14289, granel: 4597 },
+        { nombre: "Canelones Pollo y Verdura", publico: 12150, mayorista: 9339, granel: 2947 },
+        { nombre: "Canelones Verdura y Ricota", publico: 10650, mayorista: 8150, granel: 2550 },
+        { nombre: "Lasagna 1 porción", publico: 7500, mayorista: 5775, granel: 5485 },
         { nombre: "Lasagna 2 porciones", publico: 14700, mayorista: 11330 },
-        { nombre: "Pastel de Papas Chico", publico: 5850, mayorista: 4510, granel: 3880 },
-        { nombre: "Pastel de Papas Grande", publico: 17700, mayorista: 13618, granel: 12010 }
+        { nombre: "Pastel de Papas Chico", publico: 5850, mayorista: 4510, granel: 4220 },
+        { nombre: "Pastel de Papas Grande", publico: 17700, mayorista: 13618, granel: 13119 }
         ]
       },
     {
       nombre: "Tartas",
       slug: "tartas",
       items: [
-        { nombre: "Brócoli Grande", publico: 9300, mayorista: 7130, granel: 7130, smallPublico: 5250, smallMayorista: 4050 },
-        { nombre: "Humita Grande", publico: 9900, mayorista: 7644, granel: 6730, smallPublico: 5100, smallMayorista: 3905, smallGranel: 3905 },
-        { nombre: "JyQ Grande", publico: 14850, mayorista: 11451, granel: 10040, smallPublico: 7650, smallMayorista: 5896, smallGranel: 5140 },
-        { nombre: "Pollo Grande", publico: 12450, mayorista: 9662, granel: 8900, smallPublico: 6450, smallMayorista: 4939, smallGranel: 4570 },
-        { nombre: "Verdura Grande", publico: 10950, mayorista: 8403, granel: 7390, smallPublico: 5850, smallMayorista: 4450, smallGranel: 4230 },
-        { nombre: "Zapallito Grande", publico: 12900, mayorista: 10011, granel: 6730, smallPublico: 6600, smallMayorista: 5143, smallGranel: 3480 },
-        { nombre: "Zapallo Grande", publico: 7800, mayorista: 6050, granel: 5130, smallPublico: 4200, smallMayorista: 3200, smallGranel: 2980 }
+        { nombre: "Brócoli Grande", publico: 9300, mayorista: 7130, granel: 6631, smallPublico: 5250, smallMayorista: 4050, smallGranel: 3760 },
+        { nombre: "Humita Grande", publico: 9900, mayorista: 7644, granel: 7145, smallPublico: 5100, smallMayorista: 3905, smallGranel: 3615 },
+        { nombre: "JyQ Grande", publico: 14850, mayorista: 11451, granel: 10952, smallPublico: 7650, smallMayorista: 5896, smallGranel: 5606 },
+        { nombre: "Pollo Grande", publico: 12450, mayorista: 9662, granel: 9163, smallPublico: 6450, smallMayorista: 4939, smallGranel: 4649 },
+        { nombre: "Verdura Grande", publico: 10950, mayorista: 8403, granel: 7904, smallPublico: 5850, smallMayorista: 4450, smallGranel: 4160 },
+        { nombre: "Zapallito Grande", publico: 12900, mayorista: 10011, granel: 9512, smallPublico: 6600, smallMayorista: 5143, smallGranel: 4853 },
+        { nombre: "Zapallo Grande", publico: 7800, mayorista: 6050, granel: 5551, smallPublico: 4200, smallMayorista: 3200, smallGranel: 2910 }
       ]
     },
     {
       nombre: "Salsas",
       slug: "salsas",
       items: [
-        { nombre: "Fileto 190g", publico: 1350, mayorista: 1045, granel: 950 },
-        { nombre: "Fileto 350g", publico: 2400, mayorista: 1815, granel: 1650 },
-        { nombre: "Bolognesa 190g", publico: 2250, mayorista: 1722, granel: 1640 },
-        { nombre: "Bolognesa 350g", publico: 4200, mayorista: 3230, granel: 3100 }
+        { nombre: "Fileto 190g", publico: 1350, mayorista: 1045, granel: 1045 },
+        { nombre: "Fileto 350g", publico: 2400, mayorista: 1815, granel: 1815 },
+        { nombre: "Bolognesa 190g", publico: 2250, mayorista: 1722, granel: 1722 },
+        { nombre: "Bolognesa 350g", publico: 4200, mayorista: 3230, granel: 6460 }
       ]
     }
   ]
