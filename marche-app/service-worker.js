@@ -1,4 +1,4 @@
-const CACHE_NAME = "marche-app-v8";
+const CACHE_NAME = "marche-app-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
